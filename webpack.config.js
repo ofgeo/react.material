@@ -1,19 +1,27 @@
 'use strict';
 
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const OUT_PATH = path.resolve(__dirname, 'packages');
+
 const IS_DEV = process.env.BABEL_ENV === 'development';
 const IS_PROD = false;
 
-const path = require('path');
 
-const OUT_PATH = path.resolve(__dirname, 'packages');
 const PUBLIC_PATH = '/assets/';
-const DEVTOOL = IS_DEV ? 'source-map' : false;
+const SOURCE_MAPS = IS_DEV ? 'source-map' : false;
+
+const CSS_FILENAME_OUTPUT_PATTERN = '[name]/dist/index.' + (IS_DEV ? '' : 'min.') + 'css';
+
+const createCssExtractTextPlugin = () => new ExtractTextPlugin(CSS_FILENAME_OUTPUT_PATTERN);
 
 module.exports = [{
     name: 'js-components',
     entry: {
         Button: [path.resolve('./packages/button/index.js')],
-        Checkbox: [path.resolve('./packages/checkbox/index.js')]
+        Checkbox: [path.resolve('./packages/checkbox/index.js')],
+        Theme: [path.resolve('./packages/theme/index.js')]
     },
     output: {
         path: OUT_PATH,
@@ -23,7 +31,7 @@ module.exports = [{
         libraryTarget: 'umd',
         umdNamedDefine: true
     },
-    devtool: DEVTOOL,
+    devtool: SOURCE_MAPS,
     module: {
         rules: [
             {
@@ -38,7 +46,21 @@ module.exports = [{
                 },
             }, {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                use: [
+                    {
+                        loader: 'style-loader',
+                        options: {
+                            sourceMap: false,
+                            hmr: false
+                        }
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }
+                ]
             }
         ]
     },
