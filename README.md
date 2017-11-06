@@ -1,3 +1,5 @@
+[![dependencies Status](https://david-dm.org/boennemann/badges/status.svg)](https://github.com/ofgeo/react.material)
+
 # React Material
 
 #### Simply start `crete-react-app` by running
