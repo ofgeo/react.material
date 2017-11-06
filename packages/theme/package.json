@@ -1,8 +1,7 @@
 {
-  "private": true,
-  "name": "@react.material/button",
-  "version": "0.0.1",
-  "description": "The React Material Components for the web button component",
+  "name": "@react.material/theme",
+  "version": "0.0.10",
+  "description": "The React Material Components for the web theme component",
   "repository": {
     "type": "git",
     "url": "https://github.com/ofgeo/react.material.git"
@@ -11,7 +10,7 @@
   "keywords": [
     "material components",
     "material design",
-    "checkbox",
+    "theme",
     "react",
     "reactjs"
   ],
@@ -20,7 +19,6 @@
     "dist"
   ],
   "dependencies": {
-    "@material/button": "^0.23.0",
-    "@material/ripple": "^0.23.0"
+    "@material/theme": "^0.24.0"
   }
 }
