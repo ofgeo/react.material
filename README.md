@@ -44,3 +44,5 @@ yarn build
 - [ ] Toolbar
 - [ ] Typography
  
+ ## Thanks
+ Awesome [**Material Design Web Components**](https://github.com/material-components/material-components-web) team!!!
