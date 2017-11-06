@@ -13,7 +13,7 @@ So after `/packages/*` modified, simply rum below from the root project, so crea
 yarn build
 ```
 
-## Status
+## Components
 - [ ] Animation
 - [ ] Base
 - [ ] Button
