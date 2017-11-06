@@ -18,7 +18,7 @@ yarn build
 - [ ] Base
 - [ ] Button
 - [ ] Card
-- [x] Checkbox
+- [x] [Checkbox](https://github.com/ofgeo/react.material/tree/master/packages/checkbox)
 - [ ] Dialog
 - [ ] Drawer
 - [ ] Elevation
