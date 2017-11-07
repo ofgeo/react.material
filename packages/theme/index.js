@@ -1,2 +1,2 @@
-import '@material/theme/dist/mdc.theme.css';
+import './index.css';
 

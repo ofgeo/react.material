@@ -4,7 +4,7 @@ import {Set as ImmutableSet, Map as ImmutableMap} from 'immutable';
 import {getCorrectEventName} from '@material/animation/dist/mdc.animation';
 import {MDCRipple, MDCRippleFoundation} from '@material/ripple/dist/mdc.ripple';
 import {MDCCheckboxFoundation} from '@material/checkbox/dist/mdc.checkbox';
-import '@material/checkbox/dist/mdc.checkbox.css';
+import './index.css';
 
 function getMatchesProperty(HTMLElementPrototype) {
     return [
@@ -142,9 +142,10 @@ export class Checkbox extends PureComponent {
     render() {
         // Within render, we generate the html needed to render a proper MDC-Web checkbox.
         return (
-            <div ref="root" className={`mdc-checkbox ${this.state.classes.toJS().join(' ')}`}
+            <div ref="root" className={`mdc-checkbox theme ${this.state.classes.toJS().join(' ')}`}
                  onChange={this.changeHandler.bind(this)}
-                 onMouseEnter={this.mouseenter.bind(this)}>
+                 onMouseEnter={this.mouseenter.bind(this)}
+                 style={{}}>
                 <input ref="nativeCb"
                        id={this.props.id}
                        type="checkbox"

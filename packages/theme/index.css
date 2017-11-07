@@ -1,0 +1,16 @@
+@import "~@material/theme/dist/mdc.theme.css";
+
+:root {
+@include:: root;
+    --mdc-theme-primary: #9c27b0;
+    --mdc-theme-primary-light: #000;
+    --mdc-theme-primary-dark: #000;
+    --mdc-theme-secondary: #000;
+    --mdc-theme-secondary-light: #000;
+    --mdc-theme-secondary-dark: #000;
+    --mdc-theme-background: #000;
+}
+
+.mdc-checkbox.theme::before, .mdc-checkbox.theme::after {
+    background-color: rgba(158, 158, 158, 0.14);
+}
