@@ -1,11 +1,11 @@
 {
   "name": "web",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "@react.material/button": "^0.0.1",
     "@react.material/checkbox": "^0.1.4",
-    "@react.material/theme": "^0.0.11",
+    "@react.material/theme": "^0.0.12",
     "material-components-web": "^0.24.0",
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.16"
