@@ -27,6 +27,7 @@ import '@react.material/theme';
     --mdc-theme-background: #000;
 }
 
+/*Checkbox ripple*/
 .mdc-checkbox.theme::before, .mdc-checkbox.theme::after {
     background-color: rgba(158, 158, 158, 0.14);
 }
