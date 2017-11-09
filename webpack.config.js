@@ -1,7 +1,6 @@
 'use strict';
 
 const path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 const OUT_PATH = path.resolve(__dirname, 'packages');
 const IS_DEV = process.env.BABEL_ENV === 'development';
