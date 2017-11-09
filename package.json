@@ -9,10 +9,9 @@
   "scripts": {
     "build": "cross-env BABEL_ENV=development webpack --progress --colors",
     "build:min": "cross-env BABEL_ENV=production webpack -p --progress --colors",
-    "!postinstall": "yarn build && yarn build:min",
     "bootstrap": "yarn && lerna bootstrap",
     "clean": "del-cli packages/*/dist && lerna clean --yes",
-    "dist": "yarn && yarn clean && yarn build && yarn build:min",
+    "dist": "yarn clean && yarn build && yarn build:min",
     "start": "yarn dist && yarn bootstrap && lerna run --scope web start",
     "prepublish": "yarn dist"
   },
