@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@react.material/button",
   "version": "0.0.1",
   "description": "The React Material Components for the web button component",
@@ -20,7 +19,10 @@
     "dist"
   ],
   "dependencies": {
-    "@material/button": "^0.23.0",
-    "@material/ripple": "^0.23.0"
+    "@material/button": "^0.24.0",
+    "@material/ripple": "^0.24.0",
+    "immutable": "^3.8.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.1.0"
   }
 }

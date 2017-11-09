@@ -12,11 +12,13 @@
     "bootstrap": "yarn && lerna bootstrap",
     "clean": "del-cli packages/*/dist && lerna clean --yes",
     "dist": "yarn clean && yarn build && yarn build:min",
-    "start": "yarn bootstrap && lerna run --scope web start",
+    "start:web": "yarn bootstrap && lerna run --scope web start",
     "prepublish": "yarn dist"
   },
   "devDependencies": {
-    "babel-preset-react-app": "^3.0.3",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-react-app": "3.1.0",
     "cross-env": "^5.1.1",
     "css-loader": "^0.28.7",
     "del-cli": "^1.1.0",
@@ -24,6 +26,7 @@
     "glob": "^7.1.2",
     "jtest": "^0.0.1",
     "lerna": "^2.5.1",
+    "uglifyjs-webpack-plugin": "^1.0.1",
     "webpack": "^3.8.1"
   },
   "workspaces": [
@@ -34,9 +37,5 @@
     "presets": [
       "react-app"
     ]
-  },
-  "dependencies": {
-    "prop-types": "^15.6.0",
-    "react": "^16.0.0"
   }
 }

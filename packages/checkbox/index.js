@@ -1,9 +1,9 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {Set as ImmutableSet, Map as ImmutableMap} from 'immutable';
-import {getCorrectEventName} from '@material/animation/dist/mdc.animation';
-import {MDCRipple, MDCRippleFoundation} from '@material/ripple/dist/mdc.ripple';
-import {MDCCheckboxFoundation} from '@material/checkbox/dist/mdc.checkbox';
+import {getCorrectEventName} from '@material/animation';
+import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
+import {MDCCheckboxFoundation} from '@material/checkbox';
 import './index.css';
 
 function getMatchesProperty(HTMLElementPrototype) {
