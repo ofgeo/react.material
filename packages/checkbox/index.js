@@ -19,6 +19,7 @@ export class Checkbox extends PureComponent {
         id: PropTypes.string,
         labelId: PropTypes.string,
         checked: PropTypes.bool,
+        defaultChecked: PropTypes.bool,
         disabled: PropTypes.bool,
         indeterminate: PropTypes.bool,
         onChange: PropTypes.func
@@ -26,6 +27,7 @@ export class Checkbox extends PureComponent {
 
     static defaultProps = {
         checked: false,
+        defaultChecked: false,
         disabled: false,
         indeterminate: false,
         onChange: () => {
@@ -142,7 +144,7 @@ export class Checkbox extends PureComponent {
     render() {
         // Within render, we generate the html needed to render a proper MDC-Web checkbox.
         return (
-            <div ref="root" className={`mdc-checkbox ${this.state.classes.toJS().join(' ')}`}
+            <div ref="root" className={`mdc-checkbox theme ${this.state.classes.toJS().join(' ')}`}
                  onChange={this.changeHandler.bind(this)}
                  onMouseEnter={this.mouseenter.bind(this)}
                  style={{}}>
@@ -151,6 +153,7 @@ export class Checkbox extends PureComponent {
                        type="checkbox"
                        className="mdc-checkbox__native-control"
                        aria-labelledby={this.props.labelId}
+                       defaultChecked={this.props.defaultChecked}
                        disabled={this.state.disabledInternal}
                        onMouseOut={this.mouseout.bind(this)}/>
                 <div className="mdc-checkbox__background">

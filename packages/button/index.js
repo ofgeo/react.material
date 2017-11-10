@@ -6,29 +6,36 @@ import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
 import './index.css';
 
 function getMatchesProperty(HTMLElementPrototype) {
-  return [
-    'webkitMatchesSelector', 'msMatchesSelector', 'matches',
-  ].filter((p) => p in HTMLElementPrototype).pop();
+    return [
+        'webkitMatchesSelector', 'msMatchesSelector', 'matches',
+    ].filter((p) => p in HTMLElementPrototype).pop();
 }
 
 const MATCHES = getMatchesProperty(HTMLElement.prototype);
 
 class Button extends PureComponent {
     static propTypes = {
-        id: PropTypes.string
+        id: PropTypes.string,
+        disabled: PropTypes.bool
+    };
+
+    static defaultProps = {
+        disabled: false
     };
 
     state = {
         classes: new ImmutableSet(),
         rippleCss: new ImmutableMap(),
-        disabledInternal: this.props.disabled
+        disabledInternal: this.props.disabled,
+        internalWidth: 0,
+        internalHeight: 0
     };
 
     // Here we initialize a foundation class, passing it an adapter which tells it how to
     // For browser compatibility we extend the default adapter which checks for css variable support.
     rippleFoundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
         isUnbounded: () => false,
-        isSurfaceActive: () => this.refs.nativeCb[MATCHES](':active'),
+        isSurfaceActive: () => this.refs.root[MATCHES](':active'),
         addClass: className => {
             this.setState(prevState => ({
                 classes: prevState.classes.add(className)
@@ -51,7 +58,7 @@ class Button extends PureComponent {
             }));
         },
         computeBoundingRect: () => {
-			//const {left, top} = this.refs.root.getBoundingClientRect();
+            //const {left, top} = this.refs.root.getBoundingClientRect();
             //const DIM = 40;
             //return {
             //    top,
@@ -67,7 +74,8 @@ class Button extends PureComponent {
 
     render() {
         return (
-            <button ref={'root'} className={`mdc-button mdc-ripple-surface ${this.state.classes.toJS().join(' ')}`}>
+            <button ref={'root'} className={`mdc-button theme ${this.state.classes.toJS().join(' ')}`}
+                    disabled={this.state.disabledInternal}>
                 {this.props.children}
             </button>
         )
@@ -85,20 +93,11 @@ class Button extends PureComponent {
 
     // Here we synchronize the internal state of the UI component based on what the user has specified.
     componentWillReceiveProps(props) {
-        if (props.checked !== this.props.checked) {
-            this.setState({checkedInternal: props.checked, indeterminateInternal: false});
-        }
-        if (props.indeterminate !== this.props.indeterminate) {
-            this.setState({indeterminateInternal: props.indeterminate});
-        }
         if (props.disabled !== this.props.disabled) {
             this.setState({disabledInternal: props.disabled});
         }
     }
 
-    // Since we cannot set an indeterminate attribute on a native checkbox, we use componentDidUpdate to update
-    // the indeterminate value of the native checkbox whenever a change occurs (as opposed to doing so within
-    // render()).
     componentDidUpdate() {
         // To make the ripple animation work we update the css properties after React finished building the DOM.
         if (this.refs.root) {
