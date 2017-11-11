@@ -55,27 +55,35 @@ module.exports = [{
             }
         ]
     },
-    externals: {
-        react: {
-            root: 'React',
-            commonjs2: 'react',
-            commonjs: 'react',
-            amd: 'react',
-            umd: 'react',
+    externals: [
+        /^@material\//,
+        /^@material\/.+$/,
+        {
+            react: {
+                root: 'React',
+                commonjs2: 'react',
+                commonjs: 'react',
+                amd: 'react',
+                umd: 'react',
+            }
         },
-        'react-dom': {
-            root: 'ReactDOM',
-            commonjs2: 'react-dom',
-            commonjs: 'react-dom',
-            amd: 'react-dom',
-            umd: 'react-dom',
+        {
+            'react-dom': {
+                root: 'ReactDOM',
+                commonjs2: 'react-dom',
+                commonjs: 'react-dom',
+                amd: 'react-dom',
+                umd: 'react-dom',
+            }
         },
-        immutable: {
-            root: '_',
-            commonjs2: 'immutable',
-            commonjs: 'immutable',
-            amd: 'immutable',
-            umd: 'immutable',
+        {
+            immutable: {
+                root: '_',
+                commonjs2: 'immutable',
+                commonjs: 'immutable',
+                amd: 'immutable',
+                umd: 'immutable',
+            }
         }
-    }
+    ]
 }];

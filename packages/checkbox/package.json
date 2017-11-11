@@ -14,10 +14,8 @@
     "react",
     "reactjs"
   ],
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
+  "main": "index.js",
+  "module": "dist/index.js",
   "dependencies": {
     "@material/animation": "^0.4.1",
     "@material/checkbox": "^0.24.0",

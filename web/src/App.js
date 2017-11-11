@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {Checkbox} from '@react.material/checkbox'
-import {Button} from '@react.material/button'
+import {Checkbox} from '../../packages/checkbox'
+import {Button as Button2} from '@react.material/button'
 
 class App extends Component {
     state = {
@@ -32,6 +32,7 @@ class App extends Component {
                 </div>
                 <div>
                     <Button id={'button'} disabled={disabled}>Press Me</Button>
+                    <Button2 id={'button'} disabled={disabled}>Press Me</Button2>
                 </div>
             </div>
         );
