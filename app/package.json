@@ -1,9 +1,9 @@
 {
   "name": "app",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": true,
   "dependencies": {
-    "@react.material/button": "^0.0.7",
+    "@react.material/button": "^0.0.8",
     "react": "^16.1.0",
     "react-dom": "^16.1.0"
   },
