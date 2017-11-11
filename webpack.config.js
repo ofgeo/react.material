@@ -19,7 +19,7 @@ module.exports = [{
         path: OUT_PATH,
         publicPath: PUBLIC_PATH,
         filename: '[name]/dist/index.' + (IS_DEV ? '' : 'min.') + 'js',
-        library: ['rmd', '[name]'],
+        library: ['r', 'm', '[name]'],
         libraryTarget: 'umd'
     },
     devtool: SOURCE_MAPS,
@@ -77,8 +77,17 @@ module.exports = [{
             }
         },
         {
+            'prop-types': {
+                root: 'PropTypes',
+                commonjs2: 'prop-types',
+                commonjs: 'prop-types',
+                amd: 'prop-types',
+                umd: 'prop-types',
+            }
+        },
+        {
             immutable: {
-                root: '_',
+                root: 'Immutable',
                 commonjs2: 'immutable',
                 commonjs: 'immutable',
                 amd: 'immutable',
