@@ -11,6 +11,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
+const PACKAGES_INCLUDE_PATTERN = new RegExp('(packages)' + path.sep + '.*');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -120,7 +121,7 @@ module.exports = {
                         loader: require.resolve('eslint-loader'),
                     },
                 ],
-                include: [paths.appSrc, paths.packages],
+                include: [paths.appSrc, PACKAGES_INCLUDE_PATTERN],
             },
             {
                 // "oneOf" will traverse all following loaders until one will
@@ -141,7 +142,7 @@ module.exports = {
                     // Process JS with Babel.
                     {
                         test: /\.(js|jsx|mjs)$/,
-                        include: [paths.appSrc, paths.packages],
+                        include: [paths.appSrc, PACKAGES_INCLUDE_PATTERN],
                         loader: require.resolve('babel-loader'),
                         options: {
 
