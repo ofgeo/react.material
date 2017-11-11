@@ -7,9 +7,12 @@ const IS_DEV = process.env.BABEL_ENV === 'development';
 const PUBLIC_PATH = '/assets/';
 const SOURCE_MAPS = IS_DEV ? 'source-map' : false;
 
+const EXCLUDE_PATTERN = new RegExp('(node_modules)' + path.sep + '(?!(@material)' + path.sep + ').*');
+const EXTERNAL_PATTERN = new RegExp('^@material' + path.sep);
+const EXTERNAL_PATTERN2 = new RegExp('^@material' + path.sep + '.+$');
 
 module.exports = [{
-    name: 'js-components',
+    name: IS_DEV ? 'packages.js' : 'packages.min.js',
     entry: {
         Button: [path.resolve('./packages/button/index.js')],
         Checkbox: [path.resolve('./packages/checkbox/index.js')],
@@ -27,8 +30,7 @@ module.exports = [{
         rules: [
             {
                 test: /\.js$/,
-                // exclude: [/(node_modules)/],
-                exclude: /(node_modules)\/(?!(@material)\/).*/,
+                exclude: EXCLUDE_PATTERN,
                 use: [{
                     loader: 'babel-loader',
                     options: {
@@ -56,8 +58,8 @@ module.exports = [{
         ]
     },
     externals: [
-        /^@material\//,
-        /^@material\/.+$/,
+        EXTERNAL_PATTERN,
+        EXTERNAL_PATTERN2,
         {
             react: {
                 root: 'React',

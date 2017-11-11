@@ -58,16 +58,6 @@ class Button extends PureComponent {
             }));
         },
         computeBoundingRect: () => {
-            //const {left, top} = this.refs.root.getBoundingClientRect();
-            //const DIM = 40;
-            //return {
-            //    top,
-            //    left,
-            //    right: left + DIM,
-            //    bottom: top + DIM,
-            //    width: DIM,
-            //    height: DIM,
-            //}
             return this.refs.root.getBoundingClientRect();
         },
     }));
