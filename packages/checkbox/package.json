@@ -1,6 +1,6 @@
 {
   "name": "@react.material/checkbox",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "The React Material Components for the web checkbox component",
   "repository": {
     "type": "git",
@@ -17,9 +17,6 @@
   "main": "index.js",
   "module": "dist/index.js",
   "dependencies": {
-    "@material/animation": "^0.4.1",
-    "@material/checkbox": "^0.24.0",
-    "@material/ripple": "^0.24.0",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.0",
     "react": "16.0.0"

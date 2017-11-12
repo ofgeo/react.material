@@ -1,10 +1,10 @@
 {
   "name": "app",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "private": true,
   "dependencies": {
-    "@react.material/button": "^0.0.21",
-    "@react.material/ripple": "^0.0.1",
+    "@react.material/button": "^0.0.22",
+    "@react.material/ripple": "^0.0.2",
     "react": "16.0.0",
     "react-dom": "16.0.0"
   },
