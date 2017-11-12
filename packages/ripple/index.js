@@ -12,7 +12,7 @@ function getMatchesProperty(HTMLElementPrototype) {
 
 const MATCHES = getMatchesProperty(HTMLElement.prototype);
 
-class Ripple extends PureComponent {
+class Button extends PureComponent {
     static propTypes = {
         id: PropTypes.string,
         disabled: PropTypes.bool
@@ -25,7 +25,6 @@ class Ripple extends PureComponent {
     state = {
         classes: new ImmutableSet(),
         rippleCss: new ImmutableMap(),
-        children: {},
         disabledInternal: this.props.disabled,
         internalWidth: 0,
         internalHeight: 0
@@ -62,14 +61,13 @@ class Ripple extends PureComponent {
         },
     }));
 
-    renderChildren() {
-        // TODO: Change the name prop of all children
-        // to this.props.name
-        return this.props.children
-    }
-
     render() {
-        return React.Children.only(this.props.children);
+        return (
+            <button ref={'root'} className={`mdc-button theme ${this.state.classes.toJS().join(' ')}`}
+                    disabled={this.state.disabledInternal}>
+                {this.props.children}
+            </button>
+        )
     }
 
     // Within the two component lifecycle methods below, we invoke the foundation's lifecycle hooks
@@ -99,5 +97,5 @@ class Ripple extends PureComponent {
     }
 }
 
-export {Ripple};
+export {Button};
 

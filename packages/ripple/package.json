@@ -1,5 +1,6 @@
 {
-  "name": "@react.material/button",
+  "private": true,
+  "name": "@react.material/ripple",
   "version": "0.0.21",
   "description": "The React Material Components for the web button component",
   "repository": {
@@ -10,12 +11,14 @@
   "keywords": [
     "material components",
     "material design",
-    "checkbox",
+    "ripple",
     "react",
     "reactjs"
   ],
   "main": "dist/index.js",
   "dependencies": {
+    "@material/button": "^0.24.0",
+    "@material/ripple": "^0.24.0",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.0",
     "react": "^16.1.0",

@@ -23,7 +23,7 @@ module.exports = [{
         publicPath: PUBLIC_PATH,
         filename: '[name]/dist/index.' + (IS_DEV ? '' : 'min.') + 'js',
         library: ['r', 'm', '[name]'],
-        libraryTarget: 'umd'
+        libraryTarget: 'commonjs2'
     },
     devtool: SOURCE_MAPS,
     module: {
@@ -51,15 +51,15 @@ module.exports = [{
                 }, {
                     loader: 'css-loader',
                     options: {
-                        sourceMap: true
+                        sourceMap: false
                     }
                 }]
             }
         ]
     },
     externals: [
-        EXTERNAL_PATTERN,
-        EXTERNAL_PATTERN2,
+        // EXTERNAL_PATTERN,
+        // EXTERNAL_PATTERN2,
         {
             react: {
                 root: 'React',

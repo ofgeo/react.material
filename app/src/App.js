@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import SubComponent from './SubComponent'
 
 import {Button} from '@react.material/button/index'
 
@@ -18,6 +19,7 @@ class App extends Component {
                 <div>
                     <Button>AAA BBB CCC</Button>
                 </div>
+                <SubComponent/>
             </div>
         );
     }
