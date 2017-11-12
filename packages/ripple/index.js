@@ -1,4 +1,5 @@
-import React, {PureComponent} from 'react'
+import React, {PureComponent, Children} from 'react'
+import ReactDom from 'react-dom'
 import PropTypes from 'prop-types'
 import {Set as ImmutableSet, Map as ImmutableMap} from 'immutable';
 import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
@@ -12,10 +13,11 @@ function getMatchesProperty(HTMLElementPrototype) {
 
 const MATCHES = getMatchesProperty(HTMLElement.prototype);
 
-class Button extends PureComponent {
+class Ripple extends PureComponent {
     static propTypes = {
         id: PropTypes.string,
-        disabled: PropTypes.bool
+        disabled: PropTypes.bool,
+        children: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
@@ -23,6 +25,7 @@ class Button extends PureComponent {
     };
 
     state = {
+        children: null,
         classes: new ImmutableSet(),
         rippleCss: new ImmutableMap(),
         disabledInternal: this.props.disabled,
@@ -34,7 +37,7 @@ class Button extends PureComponent {
     // For browser compatibility we extend the default adapter which checks for css variable support.
     rippleFoundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
         isUnbounded: () => false,
-        isSurfaceActive: () => this.refs.root[MATCHES](':active'),
+        // isSurfaceActive: () => React.Children.only(this.props.children)[MATCHES](':active'),
         addClass: className => {
             this.setState(prevState => ({
                 classes: prevState.classes.add(className)
@@ -46,10 +49,10 @@ class Button extends PureComponent {
             }));
         },
         registerInteractionHandler: (evtType, handler) => {
-            this.refs.root.addEventListener(evtType, handler);
+            // React.Children.only(this.props.children).addEventListener(evtType, handler);
         },
         deregisterInteractionHandler: (evtType, handler) => {
-            this.refs.root.removeEventListener(evtType, handler);
+            // React.Children.only(this.props.children).removeEventListener(evtType, handler);
         },
         updateCssVariable: (varName, value) => {
             this.setState(prevState => ({
@@ -57,22 +60,18 @@ class Button extends PureComponent {
             }));
         },
         computeBoundingRect: () => {
-            return this.refs.root.getBoundingClientRect();
+            // return React.Children.only(this.props.children).getBoundingClientRect();
         },
     }));
 
     render() {
-        return (
-            <button ref={'root'} className={`mdc-button theme ${this.state.classes.toJS().join(' ')}`}
-                    disabled={this.state.disabledInternal}>
-                {this.props.children}
-            </button>
-        )
+        return this.state.children;
     }
 
     // Within the two component lifecycle methods below, we invoke the foundation's lifecycle hooks
     // so that proper work can be performed.
     componentDidMount() {
+        this.setState({children: React.Children.only(this.props.children)});
         this.rippleFoundation.init();
     }
 
@@ -88,14 +87,15 @@ class Button extends PureComponent {
     }
 
     componentDidUpdate() {
+        console.log(ReactDom.findDOMNode(React.Children.only(this.props.children)));
         // To make the ripple animation work we update the css properties after React finished building the DOM.
-        if (this.refs.root) {
+        if (React.Children.only(this.props.children)) {
             this.state.rippleCss.forEach((v, k) => {
-                this.refs.root.style.setProperty(k, v);
+                React.Children.only(this.props.children).style.setProperty(k, v);
             });
         }
     }
 }
 
-export {Button};
+export {Ripple};
 

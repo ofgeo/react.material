@@ -4,6 +4,7 @@ import './App.css';
 import SubComponent from './SubComponent'
 
 import {Button} from '@react.material/button/index'
+import {Ripple} from '@react.material/ripple/index'
 
 class App extends Component {
     render() {
@@ -20,6 +21,14 @@ class App extends Component {
                     <Button>AAA BBB CCC</Button>
                 </div>
                 <SubComponent/>
+
+                <Ripple>
+                    <div>
+                        <p>
+                            AAAA BBBB CCC
+                        </p>
+                    </div>
+                </Ripple>
             </div>
         );
     }
