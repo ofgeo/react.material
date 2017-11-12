@@ -2,7 +2,7 @@
 
 # React Material
 
-#### Simply start `crete-react-app` by running
+#### Simply start `demo` by running
 ```
 yarn start
 ```
@@ -26,7 +26,7 @@ yarn start
 - [ ] List
 - [ ] Menu
 - [ ] Radio
-- [ ] Ripple
+- [X] [Ripple](https://github.com/ofgeo/react.material/tree/master/packages/ripple)
 - [ ] RTL
 - [ ] Select
 - [ ] Select Control
