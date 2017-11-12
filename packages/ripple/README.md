@@ -1,7 +1,7 @@
-# Checkboxes
+# Ripples
 
 ## Installation
 
-- ```yarn add @react.material/checkbox```
+- ```yarn add @react.material/ripple```
 
-- ```npm install --save @react.material/checkbox```
+- ```npm install --save @react.material/ripple```

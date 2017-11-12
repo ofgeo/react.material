@@ -16,14 +16,15 @@ module.exports = [{
     entry: {
         Button: [path.resolve('./packages/button/index.js')],
         Checkbox: [path.resolve('./packages/checkbox/index.js')],
-        Theme: [path.resolve('./packages/theme/index.js')]
+        Theme: [path.resolve('./packages/theme/index.js')],
+        Ripple: [path.resolve('./packages/ripple/index.js')]
     },
     output: {
         path: OUT_PATH,
         publicPath: PUBLIC_PATH,
         filename: '[name]/dist/index.' + (IS_DEV ? '' : 'min.') + 'js',
         library: ['r', 'm', '[name]'],
-        libraryTarget: 'commonjs2'
+        libraryTarget: 'umd'
     },
     devtool: SOURCE_MAPS,
     module: {

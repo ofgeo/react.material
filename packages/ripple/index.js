@@ -1,5 +1,5 @@
-import React, {PureComponent, Children} from 'react'
-import ReactDom from 'react-dom'
+import React, {PureComponent} from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import {Set as ImmutableSet, Map as ImmutableMap} from 'immutable';
 import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
@@ -16,43 +16,45 @@ const MATCHES = getMatchesProperty(HTMLElement.prototype);
 class Ripple extends PureComponent {
     static propTypes = {
         id: PropTypes.string,
-        disabled: PropTypes.bool,
-        children: PropTypes.func.isRequired,
+        unbounded: PropTypes.bool,
     };
 
     static defaultProps = {
-        disabled: false
+        unbounded: false,
     };
 
     state = {
-        children: null,
-        classes: new ImmutableSet(),
-        rippleCss: new ImmutableMap(),
-        disabledInternal: this.props.disabled,
-        internalWidth: 0,
-        internalHeight: 0
+        surface: null,
+        rippleCss: new ImmutableMap()
     };
-
     // Here we initialize a foundation class, passing it an adapter which tells it how to
     // For browser compatibility we extend the default adapter which checks for css variable support.
     rippleFoundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
-        isUnbounded: () => false,
-        // isSurfaceActive: () => React.Children.only(this.props.children)[MATCHES](':active'),
+        isUnbounded: () => this.props.unbounded,
+        isSurfaceActive: () => {
+            if (this.state.surface) {
+                this.state.surface[MATCHES](':active')
+            }
+        },
         addClass: className => {
-            this.setState(prevState => ({
-                classes: prevState.classes.add(className)
-            }));
+            if (this.state.surface) {
+                this.state.surface.classList.add(className);
+            }
         },
         removeClass: className => {
-            this.setState(prevState => ({
-                classes: prevState.classes.remove(className)
-            }));
+            if (this.state.surface) {
+                this.state.surface.classList.remove(className);
+            }
         },
         registerInteractionHandler: (evtType, handler) => {
-            // React.Children.only(this.props.children).addEventListener(evtType, handler);
+            if (this.state.surface) {
+                this.state.surface.addEventListener(evtType, handler);
+            }
         },
         deregisterInteractionHandler: (evtType, handler) => {
-            // React.Children.only(this.props.children).removeEventListener(evtType, handler);
+            if (this.state.surface) {
+                this.state.surface.removeEventListener(evtType, handler);
+            }
         },
         updateCssVariable: (varName, value) => {
             this.setState(prevState => ({
@@ -60,18 +62,21 @@ class Ripple extends PureComponent {
             }));
         },
         computeBoundingRect: () => {
-            // return React.Children.only(this.props.children).getBoundingClientRect();
+            if (this.state.surface) {
+                return this.state.surface.getBoundingClientRect();
+            }
         },
     }));
 
     render() {
-        return this.state.children;
+        return React.Children.only(this.props.children);
     }
 
     // Within the two component lifecycle methods below, we invoke the foundation's lifecycle hooks
     // so that proper work can be performed.
     componentDidMount() {
-        this.setState({children: React.Children.only(this.props.children)});
+        this.state.surface = ReactDOM.findDOMNode(this);
+        this.state.surface.classList.add('mdc-ripple-surface');
         this.rippleFoundation.init();
     }
 
@@ -87,11 +92,10 @@ class Ripple extends PureComponent {
     }
 
     componentDidUpdate() {
-        console.log(ReactDom.findDOMNode(React.Children.only(this.props.children)));
         // To make the ripple animation work we update the css properties after React finished building the DOM.
-        if (React.Children.only(this.props.children)) {
+        if (this.state.surface) {
             this.state.rippleCss.forEach((v, k) => {
-                React.Children.only(this.props.children).style.setProperty(k, v);
+                this.state.surface.style.setProperty(k, v);
             });
         }
     }

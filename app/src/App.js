@@ -7,6 +7,8 @@ import {Button} from '@react.material/button/index'
 import {Ripple} from '@react.material/ripple/index'
 
 class App extends Component {
+
+
     render() {
         return (
             <div className="App">
@@ -22,16 +24,21 @@ class App extends Component {
                 </div>
                 <SubComponent/>
 
-                <Ripple>
+                <Ripple unbounded={true}>
                     <div>
-                        <p>
-                            AAAA BBBB CCC
-                        </p>
+                        aaaa
                     </div>
                 </Ripple>
+                <Button>AAA BBB CCC</Button>
             </div>
         );
     }
+
+
+}
+
+function activateLasers() {
+    // alert('aaa');
 }
 
 export default App;
