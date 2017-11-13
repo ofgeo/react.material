@@ -10,6 +10,9 @@ class App extends Component {
 
 
     render() {
+        const space = {
+            margin: '10px'
+        };
         return (
             <div className="App">
                 <header className="App-header">
@@ -19,26 +22,26 @@ class App extends Component {
                 <p className="App-intro">
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
-                <div>
-                    <Button>AAA BBB CCC</Button>
+                <div style={space}>
+                    <Button>Flat Button</Button>
                 </div>
-                <SubComponent/>
 
-                <Ripple unbounded={true}>
-                    <div>
-                        aaaa
-                    </div>
-                </Ripple>
-                <Button>AAA BBB CCC</Button>
+                <div style={space}>
+                    <Ripple>
+                        <SubComponent/>
+                    </Ripple>
+                </div>
+
+                <div style={space}>
+                    <Ripple>
+                        <div style={{padding:10}}>Just a div</div>
+                    </Ripple>
+                </div>
             </div>
         );
     }
 
 
-}
-
-function activateLasers() {
-    // alert('aaa');
 }
 
 export default App;
