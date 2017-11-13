@@ -40,14 +40,13 @@ export class Checkbox extends PureComponent {
         checkedInternal: this.props.checked,
         disabledInternal: this.props.disabled,
         indeterminateInternal: this.props.indeterminate,
-        mouseEntered: false
     };
 
     // Here we initialize a foundation class, passing it an adapter which tells it how to
     // For browser compatibility we extend the default adapter which checks for css variable support.
     rippleFoundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
         isUnbounded: () => true,
-        isSurfaceActive: () => false,
+        isSurfaceActive: () => this.refs.root[MATCHES](':active'),
         addClass: className => {
             this.setState(prevState => ({
                 classes: prevState.classes.add(className)
@@ -121,11 +120,6 @@ export class Checkbox extends PureComponent {
             }
             return this.refs.nativeCb;
         },
-        forceLayout: () => {
-            if (this.refs.nativeCb) {
-                this.refs.nativeCb.offsetWidth;
-            }
-        },
         isAttachedToDOM: () => Boolean(this.refs.nativeCb),
     });
 
@@ -133,29 +127,18 @@ export class Checkbox extends PureComponent {
         this.props.onChange(evt);
     }
 
-    mouseenter(event) {
-        this.state.mouseEntered = true;
-    }
-
-    mouseout(event) {
-        this.state.mouseEntered = false;
-    }
-
     render() {
         // Within render, we generate the html needed to render a proper MDC-Web checkbox.
         return (
             <div ref="root" className={`mdc-checkbox theme ${this.state.classes.toJS().join(' ')}`}
-                 onChange={this.changeHandler.bind(this)}
-                 onMouseEnter={this.mouseenter.bind(this)}
-                 style={{}}>
+                 onChange={this.changeHandler.bind(this)}>
                 <input ref="nativeCb"
                        id={this.props.id}
                        type="checkbox"
                        className="mdc-checkbox__native-control"
                        aria-labelledby={this.props.labelId}
                        defaultChecked={this.props.defaultChecked}
-                       disabled={this.state.disabledInternal}
-                       onMouseOut={this.mouseout.bind(this)}/>
+                       disabled={this.state.disabledInternal}/>
                 <div className="mdc-checkbox__background">
                     <svg className="mdc-checkbox__checkmark"
                          viewBox="0 0 24 24">

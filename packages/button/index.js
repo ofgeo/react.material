@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {Set as ImmutableSet, Map as ImmutableMap} from 'immutable';
-// import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
 import {MDCRipple, MDCRippleFoundation} from '@react.material/ripple/index';
 import './index.css';
 
@@ -34,7 +33,7 @@ class Button extends PureComponent {
 
     // Here we initialize a foundation class, passing it an adapter which tells it how to
     // For browser compatibility we extend the default adapter which checks for css variable support.
-    rippleFoundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
+    foundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
         isUnbounded: () => false,
         isSurfaceActive: () => this.refs.root[MATCHES](':active'),
         addClass: className => {
@@ -63,6 +62,7 @@ class Button extends PureComponent {
         },
     }));
 
+
     render() {
         return (
             <button ref={'root'} className={`mdc-button theme ${this.state.classes.toJS().join(' ')}`}
@@ -75,11 +75,11 @@ class Button extends PureComponent {
     // Within the two component lifecycle methods below, we invoke the foundation's lifecycle hooks
     // so that proper work can be performed.
     componentDidMount() {
-        this.rippleFoundation.init();
+        this.foundation.init();
     }
 
     componentWillUnmount() {
-        this.rippleFoundation.destroy();
+        this.foundation.destroy();
     }
 
     // Here we synchronize the internal state of the UI component based on what the user has specified.

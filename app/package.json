@@ -5,6 +5,7 @@
   "dependencies": {
     "@react.material/button": "^0.0.22",
     "@react.material/ripple": "^0.0.2",
+    "@react.material/checkbox": "^0.1.6",
     "react": "16.0.0",
     "react-dom": "16.0.0"
   },

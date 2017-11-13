@@ -30,7 +30,7 @@ class Ripple extends PureComponent {
     };
     // Here we initialize a foundation class, passing it an adapter which tells it how to
     // For browser compatibility we extend the default adapter which checks for css variable support.
-    rippleFoundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
+    foundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
         isUnbounded: () => this.props.unbounded,
         isSurfaceActive: () => {
             this.surface[MATCHES](':active')
@@ -70,11 +70,21 @@ class Ripple extends PureComponent {
     componentDidMount() {
         this.surface = ReactDOM.findDOMNode(this);
         this.surface.classList.add('mdc-ripple-surface');
-        this.rippleFoundation.init();
+        this.foundation.init();
+        const _surface = this.surface;
+        this.surface.addEventListener('mouseout', function () {
+            if (document.createEvent) {
+                const pointerup = document.createEvent("HTMLEvents");
+                pointerup.initEvent('pointerup', false, true);
+                _surface.dispatchEvent(pointerup);
+            } else {
+                _surface.fireEvent('pointerup');
+            }
+        });
     }
 
     componentWillUnmount() {
-        this.rippleFoundation.destroy();
+        this.foundation.destroy();
     }
 
     // Here we synchronize the internal state of the UI component based on what the user has specified.

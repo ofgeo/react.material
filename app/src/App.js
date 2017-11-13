@@ -5,6 +5,7 @@ import SubComponent from './SubComponent'
 
 import {Button} from '@react.material/button/index'
 import {Ripple} from '@react.material/ripple/index'
+import {Checkbox} from '@react.material/checkbox/index'
 
 class App extends Component {
 
@@ -19,22 +20,17 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo"/>
                     <h1 className="App-title">Welcome to React</h1>
                 </header>
-                <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.
-                </p>
+                <div style={space}>
+                    <Checkbox>Flat Button</Checkbox>
+                </div>
+
                 <div style={space}>
                     <Button>Flat Button</Button>
                 </div>
 
                 <div style={space}>
                     <Ripple>
-                        <SubComponent/>
-                    </Ripple>
-                </div>
-
-                <div style={space}>
-                    <Ripple>
-                        <div style={{padding:10}}>Just a div</div>
+                        <div style={{padding: 10}}>Ripple</div>
                     </Ripple>
                 </div>
             </div>
