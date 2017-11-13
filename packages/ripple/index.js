@@ -33,19 +33,19 @@ class Ripple extends PureComponent {
     foundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
         isUnbounded: () => this.props.unbounded,
         isSurfaceActive: () => {
-            this.surface[MATCHES](':active')
+            this.refs.root[MATCHES](':active')
         },
         addClass: className => {
-            this.surface.classList.add(className);
+            this.refs.root.classList.add(className);
         },
         removeClass: className => {
-            this.surface.classList.remove(className);
+            this.refs.root.classList.remove(className);
         },
         registerInteractionHandler: (evtType, handler) => {
-            this.surface.addEventListener(evtType, handler);
+            this.refs.root.addEventListener(evtType, handler);
         },
         deregisterInteractionHandler: (evtType, handler) => {
-            this.surface.removeEventListener(evtType, handler);
+            this.refs.root.removeEventListener(evtType, handler);
         },
         updateCssVariable: (varName, value) => {
             this.setState(prevState => ({
@@ -53,7 +53,7 @@ class Ripple extends PureComponent {
             }));
         },
         computeBoundingRect: () => {
-            return this.surface.getBoundingClientRect();
+            return this.refs.root.getBoundingClientRect();
         },
     }));
 
@@ -68,17 +68,17 @@ class Ripple extends PureComponent {
     // Within the two component lifecycle methods below, we invoke the foundation's lifecycle hooks
     // so that proper work can be performed.
     componentDidMount() {
-        this.surface = ReactDOM.findDOMNode(this);
-        this.surface.classList.add('mdc-ripple-surface');
+        this.refs.root = ReactDOM.findDOMNode(this);
+        this.refs.root.classList.add('mdc-ripple-surface');
         this.foundation.init();
-        const _surface = this.surface;
-        this.surface.addEventListener('mouseout', function () {
+        const _root = this.refs.root;
+        this.refs.root.addEventListener('mouseout', function () {
             if (document.createEvent) {
                 const pointerup = document.createEvent("HTMLEvents");
                 pointerup.initEvent('pointerup', false, true);
-                _surface.dispatchEvent(pointerup);
+                _root.dispatchEvent(pointerup);
             } else {
-                _surface.fireEvent('pointerup');
+                _root.fireEvent('pointerup');
             }
         });
     }
@@ -96,9 +96,9 @@ class Ripple extends PureComponent {
 
     componentDidUpdate(props, state) {
         // To make the ripple animation work we update the css properties after React finished building the DOM.
-        if (this.surface && !this.state.rippleCss.equals(state.rippleCss)) {
+        if (this.refs.root && !this.state.rippleCss.equals(state.rippleCss)) {
             this.state.rippleCss.forEach((v, k) => {
-                this.surface.style.setProperty(k, v);
+                this.refs.root.style.setProperty(k, v);
             });
         }
     }
