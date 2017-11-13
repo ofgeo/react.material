@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import SubComponent from './SubComponent'
+// import SubComponent from './SubComponent'
 
-import {Button} from '@react.material/button/index'
+import {Button, FlatButton} from '@react.material/button/index'
 import {Ripple} from '@react.material/ripple/index'
 import {Checkbox} from '@react.material/checkbox/index'
 
@@ -25,7 +25,11 @@ class App extends Component {
                 </div>
 
                 <div style={space}>
-                    <Button>Flat Button</Button>
+                    <Button>Button</Button>
+                </div>
+
+                <div style={space}>
+                    <FlatButton>Flat Button</FlatButton>
                 </div>
 
                 <div style={space}>

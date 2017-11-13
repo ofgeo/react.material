@@ -12,6 +12,7 @@ function getMatchesProperty(HTMLElementPrototype) {
 
 const MATCHES = getMatchesProperty(HTMLElement.prototype);
 
+
 class Button extends PureComponent {
     static propTypes = {
         id: PropTypes.string,
@@ -23,7 +24,7 @@ class Button extends PureComponent {
     };
 
     state = {
-        classes: new ImmutableSet(),
+        classes: ImmutableSet.of('mdc-button', 'mdc-button--raised', 'theme'),
         rippleCss: new ImmutableMap(),
         children: {},
         disabledInternal: this.props.disabled,
@@ -59,13 +60,15 @@ class Button extends PureComponent {
         },
         computeBoundingRect: () => {
             return this.refs.root.getBoundingClientRect();
+
         },
     }));
 
 
     render() {
         return (
-            <button ref={'root'} className={`mdc-button theme ${this.state.classes.toJS().join(' ')}`}
+            <button ref={'root'}
+                    className={`${this.state.classes.toJS().join(' ')}`}
                     disabled={this.state.disabledInternal}>
                 {this.props.children}
             </button>
@@ -99,5 +102,18 @@ class Button extends PureComponent {
     }
 }
 
-export {Button};
+const flatButton = (WrappedComponent) => {
+    return class FlatButton extends WrappedComponent {
+        constructor(props) {
+            super(props);
+            this.state = Object.assign({}, this.state, {
+                classes: ImmutableSet.of('mdc-button', 'theme')
+            });
+        }
+    }
+};
+
+const FlatButton = flatButton(Button);
+
+export {Button, FlatButton};
 
