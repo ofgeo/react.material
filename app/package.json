@@ -6,8 +6,8 @@
     "@react.material/button": "^0.0.23",
     "@react.material/checkbox": "^0.1.7",
     "@react.material/ripple": "^0.0.3",
-    "react": "16.1.1",
-    "react-dom": "16.1.1"
+    "react": "16.0.0",
+    "react-dom": "16.0.0"
   },
   "scripts": {
     "!start": "node scripts/start.js",
