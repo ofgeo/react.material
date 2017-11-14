@@ -73,11 +73,13 @@
     "@material/animation": "^0.25.0",
     "@material/button": "^0.25.0",
     "@material/checkbox": "^0.25.0",
+    "@material/drawer": "^0.25.0",
     "@material/ripple": "^0.25.0",
     "@material/theme": "^0.25.0",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.0",
     "react": "16.0.0",
-    "react-dom": "16.0.0"
+    "react-dom": "16.0.0",
+    "react-router-dom": "^4.2.2"
   }
 }

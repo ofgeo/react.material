@@ -1,0 +1,25 @@
+{
+  "name": "@react.material/drawer",
+  "version": "0.0.23",
+  "description": "The React Material Components for the web button component",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ofgeo/react.material.git"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "material components",
+    "material design",
+    "checkbox",
+    "react",
+    "reactjs"
+  ],
+  "main": "dist/index.js",
+  "dependencies": {
+    "@material/drawer": "^0.25.0",
+    "immutable": "^3.8.2",
+    "prop-types": "^15.6.0",
+    "react": "16.0.0",
+    "react-dom": "16.0.0"
+  }
+}
