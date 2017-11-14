@@ -21,7 +21,7 @@ class App extends Component {
                     <h1 className="App-title">Welcome to React</h1>
                 </header>
                 <div style={space}>
-                    <Checkbox>Flat Button</Checkbox>
+                    <Checkbox/>
                 </div>
 
                 <div style={space}>
@@ -33,8 +33,8 @@ class App extends Component {
                 </div>
 
                 <div style={space}>
-                    <Ripple>
-                        <div style={{padding: 10}}>Ripple</div>
+                    <Ripple unbounded>
+                        <div className={'mdc-ripple-is-unbounded'} style={{padding: 10}}>Ripple</div>
                     </Ripple>
                 </div>
             </div>

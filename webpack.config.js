@@ -8,7 +8,7 @@ const PUBLIC_PATH = '/assets/';
 const SOURCE_MAPS = IS_DEV ? 'source-map' : false;
 
 const EXCLUDE_PATTERN = new RegExp('(node_modules)' + `${path.sep}` + '(?!(@material)' + path.sep + ').*');
-const EXTERNAL_PATTERN = new RegExp('(^@material)' + `${path.sep}"`);
+const EXTERNAL_PATTERN = new RegExp('(^@material)' + `${path.sep}.*`);
 const EXTERNAL_PATTERN2 = new RegExp('(^@material)' + `${path.sep}` + '.+$');
 
 module.exports = [{

@@ -23,29 +23,27 @@ class Ripple extends PureComponent {
         unbounded: false,
     };
 
-    static displayName = 'Ripple';
-
     state = {
         rippleCss: new ImmutableMap()
     };
     // Here we initialize a foundation class, passing it an adapter which tells it how to
     // For browser compatibility we extend the default adapter which checks for css variable support.
     foundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
-        isUnbounded: () => this.props.unbounded,
+        isUnbounded: () => false,
         isSurfaceActive: () => {
-            this.refs.root[MATCHES](':active')
+            this.surface[MATCHES](':active')
         },
         addClass: className => {
-            this.refs.root.classList.add(className);
+            this.surface.classList.add(className);
         },
         removeClass: className => {
-            this.refs.root.classList.remove(className);
+            this.surface.classList.remove(className);
         },
         registerInteractionHandler: (evtType, handler) => {
-            this.refs.root.addEventListener(evtType, handler);
+            this.surface.addEventListener(evtType, handler);
         },
         deregisterInteractionHandler: (evtType, handler) => {
-            this.refs.root.removeEventListener(evtType, handler);
+            this.surface.removeEventListener(evtType, handler);
         },
         updateCssVariable: (varName, value) => {
             this.setState(prevState => ({
@@ -53,7 +51,7 @@ class Ripple extends PureComponent {
             }));
         },
         computeBoundingRect: () => {
-            return this.refs.root.getBoundingClientRect();
+            return this.surface.getBoundingClientRect();
         },
     }));
 
@@ -68,37 +66,20 @@ class Ripple extends PureComponent {
     // Within the two component lifecycle methods below, we invoke the foundation's lifecycle hooks
     // so that proper work can be performed.
     componentDidMount() {
-        this.refs.root = ReactDOM.findDOMNode(this);
-        this.refs.root.classList.add('mdc-ripple-surface');
+        this.surface = ReactDOM.findDOMNode(this);
+        this.surface.classList.add('mdc-ripple-surface');
         this.foundation.init();
-        const _root = this.refs.root;
-        this.refs.root.addEventListener('mouseout', function () {
-            if (document.createEvent) {
-                const pointerup = document.createEvent("HTMLEvents");
-                pointerup.initEvent('pointerup', false, true);
-                _root.dispatchEvent(pointerup);
-            } else {
-                _root.fireEvent('pointerup');
-            }
-        });
     }
 
     componentWillUnmount() {
         this.foundation.destroy();
     }
 
-    // Here we synchronize the internal state of the UI component based on what the user has specified.
-    componentWillReceiveProps(props) {
-        if (props.disabled !== this.props.disabled) {
-            this.setState({disabledInternal: props.disabled});
-        }
-    }
-
     componentDidUpdate(props, state) {
         // To make the ripple animation work we update the css properties after React finished building the DOM.
-        if (this.refs.root && !this.state.rippleCss.equals(state.rippleCss)) {
+        if (this.surface && !this.state.rippleCss.equals(state.rippleCss)) {
             this.state.rippleCss.forEach((v, k) => {
-                this.refs.root.style.setProperty(k, v);
+                this.surface.style.setProperty(k, v);
             });
         }
     }
