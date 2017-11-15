@@ -1,7 +1,7 @@
 {
-  "name": "@react.material/button",
-  "version": "0.0.23",
-  "description": "The React Material Components for the web button component",
+  "name": "@react.material/list",
+  "version": "0.0.1",
+  "description": "The React Material Components for the web list component",
   "repository": {
     "type": "git",
     "url": "https://github.com/ofgeo/react.material.git"
@@ -10,7 +10,8 @@
   "keywords": [
     "material components",
     "material design",
-    "button",
+    "list",
+    "list item",
     "react",
     "reactjs"
   ],

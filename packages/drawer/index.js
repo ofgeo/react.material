@@ -102,7 +102,7 @@ class Drawer extends PureComponent {
         )
     }
 
-    open(opened) {
+    set open(opened) {
         if (opened) {
             this.foundation.open();
         } else {
@@ -110,7 +110,7 @@ class Drawer extends PureComponent {
         }
     }
 
-    isOpen() {
+    get isOpen() {
         return this.foundation.isOpen();
     }
 

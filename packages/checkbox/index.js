@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
-import {Set as ImmutableSet, Map as ImmutableMap} from 'immutable';
+import {Map as ImmutableMap, Set as ImmutableSet} from 'immutable';
+import classNames from 'classnames';
 import {getCorrectEventName} from '@material/animation';
 import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
 import {MDCCheckboxFoundation} from '@material/checkbox';
@@ -35,7 +36,7 @@ export class Checkbox extends PureComponent {
     };
 
     state = {
-        classes: new ImmutableSet(),
+        classes: ImmutableSet.of('mdc-checkbox', 'theme'),
         rippleCss: new ImmutableMap(),
         checkedInternal: this.props.checked,
         disabledInternal: this.props.disabled,
@@ -130,7 +131,7 @@ export class Checkbox extends PureComponent {
     render() {
         // Within render, we generate the html needed to render a proper MDC-Web checkbox.
         return (
-            <div ref="root" className={`mdc-checkbox theme ${this.state.classes.toJS().join(' ')}`}
+            <div ref="root" className={classNames(this.state.classes.toJS())}
                  onChange={this.changeHandler.bind(this)}>
                 <input ref="nativeCb"
                        id={this.props.id}

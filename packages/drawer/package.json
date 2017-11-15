@@ -1,7 +1,7 @@
 {
   "name": "@react.material/drawer",
   "version": "0.0.1",
-  "description": "The React Material Components for the web button component",
+  "description": "The React Material Components for the web drawer component",
   "repository": {
     "type": "git",
     "url": "https://github.com/ofgeo/react.material.git"
@@ -10,7 +10,7 @@
   "keywords": [
     "material components",
     "material design",
-    "checkbox",
+    "drawer",
     "react",
     "reactjs"
   ],

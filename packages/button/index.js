@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
-import {Set as ImmutableSet, Map as ImmutableMap} from 'immutable';
+import classNames from 'classnames';
+import {Map as ImmutableMap, Set as ImmutableSet} from 'immutable';
 import {MDCRipple, MDCRippleFoundation} from '@react.material/ripple/index';
 import './index.css';
 
@@ -67,9 +68,9 @@ class Button extends PureComponent {
 
     render() {
         return (
-            <button ref={'root'}
-                    className={`${this.state.classes.toJS().join(' ')}`}
-                    disabled={this.state.disabledInternal}>
+            <button className={classNames(this.state.classes.toJS())}
+                    disabled={this.state.disabledInternal}
+                    ref="root">
                 {this.props.children}
             </button>
         )

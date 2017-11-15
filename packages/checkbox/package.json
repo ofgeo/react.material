@@ -17,6 +17,7 @@
   "main": "index.js",
   "module": "dist/index.js",
   "dependencies": {
+    "classnames": "^2.2.5",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.0",
     "react": "16.0.0",
