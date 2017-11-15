@@ -1,6 +1,6 @@
 {
   "name": "@react.material/drawer",
-  "version": "0.0.23",
+  "version": "0.0.1",
   "description": "The React Material Components for the web button component",
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   ],
   "main": "dist/index.js",
   "dependencies": {
-    "@material/drawer": "^0.25.0",
+    "classnames": "^2.2.5",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.0",
     "react": "16.0.0",

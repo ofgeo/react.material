@@ -1,120 +1,159 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
-import {Set as ImmutableSet, Map as ImmutableMap} from 'immutable';
-import {MDCPersistentDrawerFoundation} from '@material/drawer';
-import {MDCRipple, MDCRippleFoundation} from '@react.material/ripple/index';
+import {Set as ImmutableSet} from 'immutable';
+import classNames from 'classnames';
+import {MDCPersistentDrawerFoundation, util} from '@material/drawer';
 import './index.css';
 
-function getMatchesProperty(HTMLElementPrototype) {
-    return [
-        'webkitMatchesSelector', 'msMatchesSelector', 'matches',
-    ].filter((p) => p in HTMLElementPrototype).pop();
-}
-
-const MATCHES = getMatchesProperty(HTMLElement.prototype);
-
+const {FOCUSABLE_ELEMENTS} = MDCPersistentDrawerFoundation.strings;
+const {cssClasses} = MDCPersistentDrawerFoundation;
 
 class Drawer extends PureComponent {
     static propTypes = {
         id: PropTypes.string,
-        disabled: PropTypes.bool
+        opened: PropTypes.bool,
     };
 
     static defaultProps = {
-        disabled: false
+        opened: false
     };
 
     state = {
-        classes: ImmutableSet.of('mdc-button', 'mdc-button--raised', 'theme'),
-        rippleCss: new ImmutableMap(),
-        children: {},
-        disabledInternal: this.props.disabled,
-        internalWidth: 0,
-        internalHeight: 0
+        classes: ImmutableSet.of(cssClasses.ROOT),
+        isOpen_: false
     };
 
-    // Here we initialize a foundation class, passing it an adapter which tells it how to
-    // For browser compatibility we extend the default adapter which checks for css variable support.
-    foundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
-        isUnbounded: () => false,
-        isSurfaceActive: () => this.refs.root[MATCHES](':active'),
-        addClass: className => {
-            this.setState(prevState => ({
-                classes: prevState.classes.add(className)
-            }));
-        },
-        removeClass: className => {
-            this.setState(prevState => ({
-                classes: prevState.classes.remove(className)
-            }));
-        },
-        registerInteractionHandler: (evtType, handler) => {
-            this.refs.root.addEventListener(evtType, handler);
-        },
-        deregisterInteractionHandler: (evtType, handler) => {
-            this.refs.root.removeEventListener(evtType, handler);
-        },
-        updateCssVariable: (varName, value) => {
-            this.setState(prevState => ({
-                rippleCss: prevState.rippleCss.set(varName, value)
-            }));
-        },
-        computeBoundingRect: () => {
-            return this.refs.root.getBoundingClientRect();
-
-        },
-    }));
+    foundation = new MDCPersistentDrawerFoundation({
+        addClass: className => this.setState(prevState => ({
+            classes: prevState.classes.add(className)
+        })),
+        removeClass: className => this.setState(prevState => ({
+            classes: prevState.classes.remove(className)
+        })),
+        hasClass: className => this.state.classes.has(className),
+        hasNecessaryDom: () => Boolean(this.refs.drawer),
+        registerInteractionHandler: (evtType, handler) =>
+            this.refs.root.addEventListener(util.remapEvent(evtType), handler, util.applyPassive()),
+        deregisterInteractionHandler: (evtType, handler) =>
+            this.refs.root.removeEventListener(util.remapEvent(evtType), handler, util.applyPassive()),
+        registerDrawerInteractionHandler: (evtType, handler) =>
+            this.refs.drawer.addEventListener(util.remapEvent(evtType), handler),
+        deregisterDrawerInteractionHandler: (evtType, handler) =>
+            this.refs.drawer.removeEventListener(util.remapEvent(evtType), handler),
+        registerTransitionEndHandler: (handler) =>
+            this.refs.root.addEventListener('transitionend', handler),
+        deregisterTransitionEndHandler: (handler) =>
+            this.refs.root.removeEventListener('transitionend', handler),
+        registerDocumentKeydownHandler: (handler) => document.addEventListener('keydown', handler),
+        deregisterDocumentKeydownHandler: (handler) => document.removeEventListener('keydown', handler),
+        getDrawerWidth: () => this.refs.drawer.offsetWidth,
+        setTranslateX: (value) =>
+            this.refs.drawer.style.setProperty(util.getTransformPropertyName(),
+                value === null ? null : `translateX(${value}px)`),
+        getFocusableElements: () => this.refs.drawer.querySelectorAll(FOCUSABLE_ELEMENTS),
+        notifyOpen: () => this.emit(MDCPersistentDrawerFoundation.strings.OPEN_EVENT),
+        notifyClose: () => this.emit(MDCPersistentDrawerFoundation.strings.CLOSE_EVENT),
+        saveElementTabState: el => util.restoreElementTabState(el),
+        restoreElementTabState: el => util.restoreElementTabState(el),
+        makeElementUntabbable: (el) => el.setAttribute('tabindex', '-1'),
+        isDrawer: (el) => el === this.refs.drawer
+    });
 
 
     render() {
         return (
-            <button ref={'root'}
-                    className={`${this.state.classes.toJS().join(' ')}`}
-                    disabled={this.state.disabledInternal}>
-                {this.props.children}
-            </button>
+            <aside ref="root" className={classNames(this.state.classes.toJS())}>
+                <nav ref="drawer" className="mdc-persistent-drawer__drawer">
+                    <div className="mdc-persistent-drawer__toolbar-spacer"/>
+                    <div className="mdc-list-group">
+                        <nav className="mdc-list">
+                            <a className="mdc-list-item mdc-persistent-drawer--selected" href="#">
+                                <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
+                            </a>
+                            <a className="mdc-list-item" href="#">
+                                <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
+                            </a>
+                            <a className="mdc-list-item" href="#">
+                                <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent
+                                Mail
+                            </a>
+                            <a className="mdc-list-item" href="#">
+                                <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts
+                            </a>
+                        </nav>
+
+                        <hr className="mdc-list-divider"/>
+
+                        <nav className="mdc-list">
+                            <a className="mdc-list-item" href="#">
+                                <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All
+                                Mail
+                            </a>
+                            <a className="mdc-list-item" href="#">
+                                <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash
+                            </a>
+                            <a className="mdc-list-item" href="#">
+                                <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam
+                            </a>
+                        </nav>
+                    </div>
+                </nav>
+            </aside>
         )
     }
 
-    // Within the two component lifecycle methods below, we invoke the foundation's lifecycle hooks
-    // so that proper work can be performed.
+    open(opened) {
+        if (opened) {
+            this.foundation.open();
+        } else {
+            this.foundation.close();
+        }
+    }
+
+    isOpen() {
+        return this.foundation.isOpen();
+    }
+
+    emit(evtType, evtData, shouldBubble = false) {
+        let evt;
+        if (typeof CustomEvent === 'function') {
+            evt = new CustomEvent(evtType, {
+                detail: evtData,
+                bubbles: shouldBubble,
+            });
+        } else {
+            evt = document.createEvent('CustomEvent');
+            evt.initCustomEvent(evtType, shouldBubble, false, evtData);
+        }
+
+        this.refs.root.dispatchEvent(evt);
+    }
+
+// Within the two component lifecycle methods below, we invoke the foundation's lifecycle hooks
+// so that proper work can be performed.
     componentDidMount() {
         this.foundation.init();
+
+        if (this.props.opened) {
+            this.foundation.open();
+        }
+
     }
 
     componentWillUnmount() {
         this.foundation.destroy();
     }
 
-    // Here we synchronize the internal state of the UI component based on what the user has specified.
-    componentWillReceiveProps(props) {
-        if (props.disabled !== this.props.disabled) {
-            this.setState({disabledInternal: props.disabled});
-        }
-    }
-
     componentDidUpdate() {
         // To make the ripple animation work we update the css properties after React finished building the DOM.
-        if (this.refs.root) {
-            this.state.rippleCss.forEach((v, k) => {
-                this.refs.root.style.setProperty(k, v);
-            });
-        }
+        // if (this.refs.root) {
+        //     this.state.rippleCss.forEach((v, k) => {
+        //         this.refs.root.style.setProperty(k, v);
+        //     });
+        // }
     }
 }
 
-const flatButton = (WrappedComponent) => {
-    return class FlatButton extends WrappedComponent {
-        constructor(props) {
-            super(props);
-            this.state = Object.assign({}, this.state, {
-                classes: ImmutableSet.of('mdc-button', 'theme')
-            });
-        }
-    }
-};
 
-const Drawer2 = flatButton(Drawer);
-
-export {Drawer, Drawer2};
+export {Drawer};
 

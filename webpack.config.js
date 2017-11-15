@@ -62,6 +62,14 @@ module.exports = [{
         // EXTERNAL_PATTERN,
         // EXTERNAL_PATTERN2,
         {
+            classnames: {
+                root: 'Classnames',
+                commonjs2: 'classnames',
+                commonjs: 'classnames',
+                amd: 'classnames',
+                umd: 'classnames',
+            }
+        }, {
             react: {
                 root: 'React',
                 commonjs2: 'react',
@@ -69,8 +77,7 @@ module.exports = [{
                 amd: 'react',
                 umd: 'react',
             }
-        },
-        {
+        }, {
             'react-dom': {
                 root: 'ReactDOM',
                 commonjs2: 'react-dom',
@@ -78,8 +85,7 @@ module.exports = [{
                 amd: 'react-dom',
                 umd: 'react-dom',
             }
-        },
-        {
+        }, {
             'prop-types': {
                 root: 'PropTypes',
                 commonjs2: 'prop-types',
@@ -87,8 +93,7 @@ module.exports = [{
                 amd: 'prop-types',
                 umd: 'prop-types',
             }
-        },
-        {
+        }, {
             immutable: {
                 root: 'Immutable',
                 commonjs2: 'immutable',
