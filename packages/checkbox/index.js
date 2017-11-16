@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Map as ImmutableMap, Set as ImmutableSet} from 'immutable';
 import classNames from 'classnames';
 import {getCorrectEventName} from '@material/animation';
-import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
+import {MDCRipple, MDCRippleFoundation, util} from '@material/ripple';
 import {MDCCheckboxFoundation} from '@material/checkbox';
 import './index.css';
 
@@ -59,10 +59,12 @@ export class Checkbox extends PureComponent {
             }));
         },
         registerInteractionHandler: (evtType, handler) => {
-            this.refs.nativeCb.addEventListener(evtType, handler);
+            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.refs.nativeCb;
+            target.addEventListener(evtType, handler, util.applyPassive());
         },
         deregisterInteractionHandler: (evtType, handler) => {
-            this.refs.nativeCb.removeEventListener(evtType, handler);
+            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.refs.nativeCb;
+            target.removeEventListener(evtType, handler, util.applyPassive());
         },
         updateCssVariable: (varName, value) => {
             this.setState(prevState => ({

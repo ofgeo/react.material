@@ -49,10 +49,12 @@ class Button extends PureComponent {
             }));
         },
         registerInteractionHandler: (evtType, handler) => {
-            this.refs.root.addEventListener(evtType, handler);
+            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.refs.root;
+            target.addEventListener(evtType, handler);
         },
         deregisterInteractionHandler: (evtType, handler) => {
-            this.refs.root.removeEventListener(evtType, handler);
+            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.refs.root;
+            target.removeEventListener(evtType, handler);
         },
         updateCssVariable: (varName, value) => {
             this.setState(prevState => ({

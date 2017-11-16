@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import {Map as ImmutableMap} from 'immutable';
-import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
+import {MDCRipple, MDCRippleFoundation, util} from '@material/ripple';
 import './index.css';
 
 function getMatchesProperty(HTMLElementPrototype) {
@@ -16,6 +16,7 @@ const MATCHES = getMatchesProperty(HTMLElement.prototype);
 class Ripple extends PureComponent {
     static propTypes = {
         id: PropTypes.string,
+        children: PropTypes.element.isRequired,
         unbounded: PropTypes.bool,
     };
 
@@ -40,10 +41,12 @@ class Ripple extends PureComponent {
             this.surface.classList.remove(className);
         },
         registerInteractionHandler: (evtType, handler) => {
-            this.surface.addEventListener(evtType, handler);
+            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.surface;
+            target.addEventListener(evtType, handler, util.applyPassive());
         },
         deregisterInteractionHandler: (evtType, handler) => {
-            this.surface.removeEventListener(evtType, handler);
+            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.surface;
+            target.removeEventListener(evtType, handler, util.applyPassive());
         },
         updateCssVariable: (varName, value) => {
             this.setState(prevState => ({

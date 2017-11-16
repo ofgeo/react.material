@@ -1,6 +1,7 @@
 @import "~@material/toolbar/dist/mdc.toolbar.css";
 .App {
   text-align: center;
+  width: 100%;
 }
 
 .App-logo {
