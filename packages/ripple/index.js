@@ -30,7 +30,7 @@ class Ripple extends PureComponent {
     // Here we initialize a foundation class, passing it an adapter which tells it how to
     // For browser compatibility we extend the default adapter which checks for css variable support.
     foundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
-        isUnbounded: () => false,
+        isUnbounded: () => this.props.unbounded,
         isSurfaceActive: () => {
             this.surface[MATCHES](':active')
         },
