@@ -1,36 +1,35 @@
-import React, {Component, PureComponent} from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import {List} from '@react.material/list/index'
-import {Ripple} from '@react.material/ripple/index'
-import {Button} from '@react.material/button/index'
+import {Drawer} from '@react.material/drawer/index'
+// import {List} from '@react.material/list/index'
 
 class App extends Component {
     render() {
-        return (
-            <List>
-                <Button className={'aaaaaa'}>AAA</Button>
-                <Ripple className={'AAAAA'}>
-                    asdasd
-                </Ripple>
-                <Ripple>
-                    <List.Item>
-                        <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">
-                            network_wifi
-                        </i>
-                        Wi-Fi
-                    </List.Item>
-                </Ripple>
-                <Ripple>
-                    <List.Item>
-                        <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">
-                            network_wifi
-                        </i>
-                        Wi-Fi
-                    </List.Item>
-                </Ripple>
-            </List>
+        return [
+            <Drawer
+                ref="drawer"
+                key="drawer"
+                opened/>,
+            <div key="content" id="content">
+                <header className="mdc-toolbar mdc-elevation--z4">
+                    <div className="mdc-toolbar__row">
+                        <section className="mdc-toolbar__section mdc-toolbar__section--align-start">
+                            <button className="demo-menu material-icons mdc-toolbar__menu-icon"
+                                    tabIndex="-1"
+                                    onMouseDown={e => e.preventDefault()}
+                                    onClick={this.menuClicks.bind(this)}>menu
+                            </button>
+                            <span className="mdc-toolbar__title catalog-title">Persistent Drawer</span>
+                        </section>
+                    </div>
+                </header>
+            </div>
+        ]
+    }
 
-        )
+    menuClicks(e) {
+        e.preventDefault();
+        this.refs.drawer.open(!this.refs.drawer.isOpen());
     }
 }
 

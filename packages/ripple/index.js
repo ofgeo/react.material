@@ -16,7 +16,6 @@ const MATCHES = getMatchesProperty(HTMLElement.prototype);
 class Ripple extends PureComponent {
     static propTypes = {
         id: PropTypes.string,
-        children: PropTypes.element.isRequired,
         unbounded: PropTypes.bool,
     };
 
@@ -25,27 +24,28 @@ class Ripple extends PureComponent {
     };
 
     state = {
-        rippleCss: new ImmutableMap()
+        rippleCss: new ImmutableMap(),
+        internalClientWidth: -1
     };
     // Here we initialize a foundation class, passing it an adapter which tells it how to
     // For browser compatibility we extend the default adapter which checks for css variable support.
     foundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
         isUnbounded: () => this.props.unbounded,
         isSurfaceActive: () => {
-            this.surface[MATCHES](':active')
+            this.root[MATCHES](':active')
         },
         addClass: className => {
-            this.surface.classList.add(className);
+            this.root.classList.add(className);
         },
         removeClass: className => {
-            this.surface.classList.remove(className);
+            this.root.classList.remove(className);
         },
         registerInteractionHandler: (evtType, handler) => {
-            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.surface;
+            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.root;
             target.addEventListener(evtType, handler, util.applyPassive());
         },
         deregisterInteractionHandler: (evtType, handler) => {
-            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.surface;
+            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.root;
             target.removeEventListener(evtType, handler, util.applyPassive());
         },
         updateCssVariable: (varName, value) => {
@@ -54,35 +54,49 @@ class Ripple extends PureComponent {
             }));
         },
         computeBoundingRect: () => {
-            return this.surface.getBoundingClientRect();
-        },
+            return this.root.getBoundingClientRect();
+        }
     }));
 
     render() {
-        return React.Children.only(this.props.children);
-    }
-
-    componentWillMount() {
-        this.setState({surface: ReactDOM.findDOMNode(this)});
+        if (React.Children.count(this.props.children) === 1 && typeof this.props.children === 'object') {
+            return React.Children.only(this.props.children);
+        } else {
+            return (
+                <div ref={(root) => this.root = root}>
+                    {this.props.children}
+                </div>
+            )
+        }
     }
 
     // Within the two component lifecycle methods below, we invoke the foundation's lifecycle hooks
     // so that proper work can be performed.
     componentDidMount() {
-        this.surface = ReactDOM.findDOMNode(this);
-        this.surface.classList.add('mdc-ripple-surface');
+        this.root = this.root || ReactDOM.findDOMNode(this);
+        this.root.classList.add('mdc-ripple-surface');
         this.foundation.init();
+        this.setState({internalClientWidth: this.root.clientWidth});
     }
 
     componentWillUnmount() {
         this.foundation.destroy();
     }
 
-    componentDidUpdate(props, state) {
+    componentDidUpdate(prevProps, prevState) {
+        //re-layout ripple if resized by siblings
+        if (this.state.internalClientWidth !== prevState.internalClientWidth) {
+            this.setState({internalClientWidth: this.root.clientWidth});
+            if (prevState.internalClientWidth === -1) {
+                this.foundation.layout();
+            }
+        }
+
+        // this.foundation.layout();
         // To make the ripple animation work we update the css properties after React finished building the DOM.
-        if (this.surface && !this.state.rippleCss.equals(state.rippleCss)) {
+        if (this.root && !this.state.rippleCss.equals(prevState.rippleCss)) {
             this.state.rippleCss.forEach((v, k) => {
-                this.surface.style.setProperty(k, v);
+                this.root.style.setProperty(k, v);
             });
         }
     }

@@ -16,8 +16,8 @@ module.exports = [{
     entry: {
         Button: [path.resolve('./packages/button/index.js')],
         Checkbox: [path.resolve('./packages/checkbox/index.js')],
-        Drawer: [path.resolve('./packages/ripple/index.js')],
-        List: [path.resolve('./packages/ripple/index.js')],
+        Drawer: [path.resolve('./packages/drawer/index.js')],
+        List: [path.resolve('./packages/list/index.js')],
         Theme: [path.resolve('./packages/theme/index.js')],
         Ripple: [path.resolve('./packages/ripple/index.js')]
     },

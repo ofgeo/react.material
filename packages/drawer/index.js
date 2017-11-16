@@ -1,8 +1,9 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {Set as ImmutableSet} from 'immutable';
-import classNames from 'classnames';
 import {MDCPersistentDrawerFoundation, util} from '@material/drawer';
+import classNames from 'classnames';
+import {List, ListItem} from '@react.material/list/index'
 import './index.css';
 
 const {FOCUSABLE_ELEMENTS} = MDCPersistentDrawerFoundation.strings;
@@ -59,44 +60,54 @@ class Drawer extends PureComponent {
         isDrawer: (el) => el === this.refs.drawer
     });
 
+    // render() {
+    //     return (
+    //         <NavList>
+    //             <ListItem>
+    //                 <li className="mdc-list-item">A list item on a dark background</li>
+    //             </ListItem>
+    //         </NavList>
+    //     );
+    // }
 
     render() {
         return (
-            <aside ref="root" className={classNames(this.state.classes.toJS())}>
+            <aside ref="root" className={classNames(cssClasses.ROOT)}>
+
                 <nav ref="drawer" className="mdc-persistent-drawer__drawer">
-                    <div className="mdc-persistent-drawer__toolbar-spacer"/>
-                    <div className="mdc-list-group">
-                        <nav className="mdc-list">
-                            <a className="mdc-list-item mdc-persistent-drawer--selected" href="#">
-                                <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
-                            </a>
-                            <a className="mdc-list-item" href="#">
-                                <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
-                            </a>
-                            <a className="mdc-list-item" href="#">
-                                <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent
-                                Mail
-                            </a>
-                            <a className="mdc-list-item" href="#">
-                                <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts
-                            </a>
-                        </nav>
+                    {/*<div className="mdc-persistent-drawer__toolbar-spacer"/>*/}
+                    {/*<div className="mdc-list-group">*/}
+                        {/*<nav className="mdc-list">*/}
+                            {/*<a className="mdc-list-item mdc-persistent-drawer--selected" href="#">*/}
+                                {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox*/}
+                            {/*</a>*/}
+                            {/*<a className="mdc-list-item" href="#">*/}
+                                {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star*/}
+                            {/*</a>*/}
+                            {/*<a className="mdc-list-item" href="#">*/}
+                                {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent*/}
+                                {/*Mail*/}
+                            {/*</a>*/}
+                            {/*<a className="mdc-list-item" href="#">*/}
+                                {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts*/}
+                            {/*</a>*/}
+                        {/*</nav>*/}
 
-                        <hr className="mdc-list-divider"/>
+                        {/*<hr className="mdc-list-divider"/>*/}
 
-                        <nav className="mdc-list">
-                            <a className="mdc-list-item" href="#">
-                                <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All
-                                Mail
-                            </a>
-                            <a className="mdc-list-item" href="#">
-                                <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash
-                            </a>
-                            <a className="mdc-list-item" href="#">
-                                <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam
-                            </a>
-                        </nav>
-                    </div>
+                        {/*<nav className="mdc-list">*/}
+                            {/*<a className="mdc-list-item" href="#">*/}
+                                {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All*/}
+                                {/*Mail*/}
+                            {/*</a>*/}
+                            {/*<a className="mdc-list-item" href="#">*/}
+                                {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash*/}
+                            {/*</a>*/}
+                            {/*<a className="mdc-list-item" href="#">*/}
+                                {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam*/}
+                            {/*</a>*/}
+                        {/*</nav>*/}
+                    {/*</div>*/}
                 </nav>
             </aside>
         )
@@ -153,6 +164,19 @@ class Drawer extends PureComponent {
         // }
     }
 }
+
+// const navList = (WrappedComponent) => {
+//     return class NavList extends WrappedComponent {
+//         constructor(props) {
+//             super(props);
+//             // this.state = Object.assign({}, this.state, {
+//             //     classes: ImmutableSet.of('mdc-button', 'theme')
+//             // });
+//         }
+//     }
+// };
+//
+// const NavList = navList(List);
 
 
 export {Drawer};
