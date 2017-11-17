@@ -32,88 +32,45 @@ class Drawer extends PureComponent {
             classes: prevState.classes.remove(className)
         })),
         hasClass: className => this.state.classes.has(className),
-        hasNecessaryDom: () => Boolean(this.refs.drawer),
+        hasNecessaryDom: () => Boolean(this.drawer),
         registerInteractionHandler: (evtType, handler) =>
-            this.refs.root.addEventListener(util.remapEvent(evtType), handler, util.applyPassive()),
+            this.root.addEventListener(util.remapEvent(evtType), handler, util.applyPassive()),
         deregisterInteractionHandler: (evtType, handler) =>
-            this.refs.root.removeEventListener(util.remapEvent(evtType), handler, util.applyPassive()),
+            this.root.removeEventListener(util.remapEvent(evtType), handler, util.applyPassive()),
         registerDrawerInteractionHandler: (evtType, handler) =>
-            this.refs.drawer.addEventListener(util.remapEvent(evtType), handler),
+            this.drawer.addEventListener(util.remapEvent(evtType), handler, util.applyPassive()),
         deregisterDrawerInteractionHandler: (evtType, handler) =>
-            this.refs.drawer.removeEventListener(util.remapEvent(evtType), handler),
+            this.drawer.removeEventListener(util.remapEvent(evtType), handler, util.applyPassive()),
         registerTransitionEndHandler: (handler) =>
-            this.refs.root.addEventListener('transitionend', handler),
+            this.root.addEventListener('transitionend', handler, util.applyPassive()),
         deregisterTransitionEndHandler: (handler) =>
-            this.refs.root.removeEventListener('transitionend', handler),
-        registerDocumentKeydownHandler: (handler) => document.addEventListener('keydown', handler),
-        deregisterDocumentKeydownHandler: (handler) => document.removeEventListener('keydown', handler),
-        getDrawerWidth: () => this.refs.drawer.offsetWidth,
+            this.root.removeEventListener('transitionend', handler, util.applyPassive()),
+        registerDocumentKeydownHandler: (handler) => document.addEventListener('keydown', handler, util.applyPassive()),
+        deregisterDocumentKeydownHandler: (handler) => document.removeEventListener('keydown', handler, util.applyPassive()),
+        getDrawerWidth: () => this.drawer.clientWidth,
         setTranslateX: (value) =>
-            this.refs.drawer.style.setProperty(util.getTransformPropertyName(),
+            this.drawer.style.setProperty(util.getTransformPropertyName(),
                 value === null ? null : `translateX(${value}px)`),
-        getFocusableElements: () => this.refs.drawer.querySelectorAll(FOCUSABLE_ELEMENTS),
+        getFocusableElements: () => this.drawer.querySelectorAll(FOCUSABLE_ELEMENTS),
         notifyOpen: () => this.emit(MDCPersistentDrawerFoundation.strings.OPEN_EVENT),
         notifyClose: () => this.emit(MDCPersistentDrawerFoundation.strings.CLOSE_EVENT),
         saveElementTabState: el => util.restoreElementTabState(el),
         restoreElementTabState: el => util.restoreElementTabState(el),
         makeElementUntabbable: (el) => el.setAttribute('tabindex', '-1'),
-        isDrawer: (el) => el === this.refs.drawer
+        isDrawer: (el) => el === this.drawer
     });
-
-    // render() {
-    //     return (
-    //         <NavList>
-    //             <ListItem>
-    //                 <li className="mdc-list-item">A list item on a dark background</li>
-    //             </ListItem>
-    //         </NavList>
-    //     );
-    // }
 
     render() {
         return (
-            <aside ref="root" className={classNames(cssClasses.ROOT)}>
-
-                <nav ref="drawer" className="mdc-persistent-drawer__drawer">
-                    {/*<div className="mdc-persistent-drawer__toolbar-spacer"/>*/}
-                    {/*<div className="mdc-list-group">*/}
-                        {/*<nav className="mdc-list">*/}
-                            {/*<a className="mdc-list-item mdc-persistent-drawer--selected" href="#">*/}
-                                {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox*/}
-                            {/*</a>*/}
-                            {/*<a className="mdc-list-item" href="#">*/}
-                                {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star*/}
-                            {/*</a>*/}
-                            {/*<a className="mdc-list-item" href="#">*/}
-                                {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent*/}
-                                {/*Mail*/}
-                            {/*</a>*/}
-                            {/*<a className="mdc-list-item" href="#">*/}
-                                {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts*/}
-                            {/*</a>*/}
-                        {/*</nav>*/}
-
-                        {/*<hr className="mdc-list-divider"/>*/}
-
-                        {/*<nav className="mdc-list">*/}
-                            {/*<a className="mdc-list-item" href="#">*/}
-                                {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All*/}
-                                {/*Mail*/}
-                            {/*</a>*/}
-                            {/*<a className="mdc-list-item" href="#">*/}
-                                {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash*/}
-                            {/*</a>*/}
-                            {/*<a className="mdc-list-item" href="#">*/}
-                                {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam*/}
-                            {/*</a>*/}
-                        {/*</nav>*/}
-                    {/*</div>*/}
+            <aside ref={(root) => this.root = root} className={classNames(this.state.classes.toJS())}>
+                <nav ref={(drawer) => this.drawer = drawer} className="mdc-persistent-drawer__drawer">
+                    {this.props.children}
                 </nav>
             </aside>
         )
     }
 
-    set open(opened) {
+    open(opened) {
         if (opened) {
             this.foundation.open();
         } else {
@@ -121,7 +78,7 @@ class Drawer extends PureComponent {
         }
     }
 
-    get isOpen() {
+    isOpen() {
         return this.foundation.isOpen();
     }
 
@@ -137,11 +94,9 @@ class Drawer extends PureComponent {
             evt.initCustomEvent(evtType, shouldBubble, false, evtData);
         }
 
-        this.refs.root.dispatchEvent(evt);
+        this.root.dispatchEvent(evt);
     }
 
-// Within the two component lifecycle methods below, we invoke the foundation's lifecycle hooks
-// so that proper work can be performed.
     componentDidMount() {
         this.foundation.init();
 
@@ -156,28 +111,39 @@ class Drawer extends PureComponent {
     }
 
     componentDidUpdate() {
-        // To make the ripple animation work we update the css properties after React finished building the DOM.
-        // if (this.refs.root) {
-        //     this.state.rippleCss.forEach((v, k) => {
-        //         this.refs.root.style.setProperty(k, v);
-        //     });
-        // }
     }
 }
 
-// const navList = (WrappedComponent) => {
-//     return class NavList extends WrappedComponent {
-//         constructor(props) {
-//             super(props);
-//             // this.state = Object.assign({}, this.state, {
-//             //     classes: ImmutableSet.of('mdc-button', 'theme')
-//             // });
-//         }
-//     }
-// };
-//
-// const NavList = navList(List);
+const navList = (WrappedComponent) => {
+    return class NavList extends WrappedComponent {
+
+        render() {
+            return (
+                <nav className={classNames(this.state.classes.toJS())}>
+                    {this.props.children}
+                </nav>
+            );
+        }
+    };
+};
+
+const NavList = navList(List);
+
+const navListItem = (WrappedComponent) => {
+    return class NavList extends WrappedComponent {
+
+        render() {
+            return (
+                <nav className={classNames(this.state.classes.toJS())}>
+                    {this.props.children}
+                </nav>
+            );
+        }
+    };
+};
+
+const NavListItem = navListItem(ListItem);
 
 
-export {Drawer};
+export {Drawer, NavList, NavListItem};
 

@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {Set as ImmutableSet} from 'immutable';
 import classNames from 'classnames';
+import ListItem from './ListItem';
 import './index.css';
 
 
@@ -15,17 +16,17 @@ export default class List extends PureComponent {
     static propTypes = {
         id: PropTypes.string,
         avatar: PropTypes.bool,
-        // children: (props, propName, componentName) => {
-        //     const children = props[propName];
-        //
-        //     React.Children.forEach(children, child => {
-        //         console.log(child);
-        //     });
-        //
-        //     if (React.Children.toArray(children).some(child => child.type !== List.Item)) {
-        //         return new Error('`' + componentName + '` children should be of type `Item`.')
-        //     }
-        // }
+        children: (props, propName, componentName) => {
+            const children = props[propName];
+
+            React.Children.forEach(children, child => {
+                console.log(child);
+            });
+
+            if (React.Children.toArray(children).some(child => child.type !== ListItem)) {
+                return new Error('`' + componentName + '` children should be of type `ListItem`.')
+            }
+        }
     };
 
     static defaultProps = {
@@ -36,10 +37,14 @@ export default class List extends PureComponent {
         classes: ImmutableSet.of(cssClasses.ROOT),
     };
 
+    constructor(props) {
+        super(props);
+        this.state.classes = this.state.classes.add(props.avatar ? cssClasses.AVATAR : null);
+    }
 
     render() {
         return (
-            <ul className={classNames(this.state.classes.toJS(), {[cssClasses.AVATAR]: this.props.avatar})}>
+            <ul className={classNames(this.state.classes.toJS())}>
                 {this.props.children}
             </ul>
         );
