@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
+import {} from 'react-router-dom'
 import './App.css';
+import ic_button from './static/ic_button_24px.svg';
+import ic_card from './static/ic_card_24px.svg';
+import ic_checkbox from './static/ic_selection_control_24px.svg';
+import ic_list from './static/ic_list_24px.svg';
+import ic_exit from './static/ic_exit_to_app_black_24px.svg';
 import {Drawer, Nav, NavLink} from '@react.material/drawer/index'
 import {ListItemDetail} from '@react.material/list/index'
+import {Ripple} from '@react.material/ripple/index'
 
 class App extends Component {
   render() {
@@ -12,59 +19,72 @@ class App extends Component {
           opened>
         <div className="mdc-persistent-drawer__toolbar-spacer"/>
         <div className="mdc-list-group">
-          {/*<List>*/}
-          {/*<a className="mdc-list-item mdc-persistent-drawer--selected" href="#">*/}
-          {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox*/}
-          {/*</a>*/}
-          {/*<a className="mdc-list-item" href="#">*/}
-          {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star*/}
-          {/*</a>*/}
-          {/*<a className="mdc-list-item" href="#">*/}
-          {/*<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent*/}
-          {/*Mail*/}
-          {/*</a>*/}
-          {/*<a className="mdc-list-item" href="#">*/}
-          {/*<i className="material-icons mdc-list-item__start-detail"*/}
-          {/*aria-hidden="true">drafts</i>Drafts*/}
-          {/*</a>*/}
-          {/*</List>*/}
-
-          {/*<hr className="mdc-list-divider"/>*/}
-
           <Nav>
-            <NavLink href={"#"} selected>
-              <ListItemDetail>
-                <i className="material-icons"
-                   aria-hidden="true">email</i>
+            {/*<Ripple>*/}
+            <NavLink href={"#"}>
+              <ListItemDetail start>
+                <img alt="Button" src={ic_button}/>
               </ListItemDetail>
-              All Mail
+              Button
+              <ListItemDetail end>
+                <img alt="Button" src={ic_exit}/>
+              </ListItemDetail>
             </NavLink>
-
-            {/*<a className="mdc-list-item" href="#">*/}
-            {/*<i className="material-icons mdc-list-item__start-detail"*/}
-            {/*aria-hidden="true">delete</i>Trash*/}
-            {/*</a>*/}
-            {/*<a className="mdc-list-item" href="#">*/}
-            {/*<i className="material-icons mdc-list-item__start-detail"*/}
-            {/*aria-hidden="true">report</i>Spam*/}
-            {/*</a>*/}
+            {/*</Ripple>*/}
+            <NavLink href={"#"}>
+              <ListItemDetail>
+                <img alt="Card" src={ic_card}/>
+              </ListItemDetail>
+              Card
+              <ListItemDetail end>
+                <img alt="Card" src={ic_exit}/>
+              </ListItemDetail>
+            </NavLink>
+            <NavLink href={"#"}>
+              <ListItemDetail>
+                <img alt="Checkbox" src={ic_checkbox}/>
+              </ListItemDetail>
+              Checkbox
+              <ListItemDetail end>
+                <img alt="Checkbox" src={ic_exit}/>
+              </ListItemDetail>
+            </NavLink>
+            <NavLink href={"#"}>
+              <ListItemDetail>
+                <img alt="Checkbox" src={ic_list}/>
+              </ListItemDetail>
+              List
+              <ListItemDetail end>
+                <img alt="Checkbox" src={ic_exit}/>
+              </ListItemDetail>
+            </NavLink>
           </Nav>
         </div>
-      </Drawer>,
+      </Drawer>
+      ,
       <div key="content" id="content">
         <header className="mdc-toolbar mdc-elevation--z4">
           <div className="mdc-toolbar__row">
-            <section className="mdc-toolbar__section mdc-toolbar__section--align-start">
-              <button className="demo-menu material-icons mdc-toolbar__menu-icon"
-                      tabIndex="-1"
-                      onMouseDown={e => e.preventDefault()}
-                      onClick={this.menuClicks.bind(this)}>menu
+            <section
+                className="mdc-toolbar__section mdc-toolbar__section--align-start">
+              <button
+                  className="demo-menu material-icons mdc-toolbar__menu-icon"
+                  tabIndex="-1"
+                  onMouseDown={e => e.preventDefault()}
+                  onClick={this.menuClicks.bind(this)}>menu
               </button>
-              <span className="mdc-toolbar__title catalog-title">Persistent Drawer</span>
+              <span
+                  className="mdc-toolbar__title catalog-title">Persistent Drawer</span>
             </section>
           </div>
         </header>
-      </div>
+      </div>,
+      <Switch key="switch">
+        {/*<Redirect exact from="/" to='/material-components'/>*/}
+        <Route exact path="/" component={}/>
+        <Route path="/material-components" component={MaterialComponents}/>
+        <Route path="*" component={NotFound}/>
+      </Switch>
     ]
   }
 

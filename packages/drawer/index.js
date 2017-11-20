@@ -143,19 +143,18 @@ const Nav = nav(List);
 const navNavLink = (Component) => {
   return class NavList extends Component {
     static propTypes = {
+      ...ListItem.propTypes,
       href: PropTypes.string,
       selected: PropTypes.bool,
     };
 
     render() {
       return (
-          <Ripple>
             <a className={classNames(this.state.classes.toJS(),
                 {'mdc-persistent-drawer--selected': this.props.selected})}
                href={this.props.href}>
               {this.props.children}
             </a>
-          </Ripple>
       );
     }
   };

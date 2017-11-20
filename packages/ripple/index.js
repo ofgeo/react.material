@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import {Map as ImmutableMap} from 'immutable';
 import {MDCRipple, MDCRippleFoundation, util} from '@material/ripple';
-import './index.css';
+// import './index.css';
 
 function getMatchesProperty(HTMLElementPrototype) {
     return [
@@ -74,7 +74,7 @@ class Ripple extends PureComponent {
     // so that proper work can be performed.
     componentDidMount() {
         this.root = this.root || ReactDOM.findDOMNode(this);
-        this.root.classList.add('mdc-ripple-surface');
+        // this.root.classList.add('mdc-ripple-surface');
         this.foundation.init();
         this.setState({internalClientWidth: this.root.clientWidth});
     }
