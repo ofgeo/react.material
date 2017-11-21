@@ -1,67 +1,113 @@
 import React, {Component} from 'react';
-import {} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
 import './App.css';
-import ic_button from './static/ic_button_24px.svg';
-import ic_card from './static/ic_card_24px.svg';
-import ic_checkbox from './static/ic_selection_control_24px.svg';
-import ic_list from './static/ic_list_24px.svg';
-import ic_exit from './static/ic_exit_to_app_black_24px.svg';
-import {Drawer, Nav, NavLink} from '@react.material/drawer/index'
-import {ListItemDetail} from '@react.material/list/index'
-import {Ripple} from '@react.material/ripple/index'
+import {Drawer} from '@react.material/drawer/index'
+
+const OldSchoolMenuLink = ({label, to, activeOnlyWhenExact}) => (
+    <Route exact={activeOnlyWhenExact} path={to} children={({match}) => {
+      console.log(match);
+      return (
+          <div className={match ? 'active' : ''}>
+            {match ? '> ' : ''}<Link to={to}>{label}</Link>
+          </div>)
+    }}/>
+)
+
+const Home = () => (
+    <div>
+      <h2>Home</h2>
+    </div>
+)
+
+const About = () => (
+    <div>
+      <h2>About</h2>
+    </div>
+)
 
 class App extends Component {
+  // render(){
+  //   return (
+  //
+  //         <div>
+  //           <Switch>
+  //           <OldSchoolMenuLink  to="/" label="Home"/>
+  //           <OldSchoolMenuLink to="/about" label="About"/>
+  //           </Switch>
+  //           <hr/>
+  //           <Switch>
+  //           <Route path="/" component={Home}/>
+  //           <Route path="/about" component={About}/>
+  //           </Switch>
+  //         </div>
+  //
+  //   );
+  // }
   render() {
-    return [
+    return (<div>
       <Drawer
           ref="drawer"
           key="drawer"
           opened>
         <div className="mdc-persistent-drawer__toolbar-spacer"/>
         <div className="mdc-list-group">
-          <Nav>
-            {/*<Ripple>*/}
-            <NavLink href={"#"}>
-              <ListItemDetail start>
-                <img alt="Button" src={ic_button}/>
-              </ListItemDetail>
-              Button
-              <ListItemDetail end>
-                <img alt="Button" src={ic_exit}/>
-              </ListItemDetail>
-            </NavLink>
-            {/*</Ripple>*/}
-            <NavLink href={"#"}>
-              <ListItemDetail>
-                <img alt="Card" src={ic_card}/>
-              </ListItemDetail>
-              Card
-              <ListItemDetail end>
-                <img alt="Card" src={ic_exit}/>
-              </ListItemDetail>
-            </NavLink>
-            <NavLink href={"#"}>
-              <ListItemDetail>
-                <img alt="Checkbox" src={ic_checkbox}/>
-              </ListItemDetail>
-              Checkbox
-              <ListItemDetail end>
-                <img alt="Checkbox" src={ic_exit}/>
-              </ListItemDetail>
-            </NavLink>
-            <NavLink href={"#"}>
-              <ListItemDetail>
-                <img alt="Checkbox" src={ic_list}/>
-              </ListItemDetail>
-              List
-              <ListItemDetail end>
-                <img alt="Checkbox" src={ic_exit}/>
-              </ListItemDetail>
-            </NavLink>
-          </Nav>
+          <OldSchoolMenuLink activeOnlyWhenExact to="/" label="Home"/>
+          <OldSchoolMenuLink to="/about" label="About"/>
+          {/*<Nav>*/}
+          {/*<Route exact path="/button" children={({match}) => (*/}
+          {/*<NavLink href={"button"} selected={!!match}>*/}
+          {/*<ListItemDetail start>*/}
+          {/*<img alt="Button" src={ic_button}/>*/}
+          {/*</ListItemDetail>*/}
+          {/*<Link to="button">Button</Link>*/}
+          {/*<ListItemDetail end>*/}
+          {/*<img alt="Button" src={ic_exit}/>*/}
+          {/*</ListItemDetail>*/}
+          {/*</NavLink>*/}
+          {/*)}/>*/}
+
+
+          {/*/!*</Ripple>*!/*/}
+          {/*<NavLink href={"#"}>*/}
+          {/*<ListItemDetail>*/}
+          {/*<img alt="Card" src={ic_card}/>*/}
+          {/*</ListItemDetail>*/}
+          {/*Card*/}
+          {/*<ListItemDetail end>*/}
+          {/*<img alt="Card" src={ic_exit}/>*/}
+          {/*</ListItemDetail>*/}
+          {/*</NavLink>*/}
+          {/*<NavLink href={"/list2"}>*/}
+          {/*<ListItemDetail>*/}
+          {/*<img alt="Checkbox" src={ic_checkbox}/>*/}
+          {/*</ListItemDetail>*/}
+          {/*Checkbox*/}
+          {/*<ListItemDetail end>*/}
+          {/*<img alt="Checkbox" src={ic_exit}/>*/}
+          {/*</ListItemDetail>*/}
+          {/*</NavLink>*/}
+          {/*<NavLink href={"list"}>*/}
+          {/*<ListItemDetail>*/}
+          {/*<img alt="List" src={ic_list}/>*/}
+          {/*</ListItemDetail>*/}
+          {/*List*/}
+          {/*<ListItemDetail end>*/}
+          {/*<img alt="Checkbox" src={ic_exit}/>*/}
+          {/*</ListItemDetail>*/}
+          {/*</NavLink>*/}
+          {/*</Nav>*/}
+
         </div>
       </Drawer>
-      ,
+      <AAAA>
+        <aside>
+          <nav>
+            <OldSchoolMenuLink activeOnlyWhenExact to="/" label="Home"/>
+            <OldSchoolMenuLink to="/about" label="About"/>
+          </nav>
+        </aside>
+      </AAAA>
+
       <div key="content" id="content">
         <header className="mdc-toolbar mdc-elevation--z4">
           <div className="mdc-toolbar__row">
@@ -78,20 +124,40 @@ class App extends Component {
             </section>
           </div>
         </header>
-      </div>,
-      <Switch key="switch">
-        {/*<Redirect exact from="/" to='/material-components'/>*/}
-        <Route exact path="/" component={}/>
-        <Route path="/material-components" component={MaterialComponents}/>
-        <Route path="*" component={NotFound}/>
-      </Switch>
-    ]
+
+        {/*<Switch>*/}
+        <Route exact path="/" component={Home}/>
+        <Route path="/about" component={About}/>
+        {/*</Switch>*/}
+        {/*<div key="switch">*/}
+        {/*<Switch>*/}
+        {/*/!*<Redirect exact from="/" to='/material-components'/>*!/*/}
+        {/*/!*<Route exact path="/" component={App}/>*!/*/}
+        {/*<Route exact path="/button" component={Buttons}/>*/}
+        {/*<Route path="/list" component={Lists}/>*/}
+        {/*/!*<Route path="*" component={NotFound}/>*!/*/}
+        {/*/!*</div>*!/*/}
+        {/*</Switch>*/}
+      </div>
+    </div>)
   }
 
   menuClicks(e) {
     e.preventDefault();
     this.refs.drawer.open(!this.refs.drawer.isOpen());
   }
+}
+
+class AAAA extends Component {
+  render() {
+    return (
+        <aside ref={(root) => this.root = root}>
+          <nav ref={(drawer) => this.drawer = drawer}>
+            {this.props.children}
+          </nav>
+        </aside>
+    );
+  };
 }
 
 export default App;
