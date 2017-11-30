@@ -4,7 +4,6 @@ import {Set as ImmutableSet} from 'immutable';
 import {MDCPersistentDrawerFoundation, util} from '@material/drawer';
 import classNames from 'classnames';
 import {List, ListItem} from '@react.material/list/index'
-import {Ripple} from '@react.material/ripple/index'
 import './index.css';
 
 const {FOCUSABLE_ELEMENTS} = MDCPersistentDrawerFoundation.strings;
@@ -69,8 +68,21 @@ class Drawer extends PureComponent {
     saveElementTabState: el => util.restoreElementTabState(el),
     restoreElementTabState: el => util.restoreElementTabState(el),
     makeElementUntabbable: (el) => el.setAttribute('tabindex', '-1'),
-    isDrawer: (el) => el === this.drawer
+    isDrawer: (el) => el === this.drawer,
   });
+
+  constructor(props) {
+    super(props);
+
+    /**
+     * see issue  https://github.com/material-components/material-components-web/issues/1004
+     **/
+    this.foundation.drawerClickHandler_ = (e) => {
+      if (e.target.tagName !== 'A') {
+        e.stopPropagation();
+      }
+    };
+  }
 
   render() {
     return (
@@ -110,7 +122,6 @@ class Drawer extends PureComponent {
 
   componentDidMount() {
     this.foundation.init();
-
     if (this.props.opened) {
       this.foundation.open();
     }
@@ -138,7 +149,7 @@ const nav = (Component) => {
   };
 };
 
-const Nav = nav(List);
+const Navigation = nav(List);
 
 const navNavLink = (Component) => {
   return class NavList extends Component {
@@ -149,18 +160,28 @@ const navNavLink = (Component) => {
     };
 
     render() {
-      return (
-            <a className={classNames(this.state.classes.toJS(),
-                {'mdc-persistent-drawer--selected': this.props.selected})}
-               href={this.props.href}>
-              {this.props.children}
-            </a>
+      let child = React.Children.only(this.props.children);
+      let classes = classNames(
+          this.state.classes.toJS(),
+          {'mdc-persistent-drawer--selected': this.props.selected},
+          child.props.className
       );
+      return React.cloneElement(child, {
+        className: classes
+      })
+
+      // return (
+      //     <a className={classNames(this.state.classes.toJS(),
+      //         {'mdc-persistent-drawer--selected': this.props.selected})}
+      //        href={this.props.href}>
+      //       {this.props.children}
+      //     </a>
+      // );
     }
   };
 };
 
-const NavLink = navNavLink(ListItem);
+const NavigationItem = navNavLink(ListItem);
 
-export {Drawer, Nav, NavLink};
+export {Drawer, Navigation, NavigationItem};
 

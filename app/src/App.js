@@ -1,113 +1,38 @@
 import React, {Component} from 'react';
-import {Link, Route} from 'react-router-dom'
+import {Link, Route, Switch} from 'react-router-dom'
 import './App.css';
-import {Drawer} from '@react.material/drawer/index'
-
-const OldSchoolMenuLink = ({label, to, activeOnlyWhenExact}) => (
-    <Route exact={activeOnlyWhenExact} path={to} children={({match}) => {
-      console.log(match);
-      return (
-          <div className={match ? 'active' : ''}>
-            {match ? '> ' : ''}<Link to={to}>{label}</Link>
-          </div>)
-    }}/>
-)
-
-const Home = () => (
-    <div>
-      <h2>Home</h2>
-    </div>
-)
-
-const About = () => (
-    <div>
-      <h2>About</h2>
-    </div>
-)
+import {Drawer, Navigation, NavigationItem} from '@react.material/drawer/index'
+import {ListItemDetail} from '@react.material/list/index'
+import {Button, ic_button, ic_card, ic_checkbox, ic_exit, ic_list, Lists} from './components'
 
 class App extends Component {
-  // render(){
-  //   return (
-  //
-  //         <div>
-  //           <Switch>
-  //           <OldSchoolMenuLink  to="/" label="Home"/>
-  //           <OldSchoolMenuLink to="/about" label="About"/>
-  //           </Switch>
-  //           <hr/>
-  //           <Switch>
-  //           <Route path="/" component={Home}/>
-  //           <Route path="/about" component={About}/>
-  //           </Switch>
-  //         </div>
-  //
-  //   );
-  // }
   render() {
-    return (<div>
+    return [
       <Drawer
           ref="drawer"
-          key="drawer"
-          opened>
+          key="drawer" opened>
         <div className="mdc-persistent-drawer__toolbar-spacer"/>
         <div className="mdc-list-group">
-          <OldSchoolMenuLink activeOnlyWhenExact to="/" label="Home"/>
-          <OldSchoolMenuLink to="/about" label="About"/>
-          {/*<Nav>*/}
-          {/*<Route exact path="/button" children={({match}) => (*/}
-          {/*<NavLink href={"button"} selected={!!match}>*/}
-          {/*<ListItemDetail start>*/}
-          {/*<img alt="Button" src={ic_button}/>*/}
-          {/*</ListItemDetail>*/}
-          {/*<Link to="button">Button</Link>*/}
-          {/*<ListItemDetail end>*/}
-          {/*<img alt="Button" src={ic_exit}/>*/}
-          {/*</ListItemDetail>*/}
-          {/*</NavLink>*/}
-          {/*)}/>*/}
+          <Navigation>
+            <DrawerNavigationItem to='/button' label="Button" icon={ic_button}/>
+            <DrawerNavigationItem to='/card' label="Card" icon={ic_card}/>
+            <DrawerNavigationItem to='/checkbox' label="Checkbox" icon={ic_checkbox}/>
+            <DrawerNavigationItem to='/list' label="List" icon={ic_list}/>
 
-
-          {/*/!*</Ripple>*!/*/}
-          {/*<NavLink href={"#"}>*/}
-          {/*<ListItemDetail>*/}
-          {/*<img alt="Card" src={ic_card}/>*/}
-          {/*</ListItemDetail>*/}
-          {/*Card*/}
-          {/*<ListItemDetail end>*/}
-          {/*<img alt="Card" src={ic_exit}/>*/}
-          {/*</ListItemDetail>*/}
-          {/*</NavLink>*/}
-          {/*<NavLink href={"/list2"}>*/}
-          {/*<ListItemDetail>*/}
-          {/*<img alt="Checkbox" src={ic_checkbox}/>*/}
-          {/*</ListItemDetail>*/}
-          {/*Checkbox*/}
-          {/*<ListItemDetail end>*/}
-          {/*<img alt="Checkbox" src={ic_exit}/>*/}
-          {/*</ListItemDetail>*/}
-          {/*</NavLink>*/}
-          {/*<NavLink href={"list"}>*/}
-          {/*<ListItemDetail>*/}
-          {/*<img alt="List" src={ic_list}/>*/}
-          {/*</ListItemDetail>*/}
-          {/*List*/}
-          {/*<ListItemDetail end>*/}
-          {/*<img alt="Checkbox" src={ic_exit}/>*/}
-          {/*</ListItemDetail>*/}
-          {/*</NavLink>*/}
-          {/*</Nav>*/}
-
+            <NavigationItem>
+              <a href="https://www.google.com" target="_blank">
+                <ListItemDetail>
+                  <img alt="Google" src={ic_exit}/>
+                </ListItemDetail>
+                List
+                <ListItemDetail end>
+                  <img alt="Open New tab" src={ic_exit}/>
+                </ListItemDetail>
+              </a>
+            </NavigationItem>
+          </Navigation>
         </div>
-      </Drawer>
-      <AAAA>
-        <aside>
-          <nav>
-            <OldSchoolMenuLink activeOnlyWhenExact to="/" label="Home"/>
-            <OldSchoolMenuLink to="/about" label="About"/>
-          </nav>
-        </aside>
-      </AAAA>
-
+      </Drawer>,
       <div key="content" id="content">
         <header className="mdc-toolbar mdc-elevation--z4">
           <div className="mdc-toolbar__row">
@@ -125,10 +50,10 @@ class App extends Component {
           </div>
         </header>
 
-        {/*<Switch>*/}
-        <Route exact path="/" component={Home}/>
-        <Route path="/about" component={About}/>
-        {/*</Switch>*/}
+        <Switch>
+          <Route exact path="/button" component={Button}/>
+          <Route path="/list" component={Lists}/>
+        </Switch>
         {/*<div key="switch">*/}
         {/*<Switch>*/}
         {/*/!*<Redirect exact from="/" to='/material-components'/>*!/*/}
@@ -139,7 +64,7 @@ class App extends Component {
         {/*/!*</div>*!/*/}
         {/*</Switch>*/}
       </div>
-    </div>)
+    ]
   }
 
   menuClicks(e) {
@@ -148,16 +73,24 @@ class App extends Component {
   }
 }
 
-class AAAA extends Component {
-  render() {
-    return (
-        <aside ref={(root) => this.root = root}>
-          <nav ref={(drawer) => this.drawer = drawer}>
-            {this.props.children}
-          </nav>
-        </aside>
-    );
-  };
-}
+const DrawerNavigationItem2 = ({label, to, activeOnlyWhenExact}) => (
+    <Route path={to} exact={activeOnlyWhenExact} children={({match}) => (
+        <div className={match ? 'active' : ''}>
+          {match ? '> ' : ''}<Link to={to}>{label}</Link>
+        </div>
+    )}/>
+);
+const DrawerNavigationItem = ({to, label, icon, exact}) => (
+    <Route exact={exact} path={to} children={({match}) => (
+        <NavigationItem selected={!!match}>
+          <Link to={to}>
+            <ListItemDetail start>
+              <img alt={label} src={icon}/>
+            </ListItemDetail>
+            {label}
+          </Link>
+        </NavigationItem>
+    )}/>
+);
 
 export default App;
