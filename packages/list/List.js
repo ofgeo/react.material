@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {Set as ImmutableSet} from 'immutable';
 import classNames from 'classnames';
-import ListItem from './ListItem';
+// import ListItem from './ListItem';
 import './index.css';
 
 /** @enum {string} */
@@ -15,15 +15,15 @@ export default class List extends PureComponent {
   static propTypes = {
     id: PropTypes.string,
     avatar: PropTypes.bool,
-    children: (props, propName, componentName) => {
-      const children = props[propName];
-
-      if (React.Children
-          .toArray(children)
-          .some(child => !(child.type.prototype instanceof ListItem))) {
-        return new Error('`' + componentName + '` children should be of type `ListItem`.')
-      }
-    }
+    // children: (props, propName, componentName) => {
+    //   const children = props[propName];
+    //
+    //   if (React.Children
+    //       .toArray(children)
+    //       .some(child => !(child.type.prototype instanceof ListItem))) {
+    //     return new Error('`' + componentName + '` children should be of type `ListItem`.')
+    //   }
+    // }
   };
 
   static defaultProps = {
