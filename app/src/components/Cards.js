@@ -2,11 +2,10 @@ import React, {Component} from 'react';
 
 export default class extends Component {
   render() {
-    return (<div>Lists Demo</div>)
+    return (<div>Cards Demo</div>)
   }
 
   componentDidMount() {
-    document.title = "List"
-    document.desc
+    document.title = "Card"
   }
 }

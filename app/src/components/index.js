@@ -12,5 +12,7 @@ export {
   ic_list
 }
 
-export {default as Button} from './Buttons'
+export {default as Buttons} from './Buttons'
+export {default as Cards} from './Cards'
+export {default as Checkboxes} from './Checkboxes'
 export {default as Lists} from './Lists'

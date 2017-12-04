@@ -6,10 +6,10 @@ export default class extends Component {
     return (
         <div>
           <Helmet>
-            <title>Button</title>
-            <meta name="description" content="Buttons Demo"/>
+            <title>Introduction</title>
+            <meta name="description" content="React Material Introduction"/>
           </Helmet>
-          Buttons Demo
+          Coming soon
         </div>
     )
   }

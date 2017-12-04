@@ -141,7 +141,7 @@ const nav = (Component) => {
 
     render() {
       return (
-          <nav className={classNames(this.state.classes.toJS())}>
+          <nav className={classNames('mdc-persistent-drawer__content', this.state.classes.toJS())}>
             {this.props.children}
           </nav>
       );
