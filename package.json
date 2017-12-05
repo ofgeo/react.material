@@ -9,6 +9,7 @@
   "scripts": {
     "build": "cross-env BABEL_ENV=development webpack --progress --colors --watch",
     "build:min": "cross-env BABEL_ENV=production webpack -p --progress --colors",
+    "build:app": "node scripts/build.js",
     "bootstrap": "yarn && lerna bootstrap",
     "clean": "del-cli packages/*/dist",
     "dist": "yarn clean && yarn build && yarn build:min",
