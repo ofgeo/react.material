@@ -125,17 +125,17 @@ const routes = [
     path: '/card',
     title: "Card",
     icon: "view_agenda",
-    component: Buttons
+    component: Cards
   }, {
     path: '/checkbox',
     title: "Checkbox",
     icon: "check_box",
-    component: Buttons
+    component: Checkboxes
   }, {
     path: '/list',
     title: "List",
     icon: "view_list",
-    component: Buttons
+    component: Lists
   }
 ];
 
