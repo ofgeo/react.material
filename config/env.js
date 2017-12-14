@@ -32,7 +32,7 @@ var dotenvFiles = [
 dotenvFiles.forEach(dotenvFile => {
   if (fs.existsSync(dotenvFile)) {
     require('dotenv').config({
-      path: dotenvFile,
+      route: dotenvFile,
     });
   }
 });

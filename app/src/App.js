@@ -4,18 +4,7 @@ import './App.css';
 import {Drawer, Navigation, NavigationItem} from '@react.material/drawer/index'
 import {ListItemDetail} from '@react.material/list/index'
 import Introduction from './Introduction'
-import NoMatch from './NoMatch'
-import {
-  Buttons,
-  Cards,
-  Checkboxes,
-  Lists,
-  // ic_button,
-  // ic_card,
-  // ic_checkbox,
-  // ic_exit,
-  // ic_list
-} from './components'
+import asyncComponent from "./AsyncComponent";
 
 class App extends Component {
   render() {
@@ -27,15 +16,24 @@ class App extends Component {
         <div className="mdc-list-group">
           <Navigation>
             {
-              routes.map((route, index) =>
+              components.map((route, index) =>
                   (
                       <DrawerNavigationItem key={index}
-                                            to={route.path}
+                                            to={route.route}
                                             label={route.title}
                                             icon={route.icon}/>
                   )
               )
             }
+
+            <NavigationItem>
+              <Link to="/nofound">
+                <ListItemDetail start>
+                  <i className="material-icons">view_list</i>
+                </ListItemDetail>
+                Not Found
+              </Link>
+            </NavigationItem>
           </Navigation>
         </div>
       </Drawer>,
@@ -54,10 +52,10 @@ class App extends Component {
                 <Switch>
                   <Route exact path="/"/>
                   {
-                    routes.map((route, index) =>
+                    components.map((route, index) =>
                         (
                             <Route key={index}
-                                   path={route.path}
+                                   path={route.route}
                                    component={() => route.title}/>
                         )
                     )
@@ -78,13 +76,16 @@ class App extends Component {
         </header>
 
         <Switch>
-          <Route exact path="/" component={Introduction}/>
+          <Route exact path="/" component={asyncComponent(() => import('./Introduction'))}/>
           {
-            routes.map((route, index) => (
-                <Route key={index} path={route.path} component={route.component}/>
+            components.map((route, index) => (
+                <Route key={index}
+                       path={route.route}
+                       component={asyncComponent(() => import('./components/' + route.name))}/>
             ))
           }
-          <Route component={NoMatch}/>
+
+          <Route component={asyncComponent(() => import('./NoMatch'))}/>
         </Switch>
       </div>
     ]
@@ -115,27 +116,27 @@ const DrawerNavigationItem = ({to, label, icon}) => (
     )}/>
 );
 
-const routes = [
+const components = [
   {
-    path: '/button',
+    name: "Buttons",
     title: "Button",
     icon: "add_circle_outline",
-    component: Buttons
+    route: '/button'
   }, {
-    path: '/card',
+    name: "Cards",
     title: "Card",
     icon: "view_agenda",
-    component: Cards
+    route: '/card'
   }, {
-    path: '/checkbox',
+    name: "Checkboxes",
     title: "Checkbox",
     icon: "check_box",
-    component: Checkboxes
+    route: '/checkbox'
   }, {
-    path: '/list',
+    name: "Lists",
     title: "List",
     icon: "view_list",
-    component: Lists
+    route: '/list'
   }
 ];
 
