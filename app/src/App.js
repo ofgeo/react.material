@@ -25,15 +25,6 @@ class App extends Component {
                   )
               )
             }
-
-            <NavigationItem>
-              <Link to="/nofound">
-                <ListItemDetail start>
-                  <i className="material-icons">view_list</i>
-                </ListItemDetail>
-                Not Found
-              </Link>
-            </NavigationItem>
           </Navigation>
         </div>
       </Drawer>,
