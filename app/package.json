@@ -1,13 +1,13 @@
 {
   "name": "app",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "private": true,
   "dependencies": {
-    "@react.material/button": "^0.0.29",
-    "@react.material/checkbox": "^0.1.12",
-    "@react.material/drawer": "^0.0.6",
+    "@react.material/button": "^0.0.30",
+    "@react.material/checkbox": "^0.1.13",
+    "@react.material/drawer": "^0.0.7",
     "@react.material/list": "^0.0.2",
-    "@react.material/ripple": "^0.0.8",
+    "@react.material/ripple": "^0.0.9",
     "prop-types": "^15.6.0",
     "react": "16.0.0",
     "react-dom": "16.0.0",
