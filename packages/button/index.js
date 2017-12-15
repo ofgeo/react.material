@@ -37,7 +37,7 @@ class Button extends PureComponent {
     // For browser compatibility we extend the default adapter which checks for css variable support.
     foundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
         isUnbounded: () => false,
-        isSurfaceActive: () => this.refs.root[MATCHES](':active'),
+        isSurfaceActive: () => this.root[MATCHES](':active'),
         addClass: className => {
             this.setState(prevState => ({
                 classes: prevState.classes.add(className)
@@ -49,11 +49,11 @@ class Button extends PureComponent {
             }));
         },
         registerInteractionHandler: (evtType, handler) => {
-            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.refs.root;
+            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.root;
             target.addEventListener(evtType, handler);
         },
         deregisterInteractionHandler: (evtType, handler) => {
-            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.refs.root;
+            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.root;
             target.removeEventListener(evtType, handler);
         },
         updateCssVariable: (varName, value) => {
@@ -62,7 +62,7 @@ class Button extends PureComponent {
             }));
         },
         computeBoundingRect: () => {
-            return this.refs.root.getBoundingClientRect();
+            return this.root.getBoundingClientRect();
 
         },
     }));
@@ -72,7 +72,7 @@ class Button extends PureComponent {
         return (
             <button className={classNames(this.state.classes.toJS())}
                     disabled={this.state.disabledInternal}
-                    ref="root">
+                    ref={(root) => { this.root = root; }}>
                 {this.props.children}
             </button>
         )
@@ -97,9 +97,9 @@ class Button extends PureComponent {
 
     componentDidUpdate() {
         // To make the ripple animation work we update the css properties after React finished building the DOM.
-        if (this.refs.root) {
+        if (this.root) {
             this.state.rippleCss.forEach((v, k) => {
-                this.refs.root.style.setProperty(k, v);
+                this.root.style.setProperty(k, v);
             });
         }
     }

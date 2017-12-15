@@ -27,7 +27,7 @@ module.exports = [{
     publicPath: PUBLIC_PATH,
     filename: '[name]/dist/index.' + (IS_DEV ? '' : 'min.') + 'js',
     library: ['r', 'm', '[name]'],
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'umd'
   },
   devtool: SOURCE_MAPS,
   module: {
@@ -61,40 +61,45 @@ module.exports = [{
       }
     ]
   },
+  resolve: {
+    alias: {
+      react: path.resolve('node_modules/react'),
+    },
+  },
   externals: [
     // EXTERNAL_PATTERN,
     // EXTERNAL_PATTERN2,
     {
       classnames: {
-        root: 'Classnames',
         commonjs2: 'classnames',
         commonjs: 'classnames',
         amd: 'classnames',
         umd: 'classnames',
+        root: '_',
       }
     }, {
       react: {
-        root: 'React',
         commonjs2: 'react',
         commonjs: 'react',
         amd: 'react',
         umd: 'react',
+        root: '_',
       }
     }, {
       'react-dom': {
-        root: 'ReactDOM',
         commonjs2: 'react-dom',
         commonjs: 'react-dom',
         amd: 'react-dom',
         umd: 'react-dom',
+        root: '_',
       }
     }, {
       'prop-types': {
-        root: 'PropTypes',
         commonjs2: 'prop-types',
         commonjs: 'prop-types',
         amd: 'prop-types',
         umd: 'prop-types',
+        root: '_',
       }
     }, {
       immutable: {
