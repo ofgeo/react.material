@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Layout from './shared/Layout'
 import {Button, FlatButton} from '@react.material/button'
+import {Ripple} from '@react.material/ripple'
 import './shared/style.css'
 
 export default class extends Component {
@@ -20,6 +21,10 @@ export default class extends Component {
               <FlatButton>Click Me</FlatButton>
             </div>
           </div>
+
+          <Ripple>
+            <div>Ripple</div>
+          </Ripple>
         </Layout>
     )
   }
