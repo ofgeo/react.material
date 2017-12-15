@@ -7,7 +7,7 @@
     "url": "https://github.com/ofgeo/react.material.git"
   },
   "scripts": {
-    "build": "cross-env BABEL_ENV=development webpack --progress --colors --watch",
+    "build": "cross-env BABEL_ENV=development webpack --progress --colors",
     "build:min": "cross-env BABEL_ENV=production webpack -p --progress --colors",
     "build:app": "node scripts/app.build.js",
     "bootstrap": "yarn && lerna bootstrap",

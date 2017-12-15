@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
-import {Helmet} from 'react-helmet';
+import Layout from './components/shared/Layout'
 
 export default class extends Component {
   render() {
     return (
-        <div>
-          <Helmet>
-            <title>Introduction</title>
-            <meta name="description" content="React Material Introduction"/>
-          </Helmet>
+        <Layout title="Components">
           Coming soon
-        </div>
+        </Layout>
     )
   }
 }

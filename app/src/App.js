@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Link, Route, Switch} from 'react-router-dom'
 import './App.css';
-import {Drawer, Navigation, NavigationItem} from '@react.material/drawer/index'
-import {ListItemDetail} from '@react.material/list/index'
-import Introduction from './Introduction'
+import {Drawer, Navigation, NavigationItem} from '@react.material/drawer'
+import {ListItemDetail} from '@react.material/list'
 import asyncComponent from "./AsyncComponent";
+import logo from './logo.svg'
 
 class App extends Component {
   render() {
@@ -12,7 +12,11 @@ class App extends Component {
       <Drawer
           ref="drawer"
           key="drawer" opened>
-        <div className="mdc-persistent-drawer__toolbar-spacer"/>
+        <div className="mdc-persistent-drawer__toolbar-spacer">
+          <Link style={{margin: "0 auto"}} to="/">
+            <img alt="React Material Components" src={logo}/>
+          </Link>
+        </div>
         <div className="mdc-list-group">
           <Navigation>
             {
@@ -27,21 +31,23 @@ class App extends Component {
             }
           </Navigation>
         </div>
-      </Drawer>,
+      </Drawer>
+      ,
       <div key="content" id="content">
         <header className="mdc-toolbar mdc-elevation--z4">
           <div className="mdc-toolbar__row">
             <section
                 className="mdc-toolbar__section mdc-toolbar__section--align-start">
-              <button
-                  className="demo-menu material-icons mdc-toolbar__menu-icon"
-                  tabIndex="-1"
-                  onMouseDown={e => e.preventDefault()}
-                  onClick={this.menuClicks.bind(this)}>menu
-              </button>
+              <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24"
+                   xmlns="http://www.w3.org/2000/svg"
+                   className="demo-menu material-icons mdc-toolbar__menu-icon"
+                   onClick={this.menuClicks.bind(this)}>
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+              </svg>
               <span className="mdc-toolbar__title catalog-title">
                 <Switch>
-                  <Route exact path="/"/>
+                  <Route exact path="/" component={() => "React Material Components"}/>
                   {
                     components.map((route, index) =>
                         (
@@ -51,7 +57,7 @@ class App extends Component {
                         )
                     )
                   }
-                  <Route component={() => "404 Not Found"}/>
+                  <Route component={() => "Component Not Found"}/>
                 </Switch>
               </span>
             </section>

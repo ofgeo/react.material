@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Layout from './shared/Layout'
-import {Button, FlatButton} from '@react.material/button/index'
+import {Button, FlatButton} from '@react.material/button'
 import './shared/style.css'
 
 export default class extends Component {

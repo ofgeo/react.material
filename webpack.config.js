@@ -27,7 +27,7 @@ module.exports = [{
     publicPath: PUBLIC_PATH,
     filename: '[name]/dist/index.' + (IS_DEV ? '' : 'min.') + 'js',
     library: ['r', 'm', '[name]'],
-    libraryTarget: 'umd'
+    libraryTarget: 'commonjs2'
   },
   devtool: SOURCE_MAPS,
   module: {
