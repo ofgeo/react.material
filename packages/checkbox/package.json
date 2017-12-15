@@ -1,6 +1,6 @@
 {
   "name": "@react.material/checkbox",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "The React Material Components for the web checkbox component",
   "repository": {
     "type": "git",
