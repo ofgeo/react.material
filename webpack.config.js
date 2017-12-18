@@ -7,7 +7,7 @@ const IS_DEV = process.env.BABEL_ENV === 'development';
 const PUBLIC_PATH = '/assets/';
 const SOURCE_MAPS = IS_DEV ? 'source-map' : false;
 
-const EXCLUDE_PATTERN = new RegExp('(node_modules)' + `${path.sep}` + '(?!(@material)' + path.sep
+const EXCLUDE_PATTERN = new RegExp('(node_modules)' + `${path.sep}` + '(?!(@material|@react.material)' + path.sep
     + ').*');
 const EXTERNAL_PATTERN = new RegExp('(^@material)' + `${path.sep}.*`);
 const EXTERNAL_PATTERN2 = new RegExp('(^@material)' + `${path.sep}` + '.+$');
@@ -34,7 +34,7 @@ module.exports = [{
     rules: [
       {
         test: /\.js$/,
-        exclude: EXCLUDE_PATTERN,
+        exclude: [EXCLUDE_PATTERN],
         use: [{
           loader: 'babel-loader',
           options: {
@@ -62,6 +62,7 @@ module.exports = [{
     ]
   },
   resolve: {
+    modules: ["node_modules"],
     alias: {
       react: path.resolve('node_modules/react'),
     },

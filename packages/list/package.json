@@ -15,9 +15,10 @@
     "react",
     "reactjs"
   ],
-  "main": "index.js",
-  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "module": "index.js",
   "dependencies": {
+    "@material/list": "^0.27.0",
     "classnames": "^2.2.5",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.0",

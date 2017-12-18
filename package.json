@@ -14,6 +14,7 @@
     "clean": "del-cli packages/*/dist",
     "dist": "yarn clean && yarn build && yarn build:min",
     "start": "node scripts/start.js",
+    "start:dev": "cross-env BABEL_ENV=development webpack --progress --colors --watch",
     "deploy": "node scripts/deploy.js",
     "prepublish": "yarn dist"
   },
@@ -65,22 +66,5 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  },
-  "dependencies": {
-    "@material/animation": "^0.25.0",
-    "@material/button": "^0.26.0",
-    "@material/checkbox": "^0.26.0",
-    "@material/drawer": "^0.26.0",
-    "@material/list": "^0.26.0",
-    "@material/ripple": "^0.26.0",
-    "@material/theme": "^0.25.0",
-    "@material/toolbar": "^0.25.0",
-    "classnames": "^2.2.5",
-    "immutable": "^3.8.2",
-    "prop-types": "^15.6.0",
-    "react": "16.0.0",
-    "react-dom": "16.0.0",
-    "react-helmet": "^5.2.0",
-    "react-router-dom": "^4.2.2"
   }
 }
