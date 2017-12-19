@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {Set as ImmutableSet} from 'immutable';
 import classNames from 'classnames';
 // import ListItem from './ListItem';
+import '@material/list/dist/mdc.list.css'
 import './index.css';
 
 /** @enum {string} */

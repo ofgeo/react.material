@@ -15,12 +15,12 @@ const EXTERNAL_PATTERN2 = new RegExp('(^@material)' + `${path.sep}` + '.+$');
 module.exports = [{
   name: IS_DEV ? 'packages.js' : 'packages.min.js',
   entry: {
-    Button: [path.resolve('./packages/button/index.js')],
-    Checkbox: [path.resolve('./packages/checkbox/index.js')],
+    // Button: [path.resolve('./packages/button/index.js')],
+    // Checkbox: [path.resolve('./packages/checkbox/index.js')],
     Drawer: [path.resolve('./packages/drawer/index.js')],
     List: [path.resolve('./packages/list/index.js')],
-    Theme: [path.resolve('./packages/theme/index.js')],
-    Ripple: [path.resolve('./packages/ripple/index.js')]
+    // Theme: [path.resolve('./packages/theme/index.js')],
+    // Ripple: [path.resolve('./packages/ripple/index.js')]
   },
   output: {
     path: OUT_PATH,
@@ -61,12 +61,12 @@ module.exports = [{
       }
     ]
   },
-  resolve: {
-    modules: ["node_modules"],
-    alias: {
-      react: path.resolve('node_modules/react'),
-    },
-  },
+  // resolve: {
+  //   modules: ["node_modules"],
+  //   alias: {
+  //     react: path.resolve('node_modules/react'),
+  //   },
+  // },
   externals: [
     // EXTERNAL_PATTERN,
     // EXTERNAL_PATTERN2,

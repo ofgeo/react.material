@@ -44,16 +44,6 @@
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@material/typography/-/typography-0.3.0.tgz#f828c2d3215bfd66c58072709b4260c64125390a"
 
-"@react.material/list@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@react.material/list/-/list-0.0.2.tgz#ba0ad659fffcc22761d262db2e83376ad9e181d4"
-  dependencies:
-    classnames "^2.2.5"
-    immutable "^3.8.2"
-    prop-types "^15.6.0"
-    react "16.0.0"
-    react-dom "16.0.0"
-
 asap@~2.0.3:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"

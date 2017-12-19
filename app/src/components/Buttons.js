@@ -23,7 +23,7 @@ export default class extends Component {
           </div>
 
           <Ripple>
-            <div>Ripple</div>
+            Ripple
           </Ripple>
         </Layout>
     )
