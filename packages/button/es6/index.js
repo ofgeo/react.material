@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames';
 import {Map as ImmutableMap, Set as ImmutableSet} from 'immutable';
-import {MDCRipple, MDCRippleFoundation} from '@react.material/ripple';
+import {MDCRipple, MDCRippleFoundation} from '@react.material/ripple/es6';
 import './index.css';
 
 function getMatchesProperty(HTMLElementPrototype) {
@@ -39,14 +39,14 @@ class Button extends PureComponent {
     isUnbounded: () => false,
     isSurfaceActive: () => this.root[MATCHES](':active'),
     addClass: className => {
-      if (this.state) {
+      if (!this.unmounting) {
         this.setState(prevState => ({
           classes: prevState.classes.add(className)
         }));
       }
     },
     removeClass: className => {
-      if (this.state) {
+      if (!this.state) {
         this.setState(prevState => ({
           classes: prevState.classes.remove(className)
         }));
@@ -80,7 +80,8 @@ class Button extends PureComponent {
                 ref={(root) => {
                   this.root = root;
                 }}>
-          {this.props.children}
+          {/*{this.props.children}*/}
+
         </button>
     )
   }
@@ -92,7 +93,7 @@ class Button extends PureComponent {
   }
 
   componentWillUnmount() {
-    this.state = null;
+    this.unmounting = true;
     this.foundation.destroy();
   }
 

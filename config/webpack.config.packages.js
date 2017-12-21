@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const webpack = require('webpack');
 
 const OUT_PATH = path.resolve(__dirname, 'packages');
 const IS_DEV = process.env.BABEL_ENV === 'development';
@@ -10,21 +11,16 @@ const SOURCE_MAPS = IS_DEV ? 'source-map' : false;
 const EXCLUDE_PATTERN = new RegExp('(node_modules)' + `${path.sep}`
     + '(?!(@material)' + path.sep
     + ').*');
-const INCLUDE_PATTERN = new RegExp('(node_modules)' + `${path.sep}`
-    + '((@material)' + path.sep
-    + ').*');
-// const EXTERNAL_PATTERN = new RegExp('(^@material)' + `${path.sep}.*`);
-const EXTERNAL_PATTERN = new RegExp('(^@react.material)' + `${path.sep}` + '.+$');
 
 module.exports = {
   name: IS_DEV ? 'packages.js' : 'packages.min.js',
   entry: {
-    Button: [path.resolve('./packages/button/index.js')],
-    Checkbox: [path.resolve('./packages/checkbox/index.js')],
-    Drawer: [path.resolve('./packages/drawer/index.js')],
-    List: [path.resolve('./packages/list/index.js')],
-    Theme: [path.resolve('./packages/theme/index.js')],
-    Ripple: [path.resolve('./packages/ripple/index.js')]
+    Button: [path.resolve('./packages/button/es6/index.js')],
+    // Checkbox: [path.resolve('./packages/checkbox/index.js')],
+    // Drawer: [path.resolve('./packages/drawer/index.js')],
+    // List: [path.resolve('./packages/list/index.js')],
+    // Theme: [path.resolve('./packages/theme/index.js')],
+    Ripple: [path.resolve('./packages/ripple/es6/index.js')]
   },
   output: {
     path: OUT_PATH,
@@ -38,7 +34,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: [EXCLUDE_PATTERN],
+        // exclude: [EXCLUDE_PATTERN],
         use: [{
           loader: 'babel-loader',
           options: {
@@ -73,7 +69,7 @@ module.exports = {
   // },
   externals: [
     // EXTERNAL_PATTERN,
-    EXTERNAL_PATTERN,
+    // EXTERNAL_PATTERN,
     {
       classnames: {
         commonjs2: 'classnames',

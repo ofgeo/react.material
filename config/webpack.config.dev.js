@@ -13,6 +13,14 @@ const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const INCLUDE_PACKAGES = new RegExp('(packages)' + path.sep + '.*');
 
+const REACT_MATERIAL_PATTERN = new RegExp('(packages)' + `${path.sep}`
+    + '(?!(node_modules)' + path.sep
+    + ').*');
+
+const EXCLUDE_PATTERN = new RegExp('(packages)' + `${path.sep}`
+    + '(?!(node_modules)' + path.sep
+    + ').*');
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 const publicPath = '/';
@@ -121,7 +129,8 @@ module.exports = {
             loader: require.resolve('eslint-loader'),
           },
         ],
-        include: [paths.appSrc,INCLUDE_PACKAGES],
+        include: [paths.appSrc],
+        exclude: [/node_modules/],
       },
       {
         // "oneOf" will traverse all following loaders until one will
@@ -142,7 +151,8 @@ module.exports = {
           // Process JS with Babel.
           {
             test: /\.(js|jsx|mjs)$/,
-            include: [paths.appSrc,INCLUDE_PACKAGES],
+            include: [paths.appSrc],
+            exclude: [/node_modules/],
             loader: require.resolve('babel-loader'),
             options: {
 

@@ -68,7 +68,12 @@ class Ripple extends PureComponent {
   render() {
     if (React.Children.count(this.props.children) === 1 && typeof this.props.children
         === 'object') {
-      return React.Children.only(this.props.children);
+      return (
+          <div ref={(root) => this.root = root}>
+            {/*{this.props.children}*/}
+            asdasd
+          </div>
+      )
     } else {
       return (
           <div ref={(root) => this.root = root}>

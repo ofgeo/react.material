@@ -15,14 +15,13 @@
     "reactjs"
   ],
   "main": "dist/index.js",
-  "module": "es6/index.js",
   "dependencies": {
     "@material/ripple": "^0.27.0",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.0",
-    "react-dom": "16.0.0"
+    "react-dom": "16.2.0"
   },
   "devDependencies": {
-    "react": "16.0.0"
+    "react": "16.2.0"
   }
 }

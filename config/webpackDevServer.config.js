@@ -48,33 +48,33 @@ module.exports = function(proxy, allowedHost) {
     // for files like `favicon.ico`, `manifest.json`, and libraries that are
     // for some reason broken when imported through Webpack. If you just want to
     // use an image, put it in `src` and `import` it from JavaScript instead.
-    contentBase: paths.appPublic,
+    // contentBase: paths.appPublic,
     // By default files from `contentBase` will not trigger a page reload.
-    watchContentBase: true,
+    // watchContentBase: true,
     // Enable hot reloading server. It will provide /sockjs-node/ endpoint
     // for the WebpackDevServer client so it can learn when the files were
     // updated. The WebpackDevServer client is included as an entry point
     // in the Webpack development configuration. Note that only changes
     // to CSS are currently hot reloaded. JS changes will refresh the browser.
-    hot: true,
+    // hot: true,
     // It is important to tell WebpackDevServer to use the same "root" path
     // as we specified in the config. In development, we always serve from /.
-    publicPath: config.output.publicPath,
+    // publicPath: config.output.publicPath,
     // WebpackDevServer is noisy by default so we emit custom message instead
     // by listening to the compiler events with `compiler.plugin` calls above.
-    quiet: true,
+    // quiet: true,
     // Reportedly, this avoids CPU overload on some systems.
     // https://github.com/facebookincubator/create-react-app/issues/293
     // src/node_modules is not ignored to support absolute imports
     // https://github.com/facebookincubator/create-react-app/issues/1065
-    watchOptions: {
-      ignored: new RegExp(
-        `^(?!${path
-          .normalize(paths.appSrc + '/')
-          .replace(/[\\]+/g, '\\\\')}).+[\\\\/]node_modules[\\\\/]`,
-        'g'
-      ),
-    },
+    // watchOptions: {
+    //   ignored: new RegExp(
+    //     `^(?!${path
+    //       .normalize(paths.appSrc + '/')
+    //       .replace(/[\\]+/g, '\\\\')}).+[\\\\/]node_modules[\\\\/]`,
+    //     'g'
+    //   ),
+    // },
     // Enable HTTPS if the HTTPS environment variable is set to 'true'
     https: protocol === 'https',
     host: host,
