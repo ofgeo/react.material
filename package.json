@@ -11,7 +11,6 @@
     "build": "cross-env BABEL_ENV=development webpack --config config/webpack.config.packages.js --progress --colors",
     "build:min": "cross-env BABEL_ENV=production webpack --config config/webpack.config.packages.js -p --progress --colors",
     "build:app": "node scripts/app.build.js",
-    "bootstrap": "yarn && lerna bootstrap",
     "clean": "del-cli packages/*/dist",
     "dist": "yarn clean && yarn build && yarn build:min",
     "start": "node scripts/start.js",
