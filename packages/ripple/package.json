@@ -1,6 +1,6 @@
 {
   "name": "@react.material/ripple",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "The React Material Components for the web button component",
   "repository": {
     "type": "git",
@@ -15,6 +15,7 @@
     "reactjs"
   ],
   "main": "dist/index.js",
+  "module": "es6/index.js",
   "dependencies": {
     "@material/ripple": "^0.27.0",
     "immutable": "^3.8.2",
