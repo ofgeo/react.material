@@ -7,20 +7,24 @@ const IS_DEV = process.env.BABEL_ENV === 'development';
 const PUBLIC_PATH = '/assets/';
 const SOURCE_MAPS = IS_DEV ? 'source-map' : false;
 
-const EXCLUDE_PATTERN = new RegExp('(node_modules)' + `${path.sep}` + '(?!(@material|@react.material)' + path.sep
+const EXCLUDE_PATTERN = new RegExp('(node_modules)' + `${path.sep}`
+    + '(?!(@material)' + path.sep
     + ').*');
-const EXTERNAL_PATTERN = new RegExp('(^@material)' + `${path.sep}.*`);
-const EXTERNAL_PATTERN2 = new RegExp('(^@material)' + `${path.sep}` + '.+$');
+const INCLUDE_PATTERN = new RegExp('(node_modules)' + `${path.sep}`
+    + '((@material)' + path.sep
+    + ').*');
+// const EXTERNAL_PATTERN = new RegExp('(^@material)' + `${path.sep}.*`);
+const EXTERNAL_PATTERN = new RegExp('(^@react.material)' + `${path.sep}` + '.+$');
 
-module.exports = [{
+module.exports = {
   name: IS_DEV ? 'packages.js' : 'packages.min.js',
   entry: {
-    // Button: [path.resolve('./packages/button/index.js')],
-    // Checkbox: [path.resolve('./packages/checkbox/index.js')],
+    Button: [path.resolve('./packages/button/index.js')],
+    Checkbox: [path.resolve('./packages/checkbox/index.js')],
     Drawer: [path.resolve('./packages/drawer/index.js')],
     List: [path.resolve('./packages/list/index.js')],
-    // Theme: [path.resolve('./packages/theme/index.js')],
-    // Ripple: [path.resolve('./packages/ripple/index.js')]
+    Theme: [path.resolve('./packages/theme/index.js')],
+    Ripple: [path.resolve('./packages/ripple/index.js')]
   },
   output: {
     path: OUT_PATH,
@@ -69,7 +73,7 @@ module.exports = [{
   // },
   externals: [
     // EXTERNAL_PATTERN,
-    // EXTERNAL_PATTERN2,
+    EXTERNAL_PATTERN,
     {
       classnames: {
         commonjs2: 'classnames',
@@ -104,7 +108,7 @@ module.exports = [{
       }
     }, {
       immutable: {
-        root: 'Immutable',
+        root: '_',
         commonjs2: 'immutable',
         commonjs: 'immutable',
         amd: 'immutable',
@@ -112,4 +116,4 @@ module.exports = [{
       }
     }
   ]
-}];
+};

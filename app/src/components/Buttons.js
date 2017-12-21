@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Layout from './shared/Layout'
-import {Button, FlatButton} from '@react.material/button'
-import {Ripple} from '@react.material/ripple'
+// import {Button, FlatButton} from '@react.material/button'
+// import {Ripple} from '@react.material/ripple'
 import './shared/style.css'
 
 export default class extends Component {
@@ -15,10 +15,10 @@ export default class extends Component {
 
           <div className="demo-block">
             <div style={style}>
-              <Button>Click Me</Button>
+              {/*<Button>Click Me</Button>*/}
             </div>
             <div style={style}>
-              <FlatButton>Click Me</FlatButton>
+              {/*<FlatButton>Click Me</FlatButton>*/}
             </div>
           </div>
 

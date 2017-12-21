@@ -1,6 +1,6 @@
 {
   "name": "@react.material/theme",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "The React Material Components for the web theme component",
   "repository": {
     "type": "git",
@@ -14,9 +14,11 @@
     "react",
     "reactjs"
   ],
-  "main": "index.js",
-  "module": "dist/index.js",
+  "main": "dist/index.js",
   "dependencies": {
+    "@material/theme": "^0.27.0"
+  },
+  "devDependencies": {
     "react": "16.0.0",
     "react-dom": "16.0.0"
   }

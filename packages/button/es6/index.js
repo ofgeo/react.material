@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames';
 import {Map as ImmutableMap, Set as ImmutableSet} from 'immutable';
-import {MDCRipple, MDCRippleFoundation} from '@react.material/ripple/index';
+import {MDCRipple, MDCRippleFoundation} from '@react.material/ripple';
 import './index.css';
 
 function getMatchesProperty(HTMLElementPrototype) {
