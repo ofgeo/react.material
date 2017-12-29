@@ -1,6 +1,6 @@
 {
   "name": "@react.material/list",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "The React Material Components for the web list component",
   "repository": {
     "type": "git",
@@ -16,7 +16,6 @@
     "reactjs"
   ],
   "main": "dist/index.js",
-  "module": "index.js",
   "dependencies": {
     "@material/list": "^0.27.0",
     "classnames": "^2.2.5",
@@ -25,6 +24,6 @@
     "react-dom": "16.0.0"
   },
   "devDependencies": {
-    "react": "16.0.0"
+    "react": "16.2.0"
   }
 }

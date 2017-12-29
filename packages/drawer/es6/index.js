@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Set as ImmutableSet} from 'immutable';
 import {MDCPersistentDrawerFoundation, util} from '@material/drawer';
 import classNames from 'classnames';
-import {List, ListItem} from '@react.material/list/index'
+import {List, ListItem} from '../../list/es6/index'
 import './index.css';
 
 const {FOCUSABLE_ELEMENTS} = MDCPersistentDrawerFoundation.strings;

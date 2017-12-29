@@ -45,9 +45,10 @@ export class Checkbox extends PureComponent {
 
     // Here we initialize a foundation class, passing it an adapter which tells it how to
     // For browser compatibility we extend the default adapter which checks for css variable support.
+    // noinspection JSCheckFunctionSignatures
     rippleFoundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
         isUnbounded: () => true,
-        isSurfaceActive: () => this.refs.root[MATCHES](':active'),
+        isSurfaceActive: () => this.root[MATCHES](':active'),
         addClass: className => {
             this.setState(prevState => ({
                 classes: prevState.classes.add(className)
@@ -59,11 +60,11 @@ export class Checkbox extends PureComponent {
             }));
         },
         registerInteractionHandler: (evtType, handler) => {
-            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.refs.nativeCb;
+            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.nativeCb;
             target.addEventListener(evtType, handler, util.applyPassive());
         },
         deregisterInteractionHandler: (evtType, handler) => {
-            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.refs.nativeCb;
+            const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.nativeCb;
             target.removeEventListener(evtType, handler, util.applyPassive());
         },
         updateCssVariable: (varName, value) => {
@@ -72,7 +73,7 @@ export class Checkbox extends PureComponent {
             }));
         },
         computeBoundingRect: () => {
-            const {left, top} = this.refs.root.getBoundingClientRect();
+            const {left, top} = this.root.getBoundingClientRect();
             const DIM = 40;
             return {
                 top,
@@ -93,13 +94,13 @@ export class Checkbox extends PureComponent {
             classes: prevState.classes.remove(className)
         })),
         registerAnimationEndHandler: handler => {
-            if (this.refs.root) {
-                this.refs.root.addEventListener(getCorrectEventName(window, 'animationend'), handler);
+            if (this.root) {
+                this.root.addEventListener(getCorrectEventName(window, 'animationend'), handler);
             }
         },
         deregisterAnimationEndHandler: handler => {
-            if (this.refs.root) {
-                this.refs.root.removeEventListener(getCorrectEventName(window, 'animationend'), handler)
+            if (this.root) {
+                this.root.removeEventListener(getCorrectEventName(window, 'animationend'), handler)
             }
         },
         registerChangeHandler: handler => {
@@ -108,22 +109,22 @@ export class Checkbox extends PureComponent {
             // the handler passed here, as well as performs the other business logic. The point
             // being our foundations are designed to be adaptable enough to fit the needs of the host
             // platform.
-            if (this.refs.nativeCb) {
-                this.refs.nativeCb.addEventListener('change', handler);
+            if (this.nativeCb) {
+                this.nativeCb.addEventListener('change', handler);
             }
         },
         deregisterChangeHandler: handler => {
-            if (this.refs.nativeCb) {
-                this.refs.nativeCb.removeEventListener('change', handler);
+            if (this.nativeCb) {
+                this.nativeCb.removeEventListener('change', handler);
             }
         },
         getNativeControl: () => {
-            if (!this.refs.nativeCb) {
+            if (!this.nativeCb) {
                 throw new Error('Invalid state for operation');
             }
-            return this.refs.nativeCb;
+            return this.nativeCb;
         },
-        isAttachedToDOM: () => Boolean(this.refs.nativeCb),
+        isAttachedToDOM: () => Boolean(this.nativeCb),
     });
 
     changeHandler(evt) {
@@ -133,9 +134,10 @@ export class Checkbox extends PureComponent {
     render() {
         // Within render, we generate the html needed to render a proper MDC-Web checkbox.
         return (
-            <div ref="root" className={classNames(this.state.classes.toJS())}
+            <div ref={(root) => this.root = root}
+                 className={classNames(this.state.classes.toJS())}
                  onChange={this.changeHandler.bind(this)}>
-                <input ref="nativeCb"
+                <input ref={(nativeCb) => this.nativeCb = nativeCb}
                        id={this.props.id}
                        type="checkbox"
                        className="mdc-checkbox__native-control"
@@ -185,13 +187,13 @@ export class Checkbox extends PureComponent {
     // the indeterminate value of the native checkbox whenever a change occurs (as opposed to doing so within
     // render()).
     componentDidUpdate() {
-        if (this.refs.nativeCb) {
-            this.refs.nativeCb.indeterminate = this.state.indeterminateInternal;
+        if (this.nativeCb) {
+            this.nativeCb.indeterminate = this.state.indeterminateInternal;
         }
         // To make the ripple animation work we update the css properties after React finished building the DOM.
-        if (this.refs.root) {
+        if (this.root) {
             this.state.rippleCss.forEach((v, k) => {
-                this.refs.root.style.setProperty(k, v);
+                this.root.style.setProperty(k, v);
             });
         }
     }

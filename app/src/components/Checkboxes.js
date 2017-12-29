@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Layout from './shared/Layout'
-import {Checkbox} from '@react.material/checkbox'
+import {Checkbox} from '@react.material/checkbox/es6'
 
 export default class extends Component {
   render() {
