@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("prop-types"), require("immutable"), require("classnames"), require("react-dom"));
+		module.exports = factory(require("react"), require("prop-types"), require("classnames"), require("immutable"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "prop-types", "immutable", "classnames", "react-dom"], factory);
+		define(["react", "prop-types", "classnames", "immutable"], factory);
 	else if(typeof exports === 'object')
-		exports["Button"] = factory(require("react"), require("prop-types"), require("immutable"), require("classnames"), require("react-dom"));
+		exports["Button"] = factory(require("react"), require("prop-types"), require("classnames"), require("immutable"));
 	else
-		root["r"] = root["r"] || {}, root["r"]["m"] = root["r"]["m"] || {}, root["r"]["m"]["Button"] = factory(root["_"], root["_"], root["_"], root["_"], root["_"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_13__) {
+		root["r"] = root["r"] || {}, root["r"]["m"] = root["r"]["m"] || {}, root["r"]["m"]["Button"] = factory(root["_"], root["_"], root["_"], root["_"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/assets/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 35);
+/******/ 	return __webpack_require__(__webpack_require__.s = 36);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -172,12 +172,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -547,6 +541,12 @@ function updateLink (link, options, obj) {
 	if(oldSrc) URL.revokeObjectURL(oldSrc);
 }
 
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
 
 /***/ }),
 /* 6 */
@@ -1062,13 +1062,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Ripple", function() { return Ripple; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_immutable__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_immutable__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_immutable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_immutable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__material_ripple__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__material_ripple__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__material_ripple_dist_mdc_ripple_css__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__material_ripple_dist_mdc_ripple_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__material_ripple_dist_mdc_ripple_css__);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MDCRipple", function() { return __WEBPACK_IMPORTED_MODULE_4__material_ripple__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MDCRippleFoundation", function() { return __WEBPACK_IMPORTED_MODULE_4__material_ripple__["b"]; });
 var _jsxFileName = '/Users/shawn.thye/workspaces/react.material/packages/ripple/es6/index.js';
@@ -1091,7 +1093,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-// import './index.css';
+
 
 function getMatchesProperty(HTMLElementPrototype) {
   return ['webkitMatchesSelector', 'msMatchesSelector', 'matches'].filter(function (p) {
@@ -1116,6 +1118,7 @@ var Ripple = function (_PureComponent) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Ripple.__proto__ || Object.getPrototypeOf(Ripple)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      classes: __WEBPACK_IMPORTED_MODULE_3_immutable__["Set"].of('mdc-button', 'mdc-button--raised', 'theme'),
       rippleCss: new __WEBPACK_IMPORTED_MODULE_3_immutable__["Map"](),
       internalClientWidth: -1
     }, _this.foundation = new __WEBPACK_IMPORTED_MODULE_4__material_ripple__["b" /* MDCRippleFoundation */](Object.assign(__WEBPACK_IMPORTED_MODULE_4__material_ripple__["a" /* MDCRipple */].createAdapter(_this), {
@@ -1143,7 +1146,7 @@ var Ripple = function (_PureComponent) {
         target.removeEventListener(evtType, handler, __WEBPACK_IMPORTED_MODULE_4__material_ripple__["c" /* util */].applyPassive());
       },
       updateCssVariable: function updateCssVariable(varName, value) {
-        if (_this.state) {
+        if (!_this.unmounting) {
           _this.setState(function (prevState) {
             return {
               rippleCss: prevState.rippleCss.set(varName, value)
@@ -1166,19 +1169,21 @@ var Ripple = function (_PureComponent) {
     value: function render() {
       var _this2 = this;
 
-      if (__WEBPACK_IMPORTED_MODULE_0_react___default.a.Children.count(this.props.children) === 1 && _typeof(this.props.children) === 'object') {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          _defineProperty({ ref: function ref(root) {
-              return _this2.root = root;
-            }, __source: {
-              fileName: _jsxFileName,
-              lineNumber: 72
-            },
-            __self: this
-          }, '__self', this),
-          'asdasd'
-        );
+      if (__WEBPACK_IMPORTED_MODULE_0_react___default.a.Children.count(this.props.children, this.context) === 1 && _typeof(this.props.children) === 'object') {
+        var child = __WEBPACK_IMPORTED_MODULE_0_react___default.a.Children.only(this.props.children);
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(child, {
+          ref: function ref(root) {
+            // Keep your own reference
+            _this2.root = root;
+            // Call the original ref, if any
+            var ref = child.ref;
+
+            if (typeof ref === 'function') {
+              ref(root);
+            }
+          },
+          className: __WEBPACK_IMPORTED_MODULE_2_classnames___default()(this.state.classes.toJS(), child.props.className)
+        });
       } else {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
@@ -1186,7 +1191,7 @@ var Ripple = function (_PureComponent) {
               return _this2.root = root;
             }, __source: {
               fileName: _jsxFileName,
-              lineNumber: 79
+              lineNumber: 86
             },
             __self: this
           }, '__self', this),
@@ -1201,7 +1206,6 @@ var Ripple = function (_PureComponent) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.root = this.root || __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.findDOMNode(this);
       this.root.classList.add('mdc-ripple-surface');
       this.foundation.init();
       this.setState({ internalClientWidth: this.root.clientWidth });
@@ -1209,7 +1213,7 @@ var Ripple = function (_PureComponent) {
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      this.state = null;
+      this.unmounting = true;
       this.foundation.destroy();
     }
   }, {
@@ -1238,10 +1242,7 @@ var Ripple = function (_PureComponent) {
   return Ripple;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"]);
 
-Ripple.propTypes = {
-  id: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string,
-  unbounded: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool
-};
+Ripple.propTypes = { id: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string, unbounded: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool };
 Ripple.defaultProps = {
   unbounded: false
 };
@@ -1251,19 +1252,13 @@ Ripple.defaultProps = {
 
 /***/ }),
 /* 13 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
-
-/***/ }),
-/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MDCRipple; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__material_base_component__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__material_base_component__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__adapter__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__foundation__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__foundation__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util__ = __webpack_require__(10);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__foundation__["a"]; });
 /* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_3__util__; });
@@ -1483,7 +1478,7 @@ RippleCapableSurface.prototype.disabled;
 
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1655,13 +1650,13 @@ var MDCComponent = function () {
 /* harmony default export */ __webpack_exports__["a"] = (MDCComponent);
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__material_base_foundation__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__adapter__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util__ = __webpack_require__(10);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -2311,7 +2306,7 @@ var MDCRippleFoundation = function (_MDCFoundation) {
 /* harmony default export */ __webpack_exports__["a"] = (MDCRippleFoundation);
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2366,7 +2361,39 @@ var numbers = {
 
 
 /***/ }),
-/* 18 */,
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(18);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"sourceMap":false,"hmr":false}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(4)(content, options);
+if(content.locals) module.exports = content.locals;
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "/*!\n Material Components for the web\n Copyright (c) 2017 Google Inc.\n License: Apache-2.0\n*/\n@-webkit-keyframes mdc-ripple-fg-radius-in {\n  from {\n    -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n    -webkit-transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);\n            transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1); }\n  to {\n    -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));\n            transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1)); } }\n\n@keyframes mdc-ripple-fg-radius-in {\n  from {\n    -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n    -webkit-transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);\n            transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1); }\n  to {\n    -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));\n            transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1)); } }\n\n@-webkit-keyframes mdc-ripple-fg-opacity-in {\n  from {\n    -webkit-animation-timing-function: linear;\n            animation-timing-function: linear;\n    opacity: 0; }\n  to {\n    opacity: var(--mdc-ripple-fg-opacity, 0.16); } }\n\n@keyframes mdc-ripple-fg-opacity-in {\n  from {\n    -webkit-animation-timing-function: linear;\n            animation-timing-function: linear;\n    opacity: 0; }\n  to {\n    opacity: var(--mdc-ripple-fg-opacity, 0.16); } }\n\n@-webkit-keyframes mdc-ripple-fg-opacity-out {\n  from {\n    -webkit-animation-timing-function: linear;\n            animation-timing-function: linear;\n    opacity: var(--mdc-ripple-fg-opacity, 0.16); }\n  to {\n    opacity: 0; } }\n\n@keyframes mdc-ripple-fg-opacity-out {\n  from {\n    -webkit-animation-timing-function: linear;\n            animation-timing-function: linear;\n    opacity: var(--mdc-ripple-fg-opacity, 0.16); }\n  to {\n    opacity: 0; } }\n\n.mdc-ripple-surface--test-edge-var-bug {\n  --mdc-ripple-surface-test-edge-var: 1px solid #000;\n  visibility: hidden; }\n  .mdc-ripple-surface--test-edge-var-bug::before {\n    border: var(--mdc-ripple-surface-test-edge-var); }\n\n.mdc-ripple-surface {\n  --mdc-ripple-fg-size: 0;\n  --mdc-ripple-left: 0;\n  --mdc-ripple-top: 0;\n  --mdc-ripple-fg-scale: 1;\n  --mdc-ripple-fg-translate-end: 0;\n  --mdc-ripple-fg-translate-start: 0;\n  -webkit-tap-highlight-color: transparent;\n  position: relative;\n  outline: none;\n  overflow: hidden; }\n  .mdc-ripple-surface::before, .mdc-ripple-surface::after {\n    position: absolute;\n    border-radius: 50%;\n    opacity: 0;\n    pointer-events: none;\n    content: \"\";\n    will-change: transform, opacity; }\n  .mdc-ripple-surface::before {\n    -webkit-transition: opacity 15ms linear;\n    transition: opacity 15ms linear; }\n  .mdc-ripple-surface.mdc-ripple-upgraded::after {\n    top: 0;\n    left: 0;\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    -webkit-transform-origin: center center;\n            transform-origin: center center; }\n  .mdc-ripple-surface.mdc-ripple-upgraded--unbounded::after {\n    top: var(--mdc-ripple-top, 0);\n    left: var(--mdc-ripple-left, 0); }\n  .mdc-ripple-surface.mdc-ripple-upgraded--foreground-activation::after {\n    -webkit-animation: 225ms mdc-ripple-fg-radius-in forwards, 75ms mdc-ripple-fg-opacity-in forwards;\n            animation: 225ms mdc-ripple-fg-radius-in forwards, 75ms mdc-ripple-fg-opacity-in forwards; }\n  .mdc-ripple-surface.mdc-ripple-upgraded--foreground-deactivation::after {\n    -webkit-animation: 150ms mdc-ripple-fg-opacity-out;\n            animation: 150ms mdc-ripple-fg-opacity-out;\n    -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));\n            transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1)); }\n  .mdc-ripple-surface::before, .mdc-ripple-surface::after {\n    background-color: black; }\n  .mdc-ripple-surface:hover::before {\n    opacity: 0.04; }\n  .mdc-ripple-surface:not(.mdc-ripple-upgraded):focus::before, .mdc-ripple-surface.mdc-ripple-upgraded--background-focused::before {\n    -webkit-transition-duration: 75ms;\n            transition-duration: 75ms;\n    opacity: 0.12; }\n  .mdc-ripple-surface:not(.mdc-ripple-upgraded)::after {\n    -webkit-transition: opacity 150ms linear;\n    transition: opacity 150ms linear; }\n  .mdc-ripple-surface:not(.mdc-ripple-upgraded):active::after {\n    -webkit-transition-duration: 75ms;\n            transition-duration: 75ms;\n    opacity: 0.16; }\n  .mdc-ripple-surface.mdc-ripple-upgraded {\n    --mdc-ripple-fg-opacity: 0.16; }\n  .mdc-ripple-surface::before, .mdc-ripple-surface::after {\n    top: calc(50% - 100%);\n    left: calc(50% - 100%);\n    width: 200%;\n    height: 200%; }\n  .mdc-ripple-surface.mdc-ripple-upgraded::before {\n    top: calc(50% - 100%);\n    left: calc(50% - 100%);\n    width: 200%;\n    height: 200%;\n    -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));\n            transform: scale(var(--mdc-ripple-fg-scale, 0)); }\n  .mdc-ripple-surface.mdc-ripple-upgraded--unbounded::before {\n    top: var(--mdc-ripple-top, calc(50% - 50%));\n    left: var(--mdc-ripple-left, calc(50% - 50%));\n    width: var(--mdc-ripple-fg-size, 100%);\n    height: var(--mdc-ripple-fg-size, 100%);\n    -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));\n            transform: scale(var(--mdc-ripple-fg-scale, 0)); }\n  .mdc-ripple-surface.mdc-ripple-upgraded::after {\n    width: var(--mdc-ripple-fg-size, 100%);\n    height: var(--mdc-ripple-fg-size, 100%); }\n  .mdc-ripple-surface[data-mdc-ripple-is-unbounded] {\n    overflow: visible; }\n  .mdc-ripple-surface--primary::before, .mdc-ripple-surface--primary::after {\n    /* @alternate */\n    background-color: #3f51b5; }\n    @supports not (-ms-ime-align: auto) {\n      .mdc-ripple-surface--primary::before, .mdc-ripple-surface--primary::after {\n        background-color: var(--mdc-theme-primary, #3f51b5); } }\n  .mdc-ripple-surface--primary:hover::before {\n    opacity: 0.04; }\n  .mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):focus::before, .mdc-ripple-surface--primary.mdc-ripple-upgraded--background-focused::before {\n    -webkit-transition-duration: 75ms;\n            transition-duration: 75ms;\n    opacity: 0.12; }\n  .mdc-ripple-surface--primary:not(.mdc-ripple-upgraded)::after {\n    -webkit-transition: opacity 150ms linear;\n    transition: opacity 150ms linear; }\n  .mdc-ripple-surface--primary:not(.mdc-ripple-upgraded):active::after {\n    -webkit-transition-duration: 75ms;\n            transition-duration: 75ms;\n    opacity: 0.16; }\n  .mdc-ripple-surface--primary.mdc-ripple-upgraded {\n    --mdc-ripple-fg-opacity: 0.16; }\n  .mdc-ripple-surface--accent::before, .mdc-ripple-surface--accent::after {\n    /* @alternate */\n    background-color: #ff4081; }\n    @supports not (-ms-ime-align: auto) {\n      .mdc-ripple-surface--accent::before, .mdc-ripple-surface--accent::after {\n        background-color: var(--mdc-theme-secondary, #ff4081); } }\n  .mdc-ripple-surface--accent:hover::before {\n    opacity: 0.04; }\n  .mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):focus::before, .mdc-ripple-surface--accent.mdc-ripple-upgraded--background-focused::before {\n    -webkit-transition-duration: 75ms;\n            transition-duration: 75ms;\n    opacity: 0.12; }\n  .mdc-ripple-surface--accent:not(.mdc-ripple-upgraded)::after {\n    -webkit-transition: opacity 150ms linear;\n    transition: opacity 150ms linear; }\n  .mdc-ripple-surface--accent:not(.mdc-ripple-upgraded):active::after {\n    -webkit-transition-duration: 75ms;\n            transition-duration: 75ms;\n    opacity: 0.16; }\n  .mdc-ripple-surface--accent.mdc-ripple-upgraded {\n    --mdc-ripple-fg-opacity: 0.16; }\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 19 */,
 /* 20 */,
 /* 21 */,
@@ -2383,14 +2410,15 @@ var numbers = {
 /* 32 */,
 /* 33 */,
 /* 34 */,
-/* 35 */
+/* 35 */,
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(36);
+module.exports = __webpack_require__(37);
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2401,13 +2429,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_immutable__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_immutable__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_immutable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_immutable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__react_material_ripple_es6__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__index_css__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__index_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__material_button_dist_mdc_button_css__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__material_button_dist_mdc_button_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__material_button_dist_mdc_button_css__);
 var _jsxFileName = '/Users/shawn.thye/workspaces/react.material/packages/button/es6/index.js';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2427,172 +2455,178 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+// import './index.css';
+
 function getMatchesProperty(HTMLElementPrototype) {
-  return ['webkitMatchesSelector', 'msMatchesSelector', 'matches'].filter(function (p) {
-    return p in HTMLElementPrototype;
-  }).pop();
+    return ['webkitMatchesSelector', 'msMatchesSelector', 'matches'].filter(function (p) {
+        return p in HTMLElementPrototype;
+    }).pop();
 }
 
 var MATCHES = getMatchesProperty(HTMLElement.prototype);
 
 var Button = function (_PureComponent) {
-  _inherits(Button, _PureComponent);
+    _inherits(Button, _PureComponent);
 
-  function Button() {
-    var _ref;
+    function Button() {
+        var _ref;
 
-    var _temp, _this, _ret;
+        var _temp, _this, _ret;
 
-    _classCallCheck(this, Button);
+        _classCallCheck(this, Button);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Button.__proto__ || Object.getPrototypeOf(Button)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      classes: __WEBPACK_IMPORTED_MODULE_3_immutable__["Set"].of('mdc-button', 'mdc-button--raised', 'theme'),
-      rippleCss: new __WEBPACK_IMPORTED_MODULE_3_immutable__["Map"](),
-      children: {},
-      disabledInternal: _this.props.disabled,
-      internalWidth: 0,
-      internalHeight: 0
-    }, _this.foundation = new __WEBPACK_IMPORTED_MODULE_4__react_material_ripple_es6__["MDCRippleFoundation"](Object.assign(__WEBPACK_IMPORTED_MODULE_4__react_material_ripple_es6__["MDCRipple"].createAdapter(_this), {
-      isUnbounded: function isUnbounded() {
-        return false;
-      },
-      isSurfaceActive: function isSurfaceActive() {
-        return _this.root[MATCHES](':active');
-      },
-      addClass: function addClass(className) {
-        if (!_this.unmounting) {
-          _this.setState(function (prevState) {
-            return {
-              classes: prevState.classes.add(className)
-            };
-          });
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
         }
-      },
-      removeClass: function removeClass(className) {
-        if (!_this.state) {
-          _this.setState(function (prevState) {
-            return {
-              classes: prevState.classes.remove(className)
-            };
-          });
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Button.__proto__ || Object.getPrototypeOf(Button)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+            classes: __WEBPACK_IMPORTED_MODULE_3_immutable__["Set"].of('mdc-button', 'mdc-button--raised', 'theme'),
+            rippleCss: new __WEBPACK_IMPORTED_MODULE_3_immutable__["Map"](),
+            children: {},
+            disabledInternal: _this.props.disabled,
+            internalWidth: 0,
+            internalHeight: 0
+        }, _this.foundation = new __WEBPACK_IMPORTED_MODULE_4__react_material_ripple_es6__["MDCRippleFoundation"](Object.assign(__WEBPACK_IMPORTED_MODULE_4__react_material_ripple_es6__["MDCRipple"].createAdapter(_this), {
+            isUnbounded: function isUnbounded() {
+                return false;
+            },
+            isSurfaceActive: function isSurfaceActive() {
+                return _this.root[MATCHES](':active');
+            },
+            addClass: function addClass(className) {
+                if (!_this.unmounting) {
+                    _this.setState(function (prevState) {
+                        return {
+                            classes: prevState.classes.add(className)
+                        };
+                    });
+                }
+            },
+            removeClass: function removeClass(className) {
+                if (!_this.unmounting) {
+                    _this.setState(function (prevState) {
+                        return {
+                            classes: prevState.classes.remove(className)
+                        };
+                    });
+                }
+            },
+            registerInteractionHandler: function registerInteractionHandler(evtType, handler) {
+                var target = evtType === 'mouseup' || evtType === 'pointerup' ? window : _this.root;
+                target.addEventListener(evtType, handler);
+            },
+            deregisterInteractionHandler: function deregisterInteractionHandler(evtType, handler) {
+                var target = evtType === 'mouseup' || evtType === 'pointerup' ? window : _this.root;
+                target.removeEventListener(evtType, handler);
+            },
+            updateCssVariable: function updateCssVariable(varName, value) {
+                if (!_this.unmounting) {
+                    _this.setState(function (prevState) {
+                        return {
+                            rippleCss: prevState.rippleCss.set(varName, value)
+                        };
+                    });
+                }
+            },
+            computeBoundingRect: function computeBoundingRect() {
+                return _this.root.getBoundingClientRect();
+            }
+        })), _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    // Here we initialize a foundation class, passing it an adapter which tells it how to
+    // For browser compatibility we extend the default adapter which checks for css variable support.
+    // noinspection JSCheckFunctionSignatures
+
+
+    _createClass(Button, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'button',
+                _defineProperty({ ref: function ref(root) {
+                        return _this2.root = root;
+                    },
+                    className: __WEBPACK_IMPORTED_MODULE_2_classnames___default()(this.state.classes.toJS()),
+                    disabled: this.state.disabledInternal, __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 80
+                    },
+                    __self: this
+                }, '__self', this),
+                this.props.children
+            );
         }
-      },
-      registerInteractionHandler: function registerInteractionHandler(evtType, handler) {
-        var target = evtType === 'mouseup' || evtType === 'pointerup' ? window : _this.root;
-        target.addEventListener(evtType, handler);
-      },
-      deregisterInteractionHandler: function deregisterInteractionHandler(evtType, handler) {
-        var target = evtType === 'mouseup' || evtType === 'pointerup' ? window : _this.root;
-        target.removeEventListener(evtType, handler);
-      },
-      updateCssVariable: function updateCssVariable(varName, value) {
-        if (_this.state) {
-          _this.setState(function (prevState) {
-            return {
-              rippleCss: prevState.rippleCss.set(varName, value)
-            };
-          });
+
+        // Within the two component lifecycle methods below, we invoke the foundation's lifecycle hooks
+        // so that proper work can be performed.
+
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.foundation.init();
         }
-      },
-      computeBoundingRect: function computeBoundingRect() {
-        return _this.root.getBoundingClientRect();
-      }
-    })), _temp), _possibleConstructorReturn(_this, _ret);
-  }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            this.unmounting = true;
+            this.foundation.destroy();
+        }
 
-  // Here we initialize a foundation class, passing it an adapter which tells it how to
-  // For browser compatibility we extend the default adapter which checks for css variable support.
-  // noinspection JSCheckFunctionSignatures
+        // Here we synchronize the internal state of the UI component based on what the user has specified.
 
+    }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(props) {
+            if (props.disabled !== this.props.disabled) {
+                this.setState({ disabledInternal: props.disabled });
+            }
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            var _this3 = this;
 
-  _createClass(Button, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
+            // To make the ripple animation work we update the css properties after React finished building the DOM.
+            if (this.root) {
+                this.state.rippleCss.forEach(function (v, k) {
+                    _this3.root.style.setProperty(k, v);
+                });
+            }
+        }
+    }]);
 
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', _defineProperty({ className: __WEBPACK_IMPORTED_MODULE_2_classnames___default()(this.state.classes.toJS()),
-        disabled: this.state.disabledInternal,
-        ref: function ref(root) {
-          _this2.root = root;
-        }, __source: {
-          fileName: _jsxFileName,
-          lineNumber: 78
-        },
-        __self: this
-      }, '__self', this));
-    }
-
-    // Within the two component lifecycle methods below, we invoke the foundation's lifecycle hooks
-    // so that proper work can be performed.
-
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.foundation.init();
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      this.unmounting = true;
-      this.foundation.destroy();
-    }
-
-    // Here we synchronize the internal state of the UI component based on what the user has specified.
-
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(props) {
-      if (props.disabled !== this.props.disabled) {
-        this.setState({ disabledInternal: props.disabled });
-      }
-    }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
-      var _this3 = this;
-
-      // To make the ripple animation work we update the css properties after React finished building the DOM.
-      if (this.root) {
-        this.state.rippleCss.forEach(function (v, k) {
-          _this3.root.style.setProperty(k, v);
-        });
-      }
-    }
-  }]);
-
-  return Button;
+    return Button;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"]);
 
 Button.propTypes = {
-  id: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
-  disabled: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool
+    id: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+    disabled: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool
 };
 Button.defaultProps = {
-  disabled: false
+    disabled: false
 };
 
 
 var flatButton = function flatButton(WrappedComponent) {
-  return function (_WrappedComponent) {
-    _inherits(FlatButton, _WrappedComponent);
+    return function (_WrappedComponent) {
+        _inherits(FlatButton, _WrappedComponent);
 
-    function FlatButton(props) {
-      _classCallCheck(this, FlatButton);
+        function FlatButton(props) {
+            _classCallCheck(this, FlatButton);
 
-      var _this4 = _possibleConstructorReturn(this, (FlatButton.__proto__ || Object.getPrototypeOf(FlatButton)).call(this, props));
+            var _this4 = _possibleConstructorReturn(this, (FlatButton.__proto__ || Object.getPrototypeOf(FlatButton)).call(this, props));
 
-      _this4.state = Object.assign({}, _this4.state, {
-        classes: __WEBPACK_IMPORTED_MODULE_3_immutable__["Set"].of('mdc-button', 'theme')
-      });
-      return _this4;
-    }
+            _this4.state = Object.assign({}, _this4.state, {
+                classes: __WEBPACK_IMPORTED_MODULE_3_immutable__["Set"].of('mdc-button', 'theme')
+            });
+            return _this4;
+        }
 
-    return FlatButton;
-  }(WrappedComponent);
+        return FlatButton;
+    }(WrappedComponent);
 };
 
 var FlatButton = flatButton(Button);
@@ -2600,13 +2634,13 @@ var FlatButton = flatButton(Button);
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(38);
+var content = __webpack_require__(39);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2614,22 +2648,8 @@ var transform;
 var options = {"sourceMap":false,"hmr":false}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
+var update = __webpack_require__(4)(content, options);
 if(content.locals) module.exports = content.locals;
-
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-exports.i(__webpack_require__(39), "");
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
 
 
 /***/ }),

@@ -7,92 +7,96 @@ import asyncComponent from "./AsyncComponent";
 import logo from './logo.svg'
 
 class App extends Component {
-    render() {
-        return (
-            <Fragment>
-                <Drawer
-                    ref="drawer"
-                    key="drawer" opened>
-                    <div className="mdc-persistent-drawer__toolbar-spacer">
-                        <Link style={{margin: "0 auto"}} to="/">
-                            <img alt="React Material Components" src={logo}/>
-                        </Link>
-                    </div>
-                    <div className="mdc-list-group">
-                        <Navigation>
-                            {
-                                components.map((route, index) =>
-                                    (
-                                        <DrawerNavigationItem key={index}
-                                                              to={route.route}
-                                                              label={route.title}
-                                                              icon={route.icon}/>
-                                    )
-                                )
-                            }
-                        </Navigation>
-                    </div>
-                </Drawer>
-                <div key="content" id="content">
-                    <header className="mdc-toolbar mdc-elevation--z4">
-                        <div className="mdc-toolbar__row">
-                            <section
-                                className="mdc-toolbar__section mdc-toolbar__section--align-start">
-                                <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24"
-                                     xmlns="http://www.w3.org/2000/svg"
-                                     className="demo-menu material-icons mdc-toolbar__menu-icon"
-                                     onClick={this.menuClicks.bind(this)}>
-                                    <path d="M0 0h24v24H0z" fill="none"/>
-                                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-                                </svg>
-                                <span className="mdc-toolbar__title catalog-title">
+  render() {
+    return (
+        <Fragment>
+          <Drawer
+              ref="drawer"
+              key="drawer" opened>
+            <div className="mdc-persistent-drawer__toolbar-spacer">
+              <Link style={{margin: "0 auto"}} to="/">
+                <img alt="React Material Components" src={logo}/>
+              </Link>
+            </div>
+            <div className="mdc-list-group">
+              <Navigation>
+                {
+                  components.map((route, index) =>
+                      (
+                          <DrawerNavigationItem key={index}
+                                                to={route.route}
+                                                label={route.title}
+                                                icon={route.icon}/>
+                      )
+                  )
+                }
+              </Navigation>
+            </div>
+          </Drawer>
+          <div key="content" id="content">
+            <header className="mdc-toolbar mdc-elevation--z4">
+              <div className="mdc-toolbar__row">
+                <section
+                    className="mdc-toolbar__section mdc-toolbar__section--align-start">
+                  <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24"
+                       xmlns="http://www.w3.org/2000/svg"
+                       className="demo-menu material-icons mdc-toolbar__menu-icon"
+                       onClick={this.menuClicks.bind(this)}>
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                  </svg>
+                  <span className="mdc-toolbar__title catalog-title">
                 <Switch>
-                  <Route exact path="/" component={() => "React Material Components"}/>
-                    {
-                        components.map((route, index) =>
-                            (
-                                <Route key={index}
-                                       path={route.route}
-                                       component={() => route.title}/>
-                            )
+                  <Route exact path="/"
+                         component={() => "React Material Components"}/>
+                  {
+                    components.map((route, index) =>
+                        (
+                            <Route key={index}
+                                   path={route.route}
+                                   component={() => route.title}/>
                         )
-                    }
-                    <Route component={() => "Component Not Found"}/>
+                    )
+                  }
+                  <Route component={() => "Component Not Found"}/>
                 </Switch>
               </span>
-                            </section>
-                            <section>
-                                <a href="https://github.com/ofgeo/react.material" style={{marginRight: "8px"}}>
-                                    <svg aria-hidden="true" width="32" height="32" version="1.1" viewBox="0 0 16 16"
-                                         fill="#FFFFFF">
-                                        <GithubSvgPath/>
-                                    </svg>
-                                </a>
-                            </section>
-                        </div>
-                    </header>
+                </section>
+                <section>
+                  <a href="https://github.com/ofgeo/react.material"
+                     style={{marginRight: "8px"}}>
+                    <svg aria-hidden="true" width="32" height="32" version="1.1"
+                         viewBox="0 0 16 16"
+                         fill="#FFFFFF">
+                      <GithubSvgPath/>
+                    </svg>
+                  </a>
+                </section>
+              </div>
+            </header>
 
-                    <Switch>
-                        <Route exact path="/" component={asyncComponent(() => import('./Introduction'))}/>
-                        {
-                            components.map((route, index) => (
-                                <Route key={index}
-                                       path={route.route}
-                                       component={asyncComponent(() => import('./components/' + route.name))}/>
-                            ))
-                        }
+            <Switch>
+              <Route exact path="/"
+                     component={asyncComponent(() => import('./Introduction'))}/>
+              {
+                components.map((route, index) => (
+                    <Route key={index}
+                           path={route.route}
+                           component={asyncComponent(() => import('./components/' + route.name))}/>
+                ))
+              }
 
-                        <Route component={asyncComponent(() => import('./NoMatch'))}/>
-                    </Switch>
-                </div>
-            </Fragment>
-        );
-    }
+              <Route component={asyncComponent(() => import('./NoMatch'))}/>
+            </Switch>
+          </div>
+        </Fragment>
+    );
+  }
 
-    menuClicks(e) {
-        e.preventDefault();
-        this.refs.drawer.open(!this.refs.drawer.isOpen());
-    }
+  menuClicks(e) {
+    e.preventDefault();
+    this.refs.drawer.open(!this.refs.drawer.isOpen());
+  }
 }
 
 const GithubSvgPath = () => (
@@ -103,39 +107,44 @@ const GithubSvgPath = () => (
 const DrawerNavigationItem = ({to, label, icon}) => (
     <Route path={to} children={({match}) => (
         <NavigationItem selected={!!match}>
-            <Link to={to}>
-                <ListItemDetail start>
-                    {/*<img alt={label} src={icon}/>*/}
-                    <i className="material-icons">{icon}</i>
-                </ListItemDetail>
-                {label}
-            </Link>
+          <Link to={to}>
+            <ListItemDetail start>
+              {/*<img alt={label} src={icon}/>*/}
+              <i className="material-icons">{icon}</i>
+            </ListItemDetail>
+            {label}
+          </Link>
         </NavigationItem>
     )}/>
 );
 
 const components = [
-    {
-        name: "Buttons",
-        title: "Button",
-        icon: "add_circle_outline",
-        route: '/button'
-    }, {
-        name: "Cards",
-        title: "Card",
-        icon: "view_agenda",
-        route: '/card'
-    }, {
-        name: "Checkboxes",
-        title: "Checkbox",
-        icon: "check_box",
-        route: '/checkbox'
-    }, {
-        name: "Lists",
-        title: "List",
-        icon: "view_list",
-        route: '/list'
-    }
+  {
+    name: "Buttons",
+    title: "Button",
+    icon: "add_circle_outline",
+    route: '/button'
+  }, {
+    name: "Cards",
+    title: "Card",
+    icon: "view_agenda",
+    route: '/card'
+  }, {
+    name: "Checkboxes",
+    title: "Checkbox",
+    icon: "check_box",
+    route: '/checkbox'
+  }, {
+    name: "Lists",
+    title: "List",
+    icon: "view_list",
+    route: '/list'
+  }, {
+    name: "Ripples",
+    title: "Ripple",
+    icon: "adjust",
+    route: '/ripple'
+  }
 ];
 
 export default App;
