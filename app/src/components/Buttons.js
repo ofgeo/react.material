@@ -34,7 +34,7 @@ export default class extends Component {
       theme: "mbo",
       readOnly: true,
       value: "npm install --save @material/animation",
-      mode: "shell"
+      // mode: "shell"
     });
   }
 }
