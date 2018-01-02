@@ -11,8 +11,16 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
-const INCLUDE_PACKAGES = new RegExp('(packages)' + `${path.sep}`
-    + '(?!.+(node_modules|dist)' + path.sep + ').*');
+const PATH_SEPARATOR = '\\' + path.sep;
+
+const INCLUDED_PACKAGES = new RegExp('(packages)' + PATH_SEPARATOR
+    + '(?!.+(node_modules|dist)' + PATH_SEPARATOR + ').*');
+const INCLUDED_MATERIAL_COMPONENTS = new RegExp('(packages' + PATH_SEPARATOR + ').*'
+    + PATH_SEPARATOR
+    + '(node_modules' + PATH_SEPARATOR + ')'
+    + '(@material' + PATH_SEPARATOR + ').*');
+
+const INCLUDED_JS = [INCLUDED_MATERIAL_COMPONENTS, INCLUDED_PACKAGES, paths.appSrc];
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -117,12 +125,11 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-
             },
             loader: require.resolve('eslint-loader'),
           },
         ],
-        include: [INCLUDE_PACKAGES, paths.appSrc],
+        include: [INCLUDED_PACKAGES, paths.appSrc],
       },
       {
         // "oneOf" will traverse all following loaders until one will
@@ -143,7 +150,7 @@ module.exports = {
           // Process JS with Babel.
           {
             test: /\.(js|jsx|mjs)$/,
-            include: [INCLUDE_PACKAGES, paths.appSrc],
+            include: [INCLUDED_MATERIAL_COMPONENTS, INCLUDED_PACKAGES, paths.appSrc],
             loader: require.resolve('babel-loader'),
             options: {
 
