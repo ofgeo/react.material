@@ -1,16 +1,12 @@
 'use strict';
 
 const path = require('path');
-const webpack = require('webpack');
+const paths = require('./paths');
 
 const OUT_PATH = path.resolve(__dirname, 'packages');
 const IS_DEV = process.env.BABEL_ENV === 'development';
 const PUBLIC_PATH = '/assets/';
 const SOURCE_MAPS = IS_DEV ? 'source-map' : false;
-
-const EXCLUDE_PATTERN = new RegExp('(node_modules)' + `${path.sep}`
-    + '(?!(@material)' + path.sep
-    + ').*');
 
 module.exports = {
   name: IS_DEV ? 'packages.js' : 'packages.min.js',
@@ -23,7 +19,7 @@ module.exports = {
     Ripple: [path.resolve('./packages/ripple/es6/index.js')]
   },
   output: {
-    path: OUT_PATH,
+    path: paths.packages,
     publicPath: PUBLIC_PATH,
     filename: '[name]/dist/index.' + (IS_DEV ? '' : 'min.') + 'js',
     library: ['r', 'm', '[name]'],
@@ -34,7 +30,6 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        // exclude: [EXCLUDE_PATTERN],
         use: [{
           loader: 'babel-loader',
           options: {
@@ -61,15 +56,7 @@ module.exports = {
       }
     ]
   },
-  // resolve: {
-  //   modules: ["node_modules"],
-  //   alias: {
-  //     react: path.resolve('node_modules/react'),
-  //   },
-  // },
   externals: [
-    // EXTERNAL_PATTERN,
-    // EXTERNAL_PATTERN,
     {
       classnames: {
         commonjs2: 'classnames',
