@@ -9,6 +9,7 @@ node_modules
 # production
 build
 packages/*/dist
+packages/*/yarn.lock
 
 
 # misc
