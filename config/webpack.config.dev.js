@@ -20,8 +20,6 @@ const INCLUDED_MATERIAL_COMPONENTS = new RegExp('(packages' + PATH_SEPARATOR + '
     + '(node_modules' + PATH_SEPARATOR + ')'
     + '(@material' + PATH_SEPARATOR + ').*');
 
-const INCLUDED_JS = [INCLUDED_MATERIAL_COMPONENTS, INCLUDED_PACKAGES, paths.appSrc];
-
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 const publicPath = '/';
