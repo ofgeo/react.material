@@ -4,7 +4,7 @@ import Layout from './components/shared/Layout'
 export default class extends Component {
   render() {
     return (
-        <Layout title="Components">
+        <Layout title="React">
           Coming soon
         </Layout>
     )

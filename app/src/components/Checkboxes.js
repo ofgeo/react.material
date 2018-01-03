@@ -1,16 +1,23 @@
-import React, {Component} from 'react';
-import Layout from './shared/Layout'
+import React, {Fragment} from 'react';
 import {Checkbox} from '@react.material/checkbox/es6'
+import ComponentDoc from './shared/ComponentDoc';
 
-export default class extends Component {
-  render() {
+export default class extends ComponentDoc {
+  demo() {
     return (
-        <Layout title="Checkbox">
-          Checkboxes Demo
+        <Fragment>
           <div>
             <Checkbox/>
           </div>
-        </Layout>
+        </Fragment>
     )
+  }
+
+  title() {
+    return "Button";
+  }
+
+  packageName() {
+    return "@react.material/checkbox";
   }
 }
