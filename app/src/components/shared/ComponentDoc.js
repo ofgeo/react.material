@@ -13,11 +13,10 @@ export default class extends PureComponent {
     title: PropTypes.string,
   };
 
-
   render() {
     const title = this.title();
     return (
-        <div style={{padding: "14px"}}>
+        <div style={{padding: "24px"}}>
           <Helmet>
             <title>React Material - {title}</title>
             <meta name="description"
@@ -34,11 +33,12 @@ export default class extends PureComponent {
               }
             </script>
           </Helmet>
-          <div className="demo-block">
+          <ul className="demo-block">
             {this.demo() ? this.demo() : null}
-          </div>
+          </ul>
           <h2>Installation</h2>
-          <div ref={(code) => this.code = code} style={{height: "auto"}}/>
+          <div ref={(npm) => this.npm = npm} style={{height: "auto"}}/>
+          <div ref={(yarn) => this.yarn = yarn} style={{height: "auto", marginTop: "8px"}}/>
         </div>
     )
   }
@@ -53,10 +53,16 @@ export default class extends PureComponent {
   }
 
   componentDidMount() {
-    CodeMirror(this.code, {
+    CodeMirror(this.npm, {
       theme: "mbo",
       readOnly: true,
       value: "npm install --save " + this.packageName(),
+    });
+
+    CodeMirror(this.yarn, {
+      theme: "mbo",
+      readOnly: true,
+      value: "yarn add " + this.packageName(),
     });
   }
 }

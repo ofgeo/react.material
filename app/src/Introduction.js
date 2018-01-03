@@ -5,7 +5,7 @@ export default class extends Component {
   render() {
     return (
         <Layout title="React">
-          Coming soon
+          <h1>Introduction</h1>
         </Layout>
     )
   }
