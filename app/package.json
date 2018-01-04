@@ -1,12 +1,12 @@
 {
   "name": "app",
-  "version": "0.1.28",
+  "version": "0.1.30",
   "private": true,
   "dependencies": {
     "@material/toolbar": "^0.27.0",
     "@react.material/button": "^0.0.38",
     "@react.material/checkbox": "^0.1.18",
-    "@react.material/components": "^0.0.3",
+    "@react.material/components": "^0.0.4",
     "@react.material/drawer": "^0.0.12",
     "@react.material/list": "^0.0.16",
     "@react.material/ripple": "^0.0.17",
