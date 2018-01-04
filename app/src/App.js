@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {Link, Route, Switch} from 'react-router-dom'
+import '@react.material/theme/es6'
 import './App.css';
 import {Drawer, Navigation, NavigationItem} from '@react.material/drawer/es6'
 import {ListItemDetail} from '@react.material/list/es6'
@@ -33,7 +34,7 @@ class App extends Component {
               </Navigation>
             </div>
           </Drawer>
-          <div key="content" id="content">
+          <div key="content" id="content" className={"mdc-theme--dark"}>
             <header className="mdc-toolbar mdc-elevation--z4">
               <div className="mdc-toolbar__row">
                 <section

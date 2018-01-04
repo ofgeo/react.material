@@ -8,12 +8,13 @@
 
 
 
-### set your theme color (node sass is not supported for now)
+### set your theme color (note: sass is not supported for now)
 
 ```
 //index.js
 import '@react.material/theme';
 ```
+
 ```
 /*index.css*/
 

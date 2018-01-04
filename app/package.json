@@ -10,6 +10,7 @@
     "@react.material/drawer": "^0.0.12",
     "@react.material/list": "^0.0.16",
     "@react.material/ripple": "^0.0.17",
+    "@react.material/theme": "^0.0.26",
     "codemirror-minified": "^5.28.0",
     "prop-types": "^15.6.0",
     "react": "16.2.0",
