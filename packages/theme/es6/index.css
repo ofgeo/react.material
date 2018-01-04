@@ -1,20 +1,30 @@
-@import "../node_modules/@material/theme/dist/mdc.theme.css";
+@import "~@material/theme/dist/mdc.theme.css";
 
 :root {
 @include:: root;
-    --mdc-theme-primary: #212121;
-    --mdc-theme-primary-light: #212121;
-    /*--mdc-theme-primary-dark: #000;*/
-    --mdc-theme-secondary: #9E9E9E;
-    --mdc-theme-secondary-light: #9E9E9E;
-    /*--mdc-theme-secondary-dark: #000;*/
-    /*--mdc-theme-background: #000;*/
+  /*--mdc-theme-primary: #FFFFFF;*/
+  /*--mdc-theme-primary-light: var(--mdc-theme-primary);*/
+  --mdc-theme-primary-dark: #212121;
+  /*--mdc-theme-secondary: #9E9E9E;*/
+  /*--mdc-theme-secondary-light: #9E9E9E;*/
+  /*--mdc-theme-secondary-dark: #000;*/
+  /*--mdc-theme-background: #000;*/
 }
 
-.mdc-checkbox.theme::before, .mdc-checkbox.theme::after {
-    background-color: rgba(158, 158, 158, 0.14);
+/*.mdc-checkbox.theme::before, .mdc-checkbox.theme::after {*/
+/*background-color: rgba(158, 158, 158, 0.14);*/
+/*}*/
+/*.mdc-button.theme::before, .mdc-button.theme::after {*/
+/*!*background-color: rgba(63, 81, 181, 0.16);*!*/
+/*background-color: rgba(158, 158, 158, 0.16);*/
+/*}*/
+
+.mdc-theme--dark .mdc-button--raised:not(:disabled) {
+  background-color: var(--mdc-theme-primary-dark, #212121);
+  /*background-color: #3f51b5;*/
 }
-.mdc-button.theme::before, .mdc-button.theme::after {
-    /*background-color: rgba(63, 81, 181, 0.16);*/
-    background-color: rgba(158, 158, 158, 0.16);
-}
+
+/*.mdc-theme--dark .mdc-toolbar {*/
+  /*background-color: var(--mdc-theme-primary-dark, #212121);*/
+  /*!*background-color: #3f51b5;*!*/
+/*}*/

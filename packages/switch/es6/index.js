@@ -2,9 +2,8 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {Map as ImmutableMap, Set as ImmutableSet} from 'immutable';
 import classNames from 'classnames';
-import {getCorrectEventName} from '@material/animation';
-import {MDCRipple, MDCRippleFoundation, util} from '@material/ripple';
-import {MDCCheckboxFoundation} from '@material/checkbox';
+// import {getCorrectEventName} from '@material/animation';
+// import {MDCRipple, MDCRippleFoundation, util} from '@material/ripple';
 import './index.css';
 
 function getMatchesProperty(HTMLElementPrototype) {
@@ -15,7 +14,7 @@ function getMatchesProperty(HTMLElementPrototype) {
 
 const MATCHES = getMatchesProperty(HTMLElement.prototype);
 
-export class Checkbox extends PureComponent {
+export class Switch extends PureComponent {
   static propTypes = {
     id: PropTypes.string,
     labelId: PropTypes.string,
@@ -46,92 +45,61 @@ export class Checkbox extends PureComponent {
   // Here we initialize a foundation class, passing it an adapter which tells it how to
   // For browser compatibility we extend the default adapter which checks for css variable support.
   // noinspection JSCheckFunctionSignatures
-  rippleFoundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
-    isUnbounded: () => true,
-    isSurfaceActive: () => this.root[MATCHES](':active'),
-    addClass: className => {
-      this.setState(prevState => ({
-        classes: prevState.classes.add(className)
-      }));
-    },
-    removeClass: className => {
-      this.setState(prevState => ({
-        classes: prevState.classes.remove(className)
-      }));
-    },
-    registerInteractionHandler: (evtType, handler) => {
-      const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.nativeCb;
-      target.addEventListener(evtType, handler, util.applyPassive());
-    },
-    deregisterInteractionHandler: (evtType, handler) => {
-      const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.nativeCb;
-      target.removeEventListener(evtType, handler, util.applyPassive());
-    },
-    updateCssVariable: (varName, value) => {
-      this.setState(prevState => ({
-        rippleCss: prevState.rippleCss.set(varName, value)
-      }));
-    },
-    computeBoundingRect: () => {
-      const {left, top} = this.root.getBoundingClientRect();
-      const DIM = 40;
-      return {
-        top,
-        left,
-        right: left + DIM,
-        bottom: top + DIM,
-        width: DIM,
-        height: DIM,
-      };
-    },
-  }));
-  // work with the React component in an idiomatic way.
-  foundation = new MDCCheckboxFoundation({
-    addClass: className => this.setState(prevState => ({
-      classes: prevState.classes.add(className)
-    })),
-    removeClass: className => this.setState(prevState => ({
-      classes: prevState.classes.remove(className)
-    })),
-    registerAnimationEndHandler: handler => {
-      if (this.root) {
-        this.root.addEventListener(getCorrectEventName(window, 'animationend'), handler);
-      }
-    },
-    deregisterAnimationEndHandler: handler => {
-      if (this.root) {
-        this.root.removeEventListener(getCorrectEventName(window, 'animationend'), handler)
-      }
-    },
-    registerChangeHandler: handler => {
-      // Note that this could also be handled outside of using the native DOM API.
-      // For example, onChange within render could delegate to a function which calls
-      // the handler passed here, as well as performs the other business logic. The point
-      // being our foundations are designed to be adaptable enough to fit the needs of the host
-      // platform.
-      if (this.nativeCb) {
-        this.nativeCb.addEventListener('change', handler);
-      }
-    },
-    deregisterChangeHandler: handler => {
-      if (this.nativeCb) {
-        this.nativeCb.removeEventListener('change', handler);
-      }
-    },
-    getNativeControl: () => {
-      if (!this.nativeCb) {
-        throw new Error('Invalid state for operation');
-      }
-      return this.nativeCb;
-    },
-    isAttachedToDOM: () => Boolean(this.nativeCb),
-  });
+  // rippleFoundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
+  //   isUnbounded: () => true,
+  //   isSurfaceActive: () => this.root[MATCHES](':active'),
+  //   addClass: className => {
+  //     this.setState(prevState => ({
+  //       classes: prevState.classes.add(className)
+  //     }));
+  //   },
+  //   removeClass: className => {
+  //     this.setState(prevState => ({
+  //       classes: prevState.classes.remove(className)
+  //     }));
+  //   },
+  //   registerInteractionHandler: (evtType, handler) => {
+  //     const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.nativeCb;
+  //     target.addEventListener(evtType, handler, util.applyPassive());
+  //   },
+  //   deregisterInteractionHandler: (evtType, handler) => {
+  //     const target = evtType === 'mouseup' || evtType === 'pointerup' ? window : this.nativeCb;
+  //     target.removeEventListener(evtType, handler, util.applyPassive());
+  //   },
+  //   updateCssVariable: (varName, value) => {
+  //     this.setState(prevState => ({
+  //       rippleCss: prevState.rippleCss.set(varName, value)
+  //     }));
+  //   },
+  //   computeBoundingRect: () => {
+  //     const {left, top} = this.root.getBoundingClientRect();
+  //     const DIM = 40;
+  //     return {
+  //       top,
+  //       left,
+  //       right: left + DIM,
+  //       bottom: top + DIM,
+  //       width: DIM,
+  //       height: DIM,
+  //     };
+  //   },
+  // }));
 
   changeHandler(evt) {
     this.props.onChange(evt);
   }
 
   render() {
+    return (
+        <div className="mdc-switch"
+             onChange={this.changeHandler.bind(this)}>
+          <input type="checkbox" id="basic-switch" className="mdc-switch__native-control"/>
+          <div className="mdc-switch__background">
+            <div className="mdc-switch__knob"/>
+          </div>
+        </div>
+    );
+
     // Within render, we generate the html needed to render a proper MDC-Web checkbox.
     return (
         <div ref={(root) => this.root = root}
@@ -161,12 +129,10 @@ export class Checkbox extends PureComponent {
   // Within the two component lifecycle methods below, we invoke the foundation's lifecycle hooks
   // so that proper work can be performed.
   componentDidMount() {
-    this.foundation.init();
-    this.rippleFoundation.init();
+    // this.rippleFoundation.init();
   }
 
   componentWillUnmount() {
-    this.rippleFoundation.destroy();
     this.foundation.destroy();
   }
 

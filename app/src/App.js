@@ -4,10 +4,24 @@ import '@react.material/theme/es6'
 import './App.css';
 import {Drawer, Navigation, NavigationItem} from '@react.material/drawer/es6'
 import {ListItemDetail} from '@react.material/list/es6'
+import {Checkbox} from '@react.material/checkbox/es6'
+import {Switch as MaterialSwitch} from '@react.material/switch/es6'
 import asyncComponent from "./AsyncComponent";
 import logo from './logo.svg'
 
 class App extends Component {
+  state = {
+    darkThemeEnabled: true
+  };
+
+  onDarkThemeChanged(enabled) {
+    if (enabled) {
+      document.getElementsByTagName("html")[0].classList.add("mdc-theme--dark")
+    } else {
+      document.getElementsByTagName("html")[0].classList.remove("mdc-theme--dark")
+    }
+  }
+
   render() {
     return (
         <Fragment>
@@ -34,7 +48,7 @@ class App extends Component {
               </Navigation>
             </div>
           </Drawer>
-          <div key="content" id="content" className={"mdc-theme--dark"}>
+          <div key="content" id="content" className={"mdc-theme--background"}>
             <header className="mdc-toolbar mdc-elevation--z4">
               <div className="mdc-toolbar__row">
                 <section
@@ -47,24 +61,32 @@ class App extends Component {
                     <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
                   </svg>
                   <span className="mdc-toolbar__title catalog-title">
-                <Switch>
-                  <Route exact path="/"
-                         component={() => "React Material Components"}/>
-                  {
-                    components.map((route, index) =>
-                        (
-                            <Route key={index}
-                                   path={route.route}
-                                   component={() => route.title}/>
+                    <Switch>
+                      <Route exact path="/"
+                             component={() => "React Material Components"}/>
+                      {
+                        components.map((route, index) =>
+                            (
+                                <Route key={index}
+                                       path={route.route}
+                                       component={() => route.title}/>
+                            )
                         )
-                    )
-                  }
-                  <Route component={() => "Component Not Found"}/>
-                </Switch>
-              </span>
+                      }
+                      <Route component={() => "Component Not Found"}/>
+                    </Switch>
+                  </span>
                 </section>
-                <section>
-                  <a href="https://github.com/ofgeo/react.material"
+                <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
+                  <label className="mdc-toolbar__icon">Dark Theme&nbsp;<MaterialSwitch id="dark-theme-toggle"
+                                    defaultChecked={true}
+                                    onChange={(event) => {
+                                      this.setState({
+                                        darkThemeEnabled: event.target.checked
+                                      });
+                                    }}/>
+                  </label>
+                  <a className="mdc-toolbar__icon" href="https://github.com/ofgeo/react.material"
                      style={{marginRight: "8px"}}>
                     <svg aria-hidden="true" width="32" height="32" version="1.1"
                          viewBox="0 0 16 16"
@@ -92,6 +114,14 @@ class App extends Component {
           </div>
         </Fragment>
     );
+  }
+
+  componentDidUpdate() {
+    this.onDarkThemeChanged(this.state.darkThemeEnabled)
+  }
+
+  componentDidMount() {
+    this.onDarkThemeChanged(this.state.darkThemeEnabled)
   }
 
   menuClicks(e) {
