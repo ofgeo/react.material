@@ -1,6 +1,6 @@
 {
   "name": "@react.material/button",
-  "version": "0.0.40",
+  "version": "0.1.2",
   "description": "The React Material Components for the web button component",
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
   "main": "dist/index.js",
   "dependencies": {
     "@material/button": "^0.27.0",
-    "@react.material/ripple": "^0.0.17",
+    "@react.material/ripple": "^0.1.2",
     "classnames": "^2.2.5",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.0",
