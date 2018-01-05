@@ -5,5 +5,5 @@
     "packages/*",
     "app"
   ],
-  "version": null
+  "version": "0.0.40"
 }
