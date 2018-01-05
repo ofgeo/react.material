@@ -1,11 +1,12 @@
 {
   "name": "@react.material/button",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "The React Material Components for the web button component",
   "repository": {
     "type": "git",
     "url": "https://github.com/ofgeo/react.material.git"
   },
+  "homepage": "https://rm.ofgeo.io/",
   "license": "Apache-2.0",
   "keywords": [
     "material components",
@@ -17,7 +18,7 @@
   "main": "dist/index.js",
   "dependencies": {
     "@material/button": "^0.27.0",
-    "@react.material/ripple": "^0.2.1",
+    "@react.material/ripple": "^0.2.2",
     "classnames": "^2.2.5",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.0",

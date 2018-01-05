@@ -1,6 +1,6 @@
 {
   "name": "@react.material/switch",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "The React Material Components for the web checkbox component",
   "repository": {
     "type": "git",
