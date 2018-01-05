@@ -1,1 +1,12 @@
-/*@import "~@material/button/dist/mdc.button.css";*/
+@import "~@material/button/dist/mdc.button.css";
+
+.mdc-theme--dark .mdc-button:not(:disabled) {
+    color: #FFFFFF;
+    color: var(--mdc-theme-text-primary-on-dark, #FFFFFF);
+}
+
+.mdc-theme--dark .mdc-button--raised:not(:disabled) {
+    background-color: var(--mdc-theme-primary-dark, #FFFFFF);
+    color: #212121;
+    color: var(--mdc-theme-text-primary-on-light, #212121);
+}

@@ -11,7 +11,7 @@ import './introduction.css'
 export default class extends Component {
   render() {
     return (
-        <Layout title="React">
+        <Layout title="Components">
           <h1>Getting start</h1>
 
           <h2>Installation</h2>

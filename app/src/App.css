@@ -17,7 +17,6 @@
 /*background-color: rgba(158, 158, 158, 0.14);*/
 /*}*/
 
-
 .App {
   text-align: center;
   width: 100%;
@@ -61,4 +60,8 @@
   height: auto !important;
   padding: 8px;
   font-size: 120%;
+}
+
+.mdc-theme--dark #content {
+  background-color: #212121;
 }

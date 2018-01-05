@@ -1,13 +1,13 @@
 import React, {Component, Fragment} from 'react';
-import {Link, Route, Switch} from 'react-router-dom'
+import {Link, Route, Switch as RouterSwitch} from 'react-router-dom'
 import '@react.material/theme/es6'
 import './App.css';
 import {Drawer, Navigation, NavigationItem} from '@react.material/drawer/es6'
 import {ListItemDetail} from '@react.material/list/es6'
-import {Checkbox} from '@react.material/checkbox/es6'
-import {Switch as MaterialSwitch} from '@react.material/switch/es6'
+import {Switch} from '@react.material/switch/es6'
 import asyncComponent from "./AsyncComponent";
 import logo from './logo.svg'
+import '@material/elevation/dist/mdc.elevation.css'
 
 class App extends Component {
   state = {
@@ -16,9 +16,9 @@ class App extends Component {
 
   onDarkThemeChanged(enabled) {
     if (enabled) {
-      document.getElementsByTagName("html")[0].classList.add("mdc-theme--dark")
+      document.getElementById("root").classList.add("mdc-theme--dark")
     } else {
-      document.getElementsByTagName("html")[0].classList.remove("mdc-theme--dark")
+      document.getElementById("root").classList.remove("mdc-theme--dark")
     }
   }
 
@@ -61,7 +61,7 @@ class App extends Component {
                     <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
                   </svg>
                   <span className="mdc-toolbar__title catalog-title">
-                    <Switch>
+                    <RouterSwitch>
                       <Route exact path="/"
                              component={() => "React Material Components"}/>
                       {
@@ -74,20 +74,23 @@ class App extends Component {
                         )
                       }
                       <Route component={() => "Component Not Found"}/>
-                    </Switch>
+                    </RouterSwitch>
                   </span>
                 </section>
-                <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
-                  <label className="mdc-toolbar__icon">Dark Theme&nbsp;<MaterialSwitch id="dark-theme-toggle"
-                                    defaultChecked={true}
-                                    onChange={(event) => {
-                                      this.setState({
-                                        darkThemeEnabled: event.target.checked
-                                      });
-                                    }}/>
+                <section
+                    className="mdc-toolbar__section mdc-toolbar__section--align-end">
+                  <label style={{height: "32px"}} className="mdc-toolbar__icon mdc-theme mdc-switch-label">Dark
+                    Theme&nbsp;
+                    <Switch id="dark-theme-toggle"
+                            defaultChecked={true}
+                            onChange={(event) => {
+                              this.setState({
+                                darkThemeEnabled: event.target.checked
+                              });
+                            }}/>
                   </label>
-                  <a className="mdc-toolbar__icon" href="https://github.com/ofgeo/react.material"
-                     style={{marginRight: "8px"}}>
+                  <a className="mdc-toolbar__icon"
+                     href="https://github.com/ofgeo/react.material">
                     <svg aria-hidden="true" width="32" height="32" version="1.1"
                          viewBox="0 0 16 16"
                          fill="#FFFFFF">
@@ -98,7 +101,7 @@ class App extends Component {
               </div>
             </header>
 
-            <Switch>
+            <RouterSwitch>
               <Route exact path="/"
                      component={asyncComponent(() => import('./Introduction'))}/>
               {
@@ -110,7 +113,7 @@ class App extends Component {
               }
 
               <Route component={asyncComponent(() => import('./NoMatch'))}/>
-            </Switch>
+            </RouterSwitch>
           </div>
         </Fragment>
     );

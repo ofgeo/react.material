@@ -1,4 +1,4 @@
-[![dependencies Status](https://david-dm.org/boennemann/badges/status.svg)](https://github.com/ofgeo/react.material)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![dependencies Status](https://david-dm.org/boennemann/badges/status.svg)](https://github.com/ofgeo/react.material)
 
 # React Material
 
