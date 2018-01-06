@@ -12,8 +12,13 @@ import '@material/typography/dist/mdc.typography.css'
 
 class App extends Component {
   state = {
-    darkThemeEnabled: true
+    darkThemeEnabled: false
   };
+
+  constructor(props) {
+    super(props);
+    document.getElementById("root").classList.add("mdc-typography")
+  }
 
   onDarkThemeChanged(enabled) {
     if (enabled) {
@@ -49,7 +54,7 @@ class App extends Component {
               </Navigation>
             </div>
           </Drawer>
-          <div key="content" id="content" className={"mdc-theme--background mdc-typography"}>
+          <div key="content" id="content" className={"mdc-theme--background"}>
             <header className="mdc-toolbar mdc-elevation--z4">
               <div className="mdc-toolbar__row">
                 <section
@@ -84,7 +89,7 @@ class App extends Component {
                          className="mdc-toolbar__icon mdc-theme mdc-switch-label mdc-theme--dark">Dark
                     Theme&nbsp;
                     <Switch id="dark-theme-toggle"
-                            defaultChecked={true}
+                            defaultChecked={this.state.darkThemeEnabled}
                             onChange={(event) => {
                               this.setState({
                                 darkThemeEnabled: event.target.checked

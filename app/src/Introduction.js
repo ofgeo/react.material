@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import Layout from './components/shared/Layout'
+import React, {Component, Fragment} from 'react';
+import {Helmet} from 'react-helmet';
 import * as CodeMirror from 'codemirror-minified'
 import 'codemirror-minified/lib/codemirror.css'
 import 'codemirror-minified/theme/mbo.css'
@@ -13,7 +13,20 @@ import './introduction.css'
 export default class extends Component {
   render() {
     return (
-        <Layout title="Components">
+        <Fragment>
+          <Helmet>
+            <title>React Material</title>
+            <meta name="description"
+                  content="Components for react web apps with Material Design."/>
+
+            <script async src='https://www.googletagmanager.com/gtag/js?id=UA-74678921-2'/>
+            <script>{
+              "window.dataLayer = window.dataLayer || [];"
+              + "function gtag(){dataLayer.push(arguments);}"
+              + "gtag('js', new Date());"
+              + "gtag('config', 'UA-74678921-2');"
+            }</script>
+          </Helmet>
           <h1 className="mdc-typography--display1">Getting start</h1>
 
           <h2 className="mdc-typography--headline">Installation</h2>
@@ -36,7 +49,7 @@ export default class extends Component {
           <h5 className="mdc-typography--caption" style={{marginTop: "50px"}}>
             Note: this is still under development.
           </h5>
-        </Layout>
+        </Fragment>
     )
   }
 
