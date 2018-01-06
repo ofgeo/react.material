@@ -2,15 +2,15 @@
 
 :root {
 @include:: root;
-  --mdc-theme-primary: #FFFFF;
-  --mdc-theme-primary-light: var(--mdc-theme-primary);
-  --mdc-theme-primary-dark: #FFFFFF;
-  --mdc-theme-secondary: #212121;
+  /*--mdc-theme-primary: #212121;*/
+  /*--mdc-theme-primary-light: var(--mdc-theme-primary);*/
+  /*--mdc-theme-primary-dark: #FFFFFF;*/
+  /*--mdc-theme-secondary: red;*/
   /*--mdc-theme-secondary-light: #9E9E9E;*/
   /*--mdc-theme-secondary-dark: #000;*/
   /*--mdc-theme-background: #000;*/
 
-  /*--mdc-theme-text-primary-on-primary: #212121;*/
+  /*--mdc-theme-text-primary-on-primary: #FFFFFF;*/
   /*--mdc-theme-text-primary-on-light: #212121;*/
   /*--mdc-theme-text-primary-on-dark: #FFFFFF;*/
 }

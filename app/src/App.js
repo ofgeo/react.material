@@ -8,6 +8,7 @@ import {Switch} from '@react.material/switch/es6'
 import asyncComponent from "./AsyncComponent";
 import logo from './logo.svg'
 import '@material/elevation/dist/mdc.elevation.css'
+import '@material/typography/dist/mdc.typography.css'
 
 class App extends Component {
   state = {
@@ -48,7 +49,7 @@ class App extends Component {
               </Navigation>
             </div>
           </Drawer>
-          <div key="content" id="content" className={"mdc-theme--background"}>
+          <div key="content" id="content" className={"mdc-theme--background mdc-typography"}>
             <header className="mdc-toolbar mdc-elevation--z4">
               <div className="mdc-toolbar__row">
                 <section
@@ -79,7 +80,8 @@ class App extends Component {
                 </section>
                 <section
                     className="mdc-toolbar__section mdc-toolbar__section--align-end">
-                  <label style={{height: "32px"}} className="mdc-toolbar__icon mdc-theme mdc-switch-label">Dark
+                  <label style={{height: "32px"}}
+                         className="mdc-toolbar__icon mdc-theme mdc-switch-label mdc-theme--dark">Dark
                     Theme&nbsp;
                     <Switch id="dark-theme-toggle"
                             defaultChecked={true}
@@ -100,20 +102,22 @@ class App extends Component {
                 </section>
               </div>
             </header>
+            <main style={{padding: "14px"}}>
+              <RouterSwitch>
+                <Route exact path="/"
+                       component={asyncComponent(() => import('./Introduction'))}/>
+                {
+                  components.map((route, index) => (
+                      <Route key={index}
+                             path={route.route}
+                             component={asyncComponent(
+                                 () => import('./components/' + route.name))}/>
+                  ))
+                }
 
-            <RouterSwitch>
-              <Route exact path="/"
-                     component={asyncComponent(() => import('./Introduction'))}/>
-              {
-                components.map((route, index) => (
-                    <Route key={index}
-                           path={route.route}
-                           component={asyncComponent(() => import('./components/' + route.name))}/>
-                ))
-              }
-
-              <Route component={asyncComponent(() => import('./NoMatch'))}/>
-            </RouterSwitch>
+                <Route component={asyncComponent(() => import('./NoMatch'))}/>
+              </RouterSwitch>
+            </main>
           </div>
         </Fragment>
     );

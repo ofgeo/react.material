@@ -1,12 +1,20 @@
 @import "~@material/button/dist/mdc.button.css";
 
-.mdc-theme--dark .mdc-button:not(:disabled) {
-    color: #FFFFFF;
-    color: var(--mdc-theme-text-primary-on-dark, #FFFFFF);
-}
+/*.mdc-theme--dark .mdc-button:not(:disabled) {*/
+  /*color: #FFFFFF;*/
+  /*color: var(--mdc-theme-primary-dark, #FFFFFF);*/
+/*}*/
 
-.mdc-theme--dark .mdc-button--raised:not(:disabled) {
-    background-color: var(--mdc-theme-primary-dark, #FFFFFF);
-    color: #212121;
-    color: var(--mdc-theme-text-primary-on-light, #212121);
-}
+/*.mdc-theme--dark .mdc-button::before, .mdc-theme--dark .mdc-button::after {*/
+  /*background-color: var(--mdc-theme-primary-dark, #FFFFFF);*/
+/*}*/
+
+/*.mdc-theme--dark .mdc-button--raised:not(:disabled) {*/
+  /*background-color: var(--mdc-theme-primary-dark, #FFFFFF);*/
+  /*color: #212121;*/
+  /*color: var(--mdc-theme-text-primary-on-dark, #212121);*/
+/*}*/
+
+/*.mdc-theme--dark .mdc-button--raised::before, .mdc-theme--dark .mdc-button--raised::after {*/
+  /*background-color: var(--mdc-theme-primary, #212121);*/
+/*}*/
