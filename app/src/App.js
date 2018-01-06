@@ -12,7 +12,7 @@ import '@material/typography/dist/mdc.typography.css'
 
 class App extends Component {
   state = {
-    darkThemeEnabled: false
+    darkThemeEnabled: true
   };
 
   constructor(props) {
@@ -20,7 +20,7 @@ class App extends Component {
     document.getElementById("root").classList.add("mdc-typography")
   }
 
-  onDarkThemeChanged(enabled) {
+  static onDarkThemeChanged(enabled) {
     if (enabled) {
       document.getElementById("root").classList.add("mdc-theme--dark")
     } else {
@@ -36,7 +36,7 @@ class App extends Component {
               key="drawer" opened>
             <div className="mdc-persistent-drawer__toolbar-spacer">
               <Link style={{margin: "0 auto"}} to="/">
-                <img alt="React Material Components" src={logo}/>
+                <img alt="React Material" src={logo}/>
               </Link>
             </div>
             <div className="mdc-list-group">
@@ -57,19 +57,19 @@ class App extends Component {
           <div key="content" id="content" className={"mdc-theme--background"}>
             <header className="mdc-toolbar mdc-elevation--z4">
               <div className="mdc-toolbar__row">
-                <section
-                    className="mdc-toolbar__section mdc-toolbar__section--align-start">
-                  <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24"
-                       xmlns="http://www.w3.org/2000/svg"
-                       className="demo-menu material-icons mdc-toolbar__menu-icon"
+                <section className="mdc-toolbar__section mdc-toolbar__section--align-start">
+                  <div className="material-icons mdc-toolbar__menu-icon"
                        onClick={this.menuClicks.bind(this)}>
-                    <path d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-                  </svg>
+                    <svg id="menu" fill="#FFFFFF" height="24" width="24" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                  </div>
                   <span className="mdc-toolbar__title catalog-title">
                     <RouterSwitch>
                       <Route exact path="/"
-                             component={() => "React Material Components"}/>
+                             component={() => "React Material"}/>
                       {
                         components.map((route, index) =>
                             (
@@ -129,11 +129,11 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    this.onDarkThemeChanged(this.state.darkThemeEnabled)
+    App.onDarkThemeChanged(this.state.darkThemeEnabled)
   }
 
   componentDidMount() {
-    this.onDarkThemeChanged(this.state.darkThemeEnabled)
+    App.onDarkThemeChanged(this.state.darkThemeEnabled)
   }
 
   menuClicks(e) {

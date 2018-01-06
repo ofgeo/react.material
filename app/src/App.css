@@ -22,8 +22,11 @@
   flex-direction: column;
   flex-grow: 1;
   min-height: 100%;
-  max-width: 100%;
   box-sizing: border-box;
+}
+
+#menu {
+  fill: #FFFFFF;
 }
 
 .CodeMirror {
@@ -35,4 +38,5 @@
 
 .mdc-theme--dark #content {
   background-color: #212121;
+  color: var(--mdc-theme-text-primary-on-dark, #FFFFFF);
 }
