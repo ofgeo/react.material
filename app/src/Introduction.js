@@ -1,11 +1,9 @@
 import React, {Component, Fragment} from 'react';
 import {Helmet} from 'react-helmet';
-import * as CodeMirror from 'codemirror-minified';
-// import 'codemirror-minified/lib/codemirror.css';
-import 'codemirror-minified/mode/javascript/javascript';
-import 'codemirror-minified/addon/mode/loadmode';
-import 'codemirror-minified/mode/shell/shell';
-import './codemirror.css'
+import * as CodeMirror from 'codemirror';
+import 'codemirror/mode/powershell/powershell'
+import 'codemirror/mode/javascript/javascript'
+
 import './introduction.css'
 
 export default class extends Component {
@@ -15,7 +13,7 @@ export default class extends Component {
           <Helmet>
             <title>React Material</title>
             <meta name="description"
-                  content="Components for react web apps with Material Design."/>
+                  content="Components for build react web apps with Material Design."/>
 
             <script async
                     src='https://www.googletagmanager.com/gtag/js?id=UA-74678921-2'/>
@@ -29,19 +27,32 @@ export default class extends Component {
           <h1 className="mdc-typography--display1">Getting start</h1>
 
           <h2 className="mdc-typography--headline">Installation</h2>
-          <pre ref={(npm) => this.npm = npm}><code>npm install --save @react.material/components</code></pre>
-          {/*<div ref={(npm) => this.npm = npm}/>*/}
-          <div ref={(yarn) => this.yarn = yarn}/>
+          <pre>
+            <code>npm install --save @react.material/components</code>
+          </pre>
+          <pre>
+            <code>yarn add @react.material/components</code>
+          </pre>
 
-          <h3 className="mdc-typography--subheading1">Installing individual
-            components</h3>
-          <div ref={(node) => this.npm2 = node}/>
-          <div ref={(node) => this.yarn2 = node}/>
+          <h3 className="mdc-typography--subheading1">Install individual component</h3>
+          <pre>
+            <code>npm install --save @react.material/button @react.material/checkbox @react.material/ripple</code>
+          </pre>
+          <pre>
+            <code>yarn add @react.material/button @react.material/checkbox @react.material/ripple</code>
+          </pre>
+
 
           <h2 className="mdc-typography--headline">Including Components</h2>
-          <div ref={(node) => this.import = node}/>
-          <h3 className="mdc-typography--subheading1">Individual Components</h3>
-          <div ref={(node) => this.importIndividual = node}/>
+          <pre className="language-javascript">
+            <code>{`import {Button, Checkbox, Ripple} from '@react.material/components';`}</code>
+          </pre>
+          <h3 className="mdc-typography--subheading1">Include individual Component</h3>
+          <pre className="language-javascript">
+            <code>
+              {`import {Button} from '@react.material/button';`}
+            </code>
+          </pre>
 
           <h5 className="mdc-typography--caption" style={{marginTop: "50px"}}>
             Note: this is still under development.
@@ -51,44 +62,20 @@ export default class extends Component {
   }
 
   componentDidMount() {
-    CodeMirror.extendMode("shell",function() {
-    });
-
-    const element = this.npm.querySelector("code");
-    // console.log(element.parentNode.dataset.highlight);
-    CodeMirror(function(t) {
-      element.parentNode.parentNode.replaceChild(t, element.parentNode)
-    }, {
-      mode: "shell",
-      readOnly: true,
-      value: this.npm.querySelector("code").innerText.trim(),
-    });
-
-    CodeMirror(this.yarn, {
-      readOnly: true,
-      value: "yarn add @react.material/components",
-    });
-
-    CodeMirror(this.npm2, {
-      readOnly: true,
-      value: "npm install --save @react.material/button @react.material/checkbox @react.material/ripple",
-    });
-
-    CodeMirror(this.yarn2, {
-      readOnly: true,
-      value: "yarn add @react.material/button @react.material/checkbox @react.material/ripple",
-    });
-
-    CodeMirror(this.import, {
-      readOnly: true,
-      value: "import {Button, Checkbox, Ripple} from '@react.material/components';",
-      mode: "javascript"
-    });
-
-    CodeMirror(this.importIndividual, {
-      readOnly: true,
-      value: "import {Button} from '@react.material/button';",
-      mode: "javascript"
+    const elements = document.getElementById("content").querySelectorAll("pre code");
+    elements.forEach((element) => {
+      const classes = element.parentElement.classList;
+      let mode = classes.length !== 0 ? classes[0].replace("language-", "") : null;
+      CodeMirror((c) => {
+        element.parentNode.replaceChild(c, element)
+      }, mode ? {
+        value: element.innerText.trim(),
+        readOnly: true,
+        mode: mode,
+      } : {
+        value: element.innerText.trim(),
+        readOnly: true
+      });
     });
   }
 }

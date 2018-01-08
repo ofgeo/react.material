@@ -10,6 +10,37 @@
   version "0.24.0"
   resolved "https://registry.yarnpkg.com/@material/base/-/base-0.24.0.tgz#888a61e5b6580e35a66384a9f8823091b4fe7c55"
 
+"@material/button@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@material/button/-/button-0.27.0.tgz#546e1887324043b2607ecd3ba661b029ef6c909b"
+  dependencies:
+    "@material/elevation" "^0.25.0"
+    "@material/ripple" "^0.27.0"
+    "@material/theme" "^0.27.0"
+    "@material/typography" "^0.3.0"
+
+"@material/checkbox@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@material/checkbox/-/checkbox-0.27.0.tgz#5fb1e2646bffc793828a614d2e0010f5263c050d"
+  dependencies:
+    "@material/animation" "^0.25.0"
+    "@material/base" "^0.24.0"
+    "@material/ripple" "^0.27.0"
+    "@material/rtl" "^0.1.8"
+    "@material/selection-control" "^0.27.0"
+    "@material/theme" "^0.27.0"
+
+"@material/drawer@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@material/drawer/-/drawer-0.27.0.tgz#23fe6b676407b7e31aa706a58eb82099f479ac76"
+  dependencies:
+    "@material/animation" "^0.25.0"
+    "@material/base" "^0.24.0"
+    "@material/elevation" "^0.25.0"
+    "@material/rtl" "^0.1.8"
+    "@material/theme" "^0.27.0"
+    "@material/typography" "^0.3.0"
+
 "@material/elevation@^0.25.0":
   version "0.25.0"
   resolved "https://registry.yarnpkg.com/@material/elevation/-/elevation-0.25.0.tgz#ab1b22cdc6d0c840e2c389e334c39466a8397c9b"
@@ -17,9 +48,39 @@
     "@material/animation" "^0.25.0"
     "@material/theme" "^0.4.0"
 
+"@material/list@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@material/list/-/list-0.27.0.tgz#842a6c945b65ac6f5e4f1dea55b10f015ac8b15c"
+  dependencies:
+    "@material/ripple" "^0.27.0"
+    "@material/rtl" "^0.1.8"
+    "@material/theme" "^0.27.0"
+    "@material/typography" "^0.3.0"
+
+"@material/ripple@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@material/ripple/-/ripple-0.27.0.tgz#174ef823434e51662dec7b4ba9f1d7bc7905d79b"
+  dependencies:
+    "@material/base" "^0.24.0"
+    "@material/theme" "^0.27.0"
+
 "@material/rtl@^0.1.8":
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/@material/rtl/-/rtl-0.1.8.tgz#2462db15e2d4e041666485559c028382872b01fb"
+
+"@material/selection-control@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@material/selection-control/-/selection-control-0.27.0.tgz#4df7d56ed89dba9d041f016661ef819f7a1c1f06"
+  dependencies:
+    "@material/ripple" "^0.27.0"
+
+"@material/switch@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@material/switch/-/switch-0.27.0.tgz#e9390b706d2522f033e1541e3c4e78da91bd878b"
+  dependencies:
+    "@material/animation" "^0.25.0"
+    "@material/elevation" "^0.25.0"
+    "@material/theme" "^0.27.0"
 
 "@material/theme@^0.27.0":
   version "0.27.0"
@@ -43,17 +104,99 @@
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@material/typography/-/typography-0.3.0.tgz#f828c2d3215bfd66c58072709b4260c64125390a"
 
+"@react.material/button@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@react.material/button/-/button-0.2.3.tgz#c0d86bd7727954f6248c75eb15d6a1b0c4359949"
+  dependencies:
+    "@material/button" "^0.27.0"
+    "@react.material/ripple" "^0.2.2"
+    classnames "^2.2.5"
+    immutable "^3.8.2"
+    prop-types "^15.6.0"
+    react-dom "16.2.0"
+
+"@react.material/checkbox@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@react.material/checkbox/-/checkbox-0.2.2.tgz#17187da8e7f9cc6d15a668f0478bf2c899b66f69"
+  dependencies:
+    "@material/animation" "^0.25.0"
+    "@material/checkbox" "^0.27.0"
+    classnames "^2.2.5"
+    immutable "^3.8.2"
+    prop-types "^15.6.0"
+    react-dom "16.0.0"
+
+"@react.material/components@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@react.material/components/-/components-0.2.3.tgz#3ac16645a27ffb7b6a18fed0cfe2cf54bc6ed9dd"
+  dependencies:
+    "@react.material/button" "^0.2.3"
+    "@react.material/ripple" "^0.2.2"
+
+"@react.material/drawer@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@react.material/drawer/-/drawer-0.2.2.tgz#49b3b885c5aa3d90f18918902b70edf496ae4c17"
+  dependencies:
+    "@material/drawer" "^0.27.0"
+    "@react.material/list" "^0.2.2"
+    classnames "^2.2.5"
+    immutable "^3.8.2"
+    prop-types "^15.6.0"
+    react "16.0.0"
+    react-dom "16.0.0"
+
+"@react.material/list@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@react.material/list/-/list-0.2.2.tgz#2766db232195381cb869aedb086ece4e13ff29ad"
+  dependencies:
+    "@material/list" "^0.27.0"
+    classnames "^2.2.5"
+    immutable "^3.8.2"
+    prop-types "^15.6.0"
+    react-dom "16.0.0"
+
+"@react.material/ripple@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@react.material/ripple/-/ripple-0.2.2.tgz#b712024d62ee5be5a956f0c66724d077f3bc9662"
+  dependencies:
+    "@material/ripple" "^0.27.0"
+    classnames "^2.2.5"
+    immutable "^3.8.2"
+    prop-types "^15.6.0"
+    react-dom "16.2.0"
+
+"@react.material/switch@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@react.material/switch/-/switch-0.2.3.tgz#a32db6eec3c798c096c97c30288a0fb3d575bcae"
+  dependencies:
+    "@material/animation" "^0.25.0"
+    "@material/switch" "^0.27.0"
+    classnames "^2.2.5"
+    immutable "^3.8.2"
+    prop-types "^15.6.0"
+    react-dom "16.0.0"
+
+"@react.material/theme@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@react.material/theme/-/theme-0.2.3.tgz#e80af46688f54cd2cf58e37140b224bc757a2b4d"
+  dependencies:
+    "@material/theme" "^0.27.0"
+
 asap@~2.0.3:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
+
+classnames@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
 codemirror-minified@^5.28.0:
   version "5.28.0"
   resolved "https://registry.yarnpkg.com/codemirror-minified/-/codemirror-minified-5.28.0.tgz#7168b2e537ebfdb273c9221d58da8d37f38a33a1"
 
-codemirror-one-dark-theme@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/codemirror-one-dark-theme/-/codemirror-one-dark-theme-1.0.6.tgz#dc98f9f1e5139421043c3527a9a9ff4ecb25b784"
+codemirror@^5.33.0:
+  version "5.33.0"
+  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.33.0.tgz#462ad9a6fe8d38b541a9536a3997e1ef93b40c6a"
 
 core-js@^1.0.0:
   version "1.2.7"
@@ -102,6 +245,10 @@ hoist-non-react-statics@^2.3.0:
 iconv-lite@~0.4.13:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
+
+immutable@^3.8.2:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
 
 invariant@^2.2.1, invariant@^2.2.2:
   version "2.2.2"
@@ -165,6 +312,15 @@ prop-types@^15.5.4, prop-types@^15.6.0:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
+react-dom@16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.0.0.tgz#9cc3079c3dcd70d4c6e01b84aab2a7e34c303f58"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
 react-dom@16.2.0:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
@@ -212,6 +368,15 @@ react-side-effect@^1.1.0:
   dependencies:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
+
+react@16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.0.0.tgz#ce7df8f1941b036f02b2cca9dbd0cb1f0e855e2d"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
 
 react@16.2.0:
   version "16.2.0"

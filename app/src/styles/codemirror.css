@@ -1,11 +1,18 @@
 .CodeMirror {
   font-family: monospace;
+  position: relative;
+  overflow: hidden;
   color: #000;
-  height: auto;
+  height: auto !important;
   margin: 24px 0;
+  background: #000;
   background: rgba(0, 0, 0, .05);
   border: none;
-  max-width: 300px;
+}
+
+.mdc-theme--dark .CodeMirror {
+  background: #fff;
+  background: rgba(255, 255, 255, .95);
 }
 
 .CodeMirror-lines {
@@ -223,12 +230,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   background: #e8f2ff
 }
 
-.CodeMirror {
-  position: relative;
-  overflow: hidden;
-  background: #fff
-}
-
 .CodeMirror-scroll {
   overflow: scroll !important;
   margin-bottom: -30px;
@@ -255,6 +256,10 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   top: 0;
   overflow-x: hidden;
   overflow-y: scroll
+}
+
+.CodeMirror .CodeMirror-vscrollbar {
+  display: initial;
 }
 
 .CodeMirror-hscrollbar {
@@ -454,13 +459,6 @@ span.CodeMirror-selectedtext {
   color: #000
 }
 
-.CodeMirror {
-  height: auto;
-  margin: 24px 0;
-  background: rgba(0, 0, 0, .05);
-  border: none
-}
-
 .material-code-render .CodeMirror {
   position: absolute;
   visibility: hidden;
@@ -478,7 +476,8 @@ span.CodeMirror-selectedtext {
 }
 
 pre.CodeMirror-line {
-  padding-left: 24px
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .material-code-render.line-numbers pre.CodeMirror-line {

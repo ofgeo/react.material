@@ -9,10 +9,12 @@ import asyncComponent from "./AsyncComponent";
 import logo from './logo.svg'
 import '@material/elevation/dist/mdc.elevation.css'
 import '@material/typography/dist/mdc.typography.css'
+import 'codemirror/lib/codemirror.css'
+import './styles/codemirror.css'
 
 class App extends Component {
   state = {
-    darkThemeEnabled: false
+    darkThemeEnabled: true
   };
 
   constructor(props) {
