@@ -12,7 +12,7 @@ import '@material/typography/dist/mdc.typography.css'
 
 class App extends Component {
   state = {
-    darkThemeEnabled: true
+    darkThemeEnabled: false
   };
 
   constructor(props) {

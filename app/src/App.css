@@ -29,13 +29,6 @@
   fill: #FFFFFF;
 }
 
-.CodeMirror {
-  height: auto !important;
-  max-width: 100% !important;
-  padding: 8px;
-  font-size: 120%;
-}
-
 .mdc-theme--dark #content {
   background-color: #212121;
   color: var(--mdc-theme-text-primary-on-dark, #FFFFFF);

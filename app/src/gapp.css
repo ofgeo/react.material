@@ -1,0 +1,60 @@
+
+
+.CodeMirror pre {
+  font-family: Roboto Mono, monospace;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: #000
+}
+
+.CodeMirror {
+  height: auto;
+  margin: 24px 0;
+  background: rgba(0, 0, 0, .05);
+  border: none
+}
+
+.material-code-render .CodeMirror {
+  position: absolute;
+  visibility: hidden;
+  width: 100%;
+  margin: 0
+}
+
+.material-code-render .CodeMirror.active {
+
+  visibility: visible
+}
+
+.page--platform-ios .CodeMirror-scroll {
+  max-height: 300px
+}
+
+.CodeMirror-code {
+  margin: 12px 0
+}
+
+pre.CodeMirror-line {
+  padding-left: 24px
+}
+
+.material-code-render.line-numbers pre.CodeMirror-line {
+  padding-left: 0
+}
+
+.CodeMirror .cm-keyword, .CodeMirror .cm-variable-3 {
+  color: #880e4f
+}
+
+.CodeMirror .cm-atom, .CodeMirror .cm-def, .CodeMirror .cm-string, .CodeMirror .cm-userpath {
+  color: #8d6e63
+}
+
+.CodeMirror .cm-comment {
+  color: #bcaaa4
+}
+
+.CodeMirror .hll .CodeMirror-line, .CodeMirror .hll .CodeMirror-linenumber.CodeMirror-gutter-elt {
+  background-color: #eee
+}
