@@ -12,7 +12,15 @@ export default function asyncComponent(importComponent) {
     }
 
     async componentWillMount() {
-      const {default: component} = await importComponent();
+      const {default: component} = await importComponent()
+      .catch(e => {
+        console.log(e);
+        if (this.mounted) {
+          this.setState({
+            component: Error
+          });
+        }
+      });
 
       if (this.mounted) {
         this.setState({
@@ -41,3 +49,10 @@ export default function asyncComponent(importComponent) {
 
   return AsyncComponent;
 }
+
+const Error = () => (
+    <div>
+      <h2>Error</h2>
+    </div>
+);
+
