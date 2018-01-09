@@ -1,10 +1,10 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Helmet} from 'react-helmet';
-import * as CodeMirror from 'codemirror-minified'
-import 'codemirror-minified/lib/codemirror.css'
-import 'codemirror-minified/theme/mbo.css'
-import 'codemirror-minified/mode/shell/shell'
+import * as CodeMirror from 'codemirror'
+import 'codemirror/lib/codemirror.css'
+import 'codemirror/theme/mbo.css'
+import 'codemirror/mode/shell/shell'
 
 import './style.css'
 
@@ -38,7 +38,8 @@ export default class extends PureComponent {
           </ul>
           <h2>Installation</h2>
           <div ref={(npm) => this.npm = npm} style={{height: "auto"}}/>
-          <div ref={(yarn) => this.yarn = yarn} style={{height: "auto", marginTop: "8px"}}/>
+          <div ref={(yarn) => this.yarn = yarn}
+               style={{height: "auto", marginTop: "8px"}}/>
         </div>
     )
   }

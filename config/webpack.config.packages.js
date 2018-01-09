@@ -8,16 +8,19 @@ const IS_DEV = process.env.BABEL_ENV === 'development';
 const PUBLIC_PATH = '/assets/';
 const SOURCE_MAPS = IS_DEV ? 'source-map' : false;
 
+const resolvePackage = relativePath => path.resolve(paths.packages, relativePath);
+
 module.exports = [{
   name: IS_DEV ? 'packages.js' : 'packages.min.js',
   entry: {
-    Button: [path.resolve('./packages/button/es6/index.js')],
-    Checkbox: [path.resolve('./packages/checkbox/es6/index.js')],
-    Drawer: [path.resolve('./packages/drawer/es6/index.js')],
-    List: [path.resolve('./packages/list/es6/index.js')],
-    Theme: [path.resolve('./packages/theme/es6/index.js')],
-    Ripple: [path.resolve('./packages/ripple/es6/index.js')],
-    Components: [path.resolve('./packages/components/es6/index.js')],
+    Button: [resolvePackage('button/es6/index.js')],
+    Checkbox: [resolvePackage('checkbox/es6/index.js')],
+    Drawer: [resolvePackage('drawer/es6/index.js')],
+    List: [resolvePackage('list/es6/index.js')],
+    Theme: [resolvePackage('theme/es6/index.js')],
+    Ripple: [resolvePackage('ripple/es6/index.js')],
+    Switch: [resolvePackage('switch/es6/index.js')],
+    Components: [resolvePackage('components/es6/index.js')],
   },
   output: {
     path: paths.packages,

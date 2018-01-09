@@ -10,12 +10,22 @@ export default function asyncComponent(importComponent) {
       };
     }
 
-    async componentDidMount() {
+    async componentWillMount() {
       const {default: component} = await importComponent();
 
-      this.setState({
-        component: component
-      });
+      if (this.mounted) {
+        this.setState({
+          component: component
+        });
+      }
+    }
+
+    async componentDidMount() {
+      this.mounted = true;
+    }
+
+    componentWillUnmount() {
+      this.mounted = false;
     }
 
     render() {

@@ -15,7 +15,6 @@
     "@react.material/switch": "^0.2.3",
     "@react.material/theme": "^0.2.3",
     "codemirror": "^5.33.0",
-    "codemirror-minified": "^5.28.0",
     "prop-types": "^15.6.0",
     "react": "16.2.0",
     "react-dom": "16.2.0",
