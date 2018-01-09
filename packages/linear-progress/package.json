@@ -1,0 +1,29 @@
+{
+  "name": "@react.material/linear-progress",
+  "version": "0.2.2",
+  "description": "The React Material Components for the web linear progress component",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ofgeo/react.material.git"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "material components",
+    "material design",
+    "linear progress",
+    "progress",
+    "react",
+    "reactjs"
+  ],
+  "main": "dist/index.js",
+  "dependencies": {
+    "@material/linear-progress": "^0.27.0",
+    "classnames": "^2.2.5",
+    "immutable": "^3.8.2",
+    "prop-types": "^15.6.0",
+    "react-dom": "16.0.0"
+  },
+  "devDependencies": {
+    "react": "16.0.0"
+  }
+}

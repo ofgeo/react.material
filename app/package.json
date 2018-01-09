@@ -4,10 +4,11 @@
   "private": true,
   "dependencies": {
     "@material/elevation": "^0.25.0",
+    "@material/linear-progress": "^0.28.0",
     "@material/toolbar": "^0.27.0",
     "@material/typography": "^0.3.0",
     "@react.material/button": "^0.2.3",
-    "@react.material/checkbox": "^0.2.2",
+    "@react.material/linear-progress": "^0.2.2",
     "@react.material/components": "^0.2.3",
     "@react.material/drawer": "^0.2.2",
     "@react.material/list": "^0.2.2",

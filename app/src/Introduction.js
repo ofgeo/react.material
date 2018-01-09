@@ -1,15 +1,14 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {Helmet} from 'react-helmet';
 import * as CodeMirror from 'codemirror';
-import 'codemirror/mode/powershell/powershell'
-import 'codemirror/mode/javascript/javascript'
-
-import './introduction.css'
+import 'codemirror/mode/powershell/powershell';
+import 'codemirror/mode/javascript/javascript';
+import './introduction.css';
 
 export default class extends Component {
   render() {
     return (
-        <Fragment>
+        <article id="main-article">
           <Helmet>
             <title>React Material</title>
             <meta name="description"
@@ -34,7 +33,8 @@ export default class extends Component {
             <code>yarn add @react.material/components</code>
           </pre>
 
-          <h3 className="mdc-typography--subheading1">Install individual component</h3>
+          <h3 className="mdc-typography--subheading1">Install individual
+            component</h3>
           <pre>
             <code>npm install --save @react.material/button @react.material/checkbox @react.material/ripple</code>
           </pre>
@@ -47,7 +47,8 @@ export default class extends Component {
           <pre className="language-javascript">
             <code>{`import {Button, Checkbox, Ripple} from '@react.material/components';`}</code>
           </pre>
-          <h3 className="mdc-typography--subheading1">Include individual Component</h3>
+          <h3 className="mdc-typography--subheading1">Include individual
+            Component</h3>
           <pre className="language-javascript">
             <code>
               {`import {Button} from '@react.material/button';`}
@@ -57,7 +58,7 @@ export default class extends Component {
           <h5 className="mdc-typography--caption" style={{marginTop: "50px"}}>
             Note: this is still under development.
           </h5>
-        </Fragment>
+        </article>
     )
   }
 

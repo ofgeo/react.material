@@ -56,13 +56,15 @@ class App extends Component {
               </Navigation>
             </div>
           </Drawer>
-          <div key="content" id="content" className={"mdc-theme--background"}>
+          <div id="content" className={"mdc-theme--background"}>
             <header className="mdc-toolbar mdc-elevation--z4">
               <div className="mdc-toolbar__row">
-                <section className="mdc-toolbar__section mdc-toolbar__section--align-start">
+                <section
+                    className="mdc-toolbar__section mdc-toolbar__section--align-start">
                   <div className="material-icons mdc-toolbar__menu-icon"
                        onClick={this.menuClicks.bind(this)}>
-                    <svg id="menu" fill="#FFFFFF" height="24" width="24" viewBox="0 0 24 24"
+                    <svg id="menu" fill="#FFFFFF" height="24" width="24"
+                         viewBox="0 0 24 24"
                          xmlns="http://www.w3.org/2000/svg">
                       <path d="M0 0h24v24H0z" fill="none"/>
                       <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
@@ -109,7 +111,7 @@ class App extends Component {
                 </section>
               </div>
             </header>
-            <main style={{padding: "14px"}}>
+            <main>
               <RouterSwitch>
                 <Route exact path="/"
                        component={asyncComponent(() => import('./Introduction'))}/>

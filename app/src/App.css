@@ -25,6 +25,10 @@
   box-sizing: border-box;
 }
 
+#main-article {
+  padding: 14px;
+}
+
 #menu {
   fill: #FFFFFF;
 }

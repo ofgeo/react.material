@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {LinearProgress} from '@react.material/linear-progress/es6'
 
 export default function asyncComponent(importComponent) {
   class AsyncComponent extends Component {
@@ -24,14 +25,19 @@ export default function asyncComponent(importComponent) {
       this.mounted = true;
     }
 
-    componentWillUnmount() {
+    async componentWillUnmount() {
       this.mounted = false;
     }
 
     render() {
       const C = this.state.component;
+      console.log(C);
+      return C ?
+          <C {...this.props} /> : <LinearProgress/>;
+    }
 
-      return C ? <C {...this.props} /> : null;
+    componentDidCatch(error, info) {
+      console.log("componentDidCatch - error:" + error + ", info:" + info);
     }
   }
 

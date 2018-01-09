@@ -17,6 +17,14 @@
     "@material/animation" "^0.25.0"
     "@material/theme" "^0.4.0"
 
+"@material/linear-progress@^0.28.0":
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/@material/linear-progress/-/linear-progress-0.28.0.tgz#c11cbc7502de161a0d0da85c93d6c019c6243a6d"
+  dependencies:
+    "@material/animation" "^0.25.0"
+    "@material/base" "^0.24.0"
+    "@material/theme" "^0.28.0"
+
 "@material/rtl@^0.1.8":
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/@material/rtl/-/rtl-0.1.8.tgz#2462db15e2d4e041666485559c028382872b01fb"
@@ -24,6 +32,10 @@
 "@material/theme@^0.27.0":
   version "0.27.0"
   resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.27.0.tgz#32fd72addfec09bf22e83f66f36a7ebbdc123461"
+
+"@material/theme@^0.28.0":
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.28.0.tgz#dedd6807fcadf9f33fc16c7f4f2a608d4ee51c46"
 
 "@material/theme@^0.4.0":
   version "0.4.0"

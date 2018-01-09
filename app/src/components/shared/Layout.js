@@ -1,6 +1,7 @@
-import React, {Fragment, PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Helmet} from 'react-helmet';
+import Article from './../shared/Article'
 
 export default class extends PureComponent {
   static propTypes = {
@@ -9,7 +10,7 @@ export default class extends PureComponent {
 
   render() {
     return (
-        <Fragment>
+        <Article>
           <Helmet>
             <title>React Material - {this.props.title}</title>
             <meta name="description"
@@ -27,7 +28,7 @@ export default class extends PureComponent {
             </script>
           </Helmet>
           {this.props.children}
-        </Fragment>
+        </Article>
     )
   }
 }
