@@ -31,9 +31,7 @@ export default function asyncComponent(importComponent) {
 
     render() {
       const C = this.state.component;
-      console.log(C);
-      return C ?
-          <C {...this.props} /> : <LinearProgress/>;
+      return C ? <C {...this.props} /> : <LinearProgress/>;
     }
 
     componentDidCatch(error, info) {
