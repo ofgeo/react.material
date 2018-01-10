@@ -1,5 +1,3 @@
-// import 'codemirror/lib/codemirror.css'
-// import './static/styles/codemirror.css'
 import './introduction.css';
 import React, {Component, Fragment} from 'react';
 import {Helmet} from 'react-helmet';
