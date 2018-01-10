@@ -9,6 +9,7 @@
   "scripts": {
     "postinstall": "lerna bootstrap",
     "build": "cross-env BABEL_ENV=development webpack --config config/webpack.config.packages.js --progress --colors",
+    "start:app": "cross-env NODE_ENV=production node app/server.js",
     "build:min": "cross-env BABEL_ENV=production webpack --config config/webpack.config.packages.js -p --progress --colors",
     "build:app": "node scripts/app.build.js",
     "clean": "del-cli packages/*/dist && lerna clean --yes",

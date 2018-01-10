@@ -1,14 +1,33 @@
-const express = require('express');
-// const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpack = require('webpack');
-const webpackConfig = require('./../config/webpack.config.dev');
+'use strict';
 
+const express = require('express');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackConfig = require('./../config/webpack.config.prod');
 const app = express();
 
-app.use(express.static('build/public'));
-// app.use(require('./src/index'));
+const compiler = webpack(webpackConfig);
 
-const PORT = 3000;
-app.listen(3000, function() {
-  console.log('http://localhost:' + PORT);
+app.use(webpackDevMiddleware(compiler, {
+  hot: true,
+  filename: 'bundle.js',
+  publicPath: '/',
+  stats: {
+    colors: true,
+  },
+  historyApiFallback: true,
+}));
+
+app.use(webpackHotMiddleware(compiler, {
+  log: console.log,
+  path: '/__webpack_hmr',
+  heartbeat: 10 * 1000,
+}));
+
+app.use(express.static(__dirname + '/public'));
+
+const server = app.listen(3000, function() {
+  const host = server.address().address;
+  const port = server.address().port;
+  console.log('Example app listening at http://%s:%s', host, port);
 });
