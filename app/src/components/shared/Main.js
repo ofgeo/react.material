@@ -8,9 +8,9 @@ export default class extends PureComponent {
 
   render() {
     return (
-        <article id="main-article">
+        <main id="main">
           {this.props.children}
-        </article>
+        </main>
     )
   }
 }

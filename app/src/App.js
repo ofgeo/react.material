@@ -10,7 +10,7 @@ import logo from './logo.svg'
 import '@material/elevation/dist/mdc.elevation.css'
 import '@material/typography/dist/mdc.typography.css'
 import 'codemirror/lib/codemirror.css'
-import './styles/codemirror.css'
+import './static/styles/codemirror.css'
 
 class App extends Component {
   state = {
@@ -111,22 +111,20 @@ class App extends Component {
                 </section>
               </div>
             </header>
-            <main>
-              <RouterSwitch>
-                <Route exact path="/"
-                       component={asyncComponent(() => import('./Introduction'))}/>
-                {
-                  components.map((route, index) => (
-                      <Route key={index}
-                             path={route.route}
-                             component={asyncComponent(
-                                 () => import('./components/' + route.name))}/>
-                  ))
-                }
+            <RouterSwitch>
+              <Route exact path="/"
+                     component={asyncComponent(() => import('./Introduction'))}/>
+              {
+                components.map((route, index) => (
+                    <Route key={index}
+                           path={route.route}
+                           component={asyncComponent(
+                               () => import('./components/' + route.name))}/>
+                ))
+              }
 
-                <Route component={asyncComponent(() => import('./NoMatch'))}/>
-              </RouterSwitch>
-            </main>
+              <Route component={asyncComponent(() => import('./NoMatch'))}/>
+            </RouterSwitch>
           </div>
         </Fragment>
     );

@@ -2,57 +2,49 @@ import React, {Component} from "react";
 import {LinearProgress} from '@react.material/linear-progress/es6'
 
 export default function asyncComponent(importComponent) {
-  class AsyncComponent extends Component {
-    constructor(props) {
-      super(props);
+  return class AsyncComponent extends Component {
+    static Component = null;
 
-      this.state = {
-        component: null
-      };
+    state = {
+      Component: AsyncComponent.Component
+    };
+
+    onComponentReady(component) {
+      if (this.mounted) {
+        this.setState({Component: component});
+      }
     }
 
-    async componentWillMount() {
-      const {default: component} = await importComponent()
-      .catch(e => {
-        console.log(e);
-        if (this.mounted) {
-          this.setState({
-            component: Error
-          });
-        }
-      });
-
-      if (this.mounted) {
-        this.setState({
-          component: component
+    componentWillMount() {
+      if (this.state.Component === null) {
+        importComponent().then(m => m.default).then(Component => {
+          AsyncComponent.Component = Component;
+          this.onComponentReady(Component)
+        }).catch(e => {
+          console.log(e);
+          this.onComponentReady(Error)
         });
       }
     }
 
-    async componentDidMount() {
+    componentDidMount() {
       this.mounted = true;
     }
 
-    async componentWillUnmount() {
+    componentWillUnmount() {
       this.mounted = false;
     }
 
     render() {
-      const C = this.state.component;
-      return C ? <C {...this.props} /> : <LinearProgress/>;
-    }
-
-    componentDidCatch(error, info) {
-      console.log("componentDidCatch - error:" + error + ", info:" + info);
+      const {Component} = this.state;
+      return Component !== null
+          ? <main id="main"><Component {...this.props} /></main>
+          : <main><LinearProgress/></main>;
     }
   }
-
-  return AsyncComponent;
 }
 
 const Error = () => (
-    <div>
-      <h2>Error</h2>
-    </div>
+    <h1>Sorry, please check your internet connection and try again.</h1>
 );
 

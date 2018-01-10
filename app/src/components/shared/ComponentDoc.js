@@ -1,9 +1,8 @@
-import React, {PureComponent} from 'react';
+import React, {Fragment, PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Helmet} from 'react-helmet';
 import * as CodeMirror from 'codemirror'
 import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/mbo.css'
 import 'codemirror/mode/shell/shell'
 
 import './style.css'
@@ -16,7 +15,7 @@ export default class extends PureComponent {
   render() {
     const title = this.title();
     return (
-        <div style={{padding: "24px"}}>
+        <Fragment>
           <Helmet>
             <title>React Material - {title}</title>
             <meta name="description"
@@ -40,7 +39,7 @@ export default class extends PureComponent {
           <div ref={(npm) => this.npm = npm} style={{height: "auto"}}/>
           <div ref={(yarn) => this.yarn = yarn}
                style={{height: "auto", marginTop: "8px"}}/>
-        </div>
+        </Fragment>
     )
   }
 
@@ -55,13 +54,11 @@ export default class extends PureComponent {
 
   componentDidMount() {
     CodeMirror(this.npm, {
-      theme: "mbo",
       readOnly: true,
       value: "npm install --save " + this.packageName(),
     });
 
     CodeMirror(this.yarn, {
-      theme: "mbo",
       readOnly: true,
       value: "yarn add " + this.packageName(),
     });
