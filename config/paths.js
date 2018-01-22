@@ -7,7 +7,7 @@ const url = require('url');
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637
 const PROJECT_DIRECTORY = fs.realpathSync(process.cwd());
-const APP_DIRECTORY = path.resolve(fs.realpathSync(process.cwd()), 'app');
+const APP_DIRECTORY = path.resolve('..', 'app');
 
 const resolveProject = relativePath => path.resolve(PROJECT_DIRECTORY, relativePath);
 const resolveApp = relativePath => path.resolve(APP_DIRECTORY, relativePath);

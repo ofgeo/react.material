@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Route, StaticRouter} from 'react-router-dom'
-import './index.css';
-import App from './App';
+import {renderToString} from 'react-dom/server'
+// import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-    <StaticRouter><Route path="/" component={App}/></StaticRouter>
+    <div>Hello Bad7 World!!!!!!!!!!!!!</div>
     , document.getElementById('root'));
 registerServiceWorker();
