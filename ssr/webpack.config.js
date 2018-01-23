@@ -1,17 +1,18 @@
 const path = require('path');
 const webpack = require('webpack');
 // const paths = require('./../config/paths');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 
 module.exports = {
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
-    './src/index2.js'
+    './src/index.js',
   ],
   output: {
     path: __dirname,
     filename: 'static/js/bundle.js',
-    publicPath: '/'
+    publicPath: '/',
+    libraryTarget: 'umd'
   },
   module: {
     loaders: [
@@ -21,16 +22,17 @@ module.exports = {
         // include: path.join(__dirname, 'app'),
         exclude: '/node_modules/',
         query: {
-          presets: ['env']
+          presets: ['react-app']
         }
       }
     ]
   },
   plugins: [
-    // new HtmlWebpackPlugin({
-    //   inject: true,
-    //   template: './public/index.html',
-    // }),
+    new StaticSiteGeneratorPlugin({
+      paths: [
+        '/',
+      ]
+    }),
     new webpack.HotModuleReplacementPlugin(),
   ]
 };
