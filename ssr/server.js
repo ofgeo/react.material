@@ -16,11 +16,11 @@ const PORT = 3000;
 app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: config.output.publicPath}));
 app.use(webpackHotMiddleware(compiler));
 
-app.use('*', function (req, res, next) {
-  res.set('content-type', 'text/html');
-  res.send('index.html');
-  res.end();
-});
+// app.use('*', function (req, res, next) {
+//   res.set('content-type', 'text/html');
+//   res.send('index.html');
+//   res.end();
+// });
 
 app.listen(PORT, function () {
   console.log(chalk.cyan('Starting the development server...\n'));
