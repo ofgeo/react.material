@@ -1,52 +1,36 @@
-import React, {Component} from "react";
+import React from "react";
+import Loadable from 'react-loadable';
 // import {LinearProgress} from '@react.material/linear-progress/es6'
 
-export default function asyncComponent(importComponent) {
-  return class AsyncComponent extends Component {
-    static Component = null;
-
-    state = {
-      Component: AsyncComponent.Component
-    };
-
-    onComponentReady(component) {
-      if (this.mounted) {
-        this.setState({Component: component});
-      }
-    }
-
-    componentWillMount() {
-      if (this.state.Component === null) {
-        if (typeof document !== 'undefined') {
-          importComponent().then(m => m.default).then(Component => {
-            AsyncComponent.Component = Component;
-            this.onComponentReady(Component)
-          }).catch(e => {
-            console.log(e);
-            this.onComponentReady(Error)
-          });
-        }
-      }
-    }
-
-    componentDidMount() {
-      this.mounted = true;
-    }
-
-    componentWillUnmount() {
-      this.mounted = false;
-    }
-
-    render() {
-      const {Component} = this.state;
-      return Component !== null
-          ? <main id="main"><Component {...this.props} /></main>
-          : <main>Loading</main>;
-    }
+const LoadingComponent = (props) => {
+  if (props.error) {
+    // When the loader has errored
+    return <div>Error!</div>;
+  } else if (props.timedOut) {
+    // When the loader has taken longer than the timeout
+    return <div>Taking a long time...</div>;
+  } else if (props.pastDelay) {
+    // When the loader has taken longer than the delay
+    return <div>Loading...</div>;
+  } else {
+    // When the loader has just started
+    return null;
   }
-}
+};
 
-const Error = () => (
-    <h1>Sorry, please check your internet connection and try again.</h1>
-);
+export default function asyncComponent(importComponent) {
+  const LoadableComponent = Loadable({
+    loader: importComponent,
+    loading: LoadingComponent,
+    render(loaded, props) {
+      let Component = loaded.default;
+      return <main><Component {...props}/></main>;
+    },
+    delay: 5000, // 0.3 seconds
+  });
+
+  return function() {
+    return <LoadableComponent/>;
+  };
+}
 

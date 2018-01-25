@@ -1,6 +1,14 @@
+const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
 const webpack = require('webpack');
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const dom = new JSDOM('');
+
+const { window } = new JSDOM(``);
+const { document } = window;
+
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 
@@ -8,6 +16,7 @@ module.exports = {
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
   // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
   devtool: 'source-map',
+  // target: "node",
   // entry: [
   //   'webpack-hot-middleware/client?path=/__webpack_hmr&reload=true',
   //   './src/browser.js',
@@ -21,8 +30,7 @@ module.exports = {
     browser: './src/browser.js'
   },
   output: {
-    // path: __dirname,
-    // Add /* filename */ comments to generated require()s in the output.
+    path: path.join(__dirname, 'build'),
     pathinfo: true,
     // This does not produce a real file. It's just the virtual path that is
     // served by WebpackDevServer in development. This is the JS bundle
@@ -58,11 +66,15 @@ module.exports = {
             include: [paths.appSrc],
             loader: require.resolve('babel-loader'),
             options: {
-
+              plugins: [
+                // require.resolve('babel-plugin-syntax-dynamic-import'),
+                // require.resolve('babel-plugin-dynamic-import-node'),
+                'react-loadable/babel'
+              ],
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
               // directory for faster rebuilds.
-              cacheDirectory: true,
+              // cacheDirectory: true,
             },
           },
         ]
@@ -70,10 +82,14 @@ module.exports = {
     ]
   },
   plugins: [
+    // new ReactLoadablePlugin({
+    //   filename: './build/react-loadable.json',
+    // }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'browser',
       filename: 'static/js/browser.js',
       chunks: ["browser"],
+      minChunks: Infinity,
       // minSize: 1,
     }),
     new StaticSiteGeneratorPlugin({
@@ -81,11 +97,11 @@ module.exports = {
         '/',
       ],
       globals: {
-        window: {},
-        // document: {},
+        window: window,
+        document: document,
       },
       entry: 'index',
-      crawl: true
+      // crawl: true
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
