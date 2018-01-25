@@ -1,8 +1,7 @@
 import React from 'react';
 import {StaticRouter} from 'react-router'
 import App from './App';
-// import ReactDOMServer from 'react-dom/server';
-const ReactDOMServer = require('react-dom/server');
+import {renderToString} from 'react-dom/server';
 
 // noinspection JSUnusedGlobalSymbols
 export default function render(locals) {
@@ -10,7 +9,7 @@ export default function render(locals) {
   const context = {};
 
   const scripts = Object.keys(locals.assets).filter(key => assets[key].match(/\.js$/))
-      .map((key) => assets[key]);
+  .map((key) => assets[key]);
 
   // const scripts = assets.filter(value => value.match(/\.js$/));
   // console.log(scripts);
@@ -34,5 +33,5 @@ export default function render(locals) {
       </html>
   );
 
-  return '<!DOCTYPE html>' + ReactDOMServer.renderToString(HTML);
+  return '<!DOCTYPE html>' + renderToString(HTML);
 }
