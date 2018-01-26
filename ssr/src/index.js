@@ -1,21 +1,33 @@
 import React from 'react';
 import {StaticRouter} from 'react-router'
-import {renderToString} from 'react-dom/server';
+import ReactDOMServer,{renderToString} from 'react-dom/server';
 import Loadable from 'react-loadable';
 import App from './App';
+import {getBundles} from 'react-loadable/webpack'
+
+const context = {};
 
 // noinspection JSUnusedGlobalSymbols
 export default function render(locals) {
   const assets = locals.assets;
-  const context = {};
-  let modules = [];
-  // let bundles = getBundles(locals.webpackStats, modules);
-
   const scripts = Object.keys(locals.assets).filter(key => assets[key].match(/\.js$/))
       .map((key) => assets[key]);
 
+  const modules = [];
 
-  let HTML = (
+  const app = ReactDOMServer.renderToString(
+      <Loadable.Capture report={moduleName => modules.push(moduleName)}>
+        <StaticRouter location={locals.path} context={context}>
+          <App/>
+        </StaticRouter>
+      </Loadable.Capture>
+  );
+
+  const bundles = getBundles(locals.loadableStats, modules);
+  let bundleJs = bundles.filter(bundle => bundle.file.endsWith('.js'));
+
+  const HTML = ` 
+      <!doctype html>
       <html lang="en">
       <head>
         <link rel="stylesheet"
@@ -24,26 +36,26 @@ export default function render(locals) {
       </head>
       <body>
       <div id="root">
-        <Loadable.Capture report={moduleName => modules.push(moduleName)}>
-          <StaticRouter location={locals.path} context={context}>
-            <App/>
-          </StaticRouter>
-        </Loadable.Capture>
+        ${app}
       </div>
-      {scripts.map((script, index) => <script key={index} src={script}/>)}
+        ${scripts.map((script) => `<script type="text/javascript" src="${script}"></script>`)}
+        ${bundleJs.map((js) => `<script type="text/javascript" src="/${js.file}"></script>`)}
       </body>
       </html>
-  );
-  Loadable.preloadAll();
+  `;
 
-  const content = renderToString(HTML);
-  // console.log("---------------webpackStats START---------------");
+
+  // const content = renderToString(HTML);
+  console.log("---------------webpackStats START---------------");
   // console.log(locals.webpackStats.compilation.assets);
   // console.log(locals.webpackStats.assets);
+  console.log("modules", modules);
+  console.log("bundles", bundles);
+  console.log("bundleJS", bundleJs);
   // console.log(Object.keys(locals.webpackStats.additionalChunkAssets));
-  console.log(modules);
-  console.log(content + "\n---------------webpackStats END  ---------------\n");
+  console.log("\n---------------webpackStats END  ---------------\n");
 
+  return `<!DOCTYPE html>${HTML}`;
 
-  return '<!DOCTYPE html>' + content;
+  // return renderToString(HTML);
 }

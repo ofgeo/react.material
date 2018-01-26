@@ -13,13 +13,15 @@ const express = require('express');
 const app = express();
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const PORT = 3000;
+const PORT = 3001;
 
 app.use(webpackDevMiddleware(compiler, {
-  noInfo: true,
+  // logLevel: 'silent',
   publicPath: config.output.publicPath
 }));
-app.use(webpackHotMiddleware(compiler));
+app.use(webpackHotMiddleware(compiler, {
+  log: false,
+}));
 
 // app.use('*', function (req, res, next) {
 //   res.set('content-type', 'text/html');
@@ -27,38 +29,14 @@ app.use(webpackHotMiddleware(compiler));
 //   res.end();
 // });
 
-// Loadable.preloadAll().then(() => {
-//   app.listen(PORT, function() {
-//     console.log(chalk.cyan('Starting the development server...\n'));
-//     openBrowser('http://localhost:' + PORT);
-//   });
-// });
+Loadable.preloadAll().then(() => {
+  app.listen(PORT, function() {
+    console.log(chalk.cyan('Starting the development server...\n'));
+    openBrowser('http://localhost:' + PORT);
+  });
+});
 
 // app.listen(PORT, function () {
 //   console.log(chalk.cyan('Starting the development server...\n'));
 //   openBrowser('http://localhost:' + PORT);
 // });
-
-
-app.get('/', (req, res) => {
-  res.send(`
-    <!doctype html>
-    <html lang="en">
-      <head>...</head>
-      <body>
-        <div id="app">${ReactDOMServer.renderToString(<App/>)}</div>
-        <script src="static/js/bundle.js"></script>
-      </body>
-    </html>
-  `);
-});
-
-
-Loadable.preloadAll().then(() => {
-  app.listen(3000, () => {
-    console.log('Running on http://localhost:3000/');
-  });
-});
-app.listen(3000, () => {
-  console.log('Running on http://localhost:3000/');
-});

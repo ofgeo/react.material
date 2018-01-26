@@ -1,16 +1,20 @@
-const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
 const webpack = require('webpack');
 const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+const {JSDOM} = jsdom;
 const dom = new JSDOM('');
 
-const { window } = new JSDOM(``);
-const { document } = window;
+const {window} = new JSDOM(``);
+const {document} = window;
 
+const {ReactLoadablePlugin} = require('react-loadable/webpack');
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
+
+const loadablePlugin = new ReactLoadablePlugin({
+  filename: '.tmp/react-loadable.json',
+});
 
 module.exports = {
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
@@ -22,6 +26,9 @@ module.exports = {
   //   './src/browser.js',
   //   paths.appIndexJs,
   // ],
+  node: {
+    fs: "empty"
+  },
   entry: {
     index: [
       'webpack-hot-middleware/client?path=/__webpack_hmr&reload=true',
@@ -30,7 +37,6 @@ module.exports = {
     browser: './src/browser.js'
   },
   output: {
-    path: path.join(__dirname, 'build'),
     pathinfo: true,
     // This does not produce a real file. It's just the virtual path that is
     // served by WebpackDevServer in development. This is the JS bundle
@@ -67,9 +73,11 @@ module.exports = {
             loader: require.resolve('babel-loader'),
             options: {
               plugins: [
+                'react-loadable/babel',
+                require.resolve('react-loadable/babel'),
                 // require.resolve('babel-plugin-syntax-dynamic-import'),
                 // require.resolve('babel-plugin-dynamic-import-node'),
-                'react-loadable/babel'
+                // 'dynamic-import-webpack'
               ],
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -82,9 +90,9 @@ module.exports = {
     ]
   },
   plugins: [
-    // new ReactLoadablePlugin({
-    //   filename: './build/react-loadable.json',
-    // }),
+    new ReactLoadablePlugin({
+      filename: path.resolve(__dirname, 'build', 'react-loadable.json')
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'browser',
       filename: 'static/js/browser.js',
@@ -101,7 +109,10 @@ module.exports = {
         document: document,
       },
       entry: 'index',
-      // crawl: true
+      crawl: true,
+      locals:{
+        loadableStats:require(path.resolve(__dirname, 'build', 'react-loadable.json'))
+      }
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),

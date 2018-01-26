@@ -33,7 +33,7 @@ class App extends Component {
   render() {
     return (
         <div>
-          {/*<div><Link to="/">Home</Link></div>*/}
+          <div><Link to="/">Home</Link></div>
           {/*<div><Link to="async1">Async1</Link></div>*/}
           {/*<div><Link to="async2">Async2</Link></div>*/}
           <Switch>
