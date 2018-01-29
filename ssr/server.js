@@ -12,16 +12,15 @@ const compiler = webpack(config);
 const express = require('express');
 const app = express();
 const React = require('react');
-const ReactDOMServer = require('react-dom/server');
 const PORT = 3001;
 
 app.use(webpackDevMiddleware(compiler, {
   // logLevel: 'silent',
   publicPath: config.output.publicPath
 }));
-app.use(webpackHotMiddleware(compiler, {
-  log: false,
-}));
+// app.use(webpackHotMiddleware(compiler, {
+//   log: false,
+// }));
 
 // app.use('*', function (req, res, next) {
 //   res.set('content-type', 'text/html');
@@ -29,14 +28,15 @@ app.use(webpackHotMiddleware(compiler, {
 //   res.end();
 // });
 
-Loadable.preloadAll().then(() => {
-  app.listen(PORT, function() {
-    console.log(chalk.cyan('Starting the development server...\n'));
-    openBrowser('http://localhost:' + PORT);
-  });
-});
-
-// app.listen(PORT, function () {
-//   console.log(chalk.cyan('Starting the development server...\n'));
-//   openBrowser('http://localhost:' + PORT);
+// Loadable.preloadAll().then(() => {
+//   app.listen(PORT, function() {
+//     console.log(chalk.cyan('Starting the development server...\n'));
+//     openBrowser('http://localhost:' + PORT);
+//   });
 // });
+
+
+app.listen(PORT, function () {
+  console.log(chalk.cyan('Starting the development server...\n'));
+  openBrowser('http://localhost:' + PORT);
+});

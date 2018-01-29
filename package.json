@@ -16,7 +16,7 @@
     "dist": "yarn clean && yarn build && yarn build:min",
     "start": "node scripts/start.js",
     "serve": "cd ssr && cross-env BABEL_ENV=development NODE_ENV=development node server.js",
-    "serve:build": "cd app && cross-env BABEL_ENV=development NODE_ENV=development webpack",
+    "serve:build": "cd ssr && cross-env BABEL_ENV=development NODE_ENV=development webpack",
     "start:dev": "cross-env BABEL_ENV=development webpack --config config/webpack.config.packages.js --progress --colors --watch",
     "deploy": "node scripts/deploy.js",
     "!prepublish": "yarn dist"
